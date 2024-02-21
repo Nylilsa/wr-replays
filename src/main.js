@@ -3,15 +3,20 @@
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
 
+const Replay06 = require("D:/GitHub/replay-reader/Replay06.js");
 const Replay15 = require("D:/GitHub/replay-reader/Replay15.js");
 const Replay18 = require("D:/GitHub/replay-reader/Replay18.js");
 const fs = require('fs');
-const path = "D:/GitHub/nylilsa.github.io/replays/MAIN/th18/Easy/Reimu/th18_easy_reimu_954243810.rpy"
+const path = "D:/GitHub/wr-replays/replays/MAIN/th18/Easy/Reimu/th18_easy_reimu_954243810.rpy"
 let replayData2 = fs.readFileSync(path);
 const replay = new Replay18(replayData2);
 // console.log(replay)
 // console.log(replay.getStageData(7))
 // console.log(replay)
+
+const readline = require('readline-sync');
+
+init();
 
 function fetchJson(url) {
     let temp = fs.readFileSync(url, 'utf8', (err, data) => {
@@ -25,16 +30,52 @@ function fetchJson(url) {
 
 function init() {
     const wrdata = fetchJson("D:/GitHub/nylilsa.github.io/json/wrprogression.json");
-    const game = "th18";
-    const path = `D:/GitHub/nylilsa.github.io/replays/MAIN/${game}`;
+    const game = "th15";
+    const path = `D:/GitHub/wr-replays/replays/MAIN/${game}`;
+    const pathWr = `D:/GitHub/wr-replays/${game}`;
+    const pathNew = `D:/GitHub/wr-replays/new-replays/${game}`;
+    // createDirectory(game, pathWr, pathNew);
     // copyReplaysToPath(game, path);
     // createUnverifiedVerifiedJson(game, wrdata, path);
-    moveVerifiedReplays(game, path)
+    // moveVerifiedReplays(game, path, pathWr);
+    // replaysMatchJson(game, path, pathWr);
+
+    addEntries(game, pathNew);
 }
 
-function moveVerifiedReplays(game, path) {
+// this function looks at the replays in pathNew, then checks if those replays are valid WR replays or not.
+// if not, console.log it
+// if score matches entry in UNVERIFIED json, then warn user about it and ask user if they want to remove unverified entry to add verified entry and more to correct folder
+// if valid, ask to update the .json file and move to correct folder.
+function addEntries(game, pathNew) {
+    const files = fs.readdirSync(pathNew);
+    
+}
+
+function createDirectory(game, pathWr, pathNew) {
+    createDirIfNotExist(pathWr);
+    createDirIfNotExist(pathNew);
+    const playerList = mapGame(game).playerList;
+    const difficultyList = mapGame(game).difficultyList;
+    for (let i = 0; i < difficultyList.length; i++) {
+        const difficulty = difficultyList[i];
+        createDirIfNotExist(`${pathWr}/${difficulty}`);
+        for (let j = 0; j < playerList.length; j++) {
+            const player = playerList[j];
+            createDirIfNotExist(`${pathWr}/${difficulty}/${player}`);
+        }
+    }
+}
+
+function createDirIfNotExist(path) {
+    if (!fs.existsSync(path)) {
+        fs.mkdirSync(path);
+        console.log(`Created folder at ${path}`);
+    }
+}
+
+function moveVerifiedReplays(game, path, pathWr) {
     let counter = 0;
-    const pathToSave = `D:/GitHub/wr-replays/${game}`;
     const playerList = mapGame(game).playerList;
     const difficultyList = mapGame(game).difficultyList;
     const verifiedJson = fetchJson(`D:/GitHub/nylilsa.github.io/json/wr/verified/${game}.json`);
@@ -49,13 +90,12 @@ function moveVerifiedReplays(game, path) {
                 const score = entry[0];
                 const rpyName = `${game}_${difficulty}_${player}_${score}.rpy`.toLowerCase();
                 const fileToCheck = `${path}/${difficulty}/${player}/${rpyName}`;
-                // console.log(fileToCheck);
-                const pathToSaveFile = `${pathToSave}/${difficulty}/${player}/${rpyName}`;
+                const pathToSaveFile = `${pathWr}/${difficulty}/${player}/${rpyName}`;
                 fs.copyFileSync(fileToCheck, pathToSaveFile);
             }
         }
     }
-    console.log(`Successfully copied ${counter} file(s) to ${pathToSave} !`)
+    console.log("\x1b[32m", `Successfully copied ${counter} file(s) to ${pathWr} !`)
 }
 
 function createUnverifiedVerifiedJson(game, wrdata, path) {
@@ -86,8 +126,8 @@ function createUnverifiedVerifiedJson(game, wrdata, path) {
             reduceByScore(arr);
             const [unmerged, unverifiedObject, verifiedUnmerged] = sortByScore(arr, categoryData)
             if (unmerged.length > 0) {
-                console.warn(difficulty + player)
-                console.warn(`New WR entries detected! ${unmerged}\n`)
+                console.warn("\x1b[33m", `New WR entries detected for category ${difficulty + player}!`)
+                logArrays(unmerged)
             }
             const verifiedObject = mergeArray(unmerged, verifiedUnmerged);
             sortArrayScore(verifiedObject);
@@ -95,14 +135,39 @@ function createUnverifiedVerifiedJson(game, wrdata, path) {
             verifiedJson[difficulty][player] = verifiedObject;
         }
     }
-    writeJsonToFolder(game, verifiedJson, unverifiedJson, true)
+    writeJsonToFolder(game, verifiedJson, unverifiedJson, true);
+}
+
+function logArrays(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        const entry = arr[i];
+        let check;
+        while (true) {
+            console.log("\x1b[0m");
+            check = readline.question(`Approve of entry ${entry}? Y/N\n >`);
+            if (check.toLowerCase() === "y") {
+                console.log("\x1b[32m", `Approved entry ${entry}`);
+                break;
+            } else if (check.toLowerCase() === "n") {
+                console.log("\x1b[31m", `Denied entry ${entry}`);
+                arr.splice(i, 1);
+                i--;
+                break;
+            } else {
+                console.warn("\x1b[33m", "Invalid input! Please enter 'Y' for yes or 'N' for no.");
+            }
+            console.log("\x1b[0m", "\n")
+        }
+    }
 }
 
 function writeJsonToFolder(game, verifiedJson, unverifiedJson, production = false) {
     const pathToJson = "D:/GitHub/nylilsa.github.io/json/wr";
     if (production) {
         fs.writeFileSync(`${pathToJson}/unverified/${game}.json`, JSON.stringify(unverifiedJson));
+        console.log("\x1b[32m", `Successfully created file ${pathToJson}/unverified/${game}.json`);
         fs.writeFileSync(`${pathToJson}/verified/${game}.json`, JSON.stringify(verifiedJson));
+        console.log("\x1b[32m", `Successfully created file ${pathToJson}/verified/${game}.json`);
     } else {
         fs.writeFileSync(`unverified-test-${game}.json`, JSON.stringify(unverifiedJson));
         fs.writeFileSync(`verified-test-${game}.json`, JSON.stringify(verifiedJson));
@@ -110,24 +175,60 @@ function writeJsonToFolder(game, verifiedJson, unverifiedJson, production = fals
 }
 
 function copyReplaysToPath(game, path) {
-    fs.readdir(path, function (err, files) {
-        if (err) {
-            return console.log('Unable to scan directory: ' + err);
+    const files = fs.readdirSync(path);
+    let counter = 0;
+    files.forEach(function (file) {
+        const lastFourCharacters = file.slice(file.length - 4)
+        if (lastFourCharacters === ".rpy") {
+            const replayData = fs.readFileSync(`${path}/${file}`);
+            const rpy = mapGame(game, replayData);
+            const difficulty = rpy.getDifficulty();
+            const character = rpy.getShot();
+            const score = rpy.getScore();
+            const pathToCopyAt = `${path}/${difficulty}/${character}`;
+            const rpyName = `${game}_${difficulty}_${character}_${score}.rpy`.toLowerCase();
+            fs.copyFileSync(`${path}/${file}`, `${pathToCopyAt}/${rpyName}`);
+            counter++;
         }
-        files.forEach(function (file) {
-            const lastFourCharacters = file.slice(file.length - 4)
-            if (lastFourCharacters === ".rpy") {
-                const replayData = fs.readFileSync(`${path}/${file}`);
-                const rpy = mapGame(game, replayData);
-                const difficulty = rpy.getDifficulty();
-                const character = rpy.getShot();
-                const score = rpy.getScore();
-                const pathToCopyAt = `${path}/${difficulty}/${character}`;
-                const rpyName = `${game}_${difficulty}_${character}_${score}.rpy`.toLowerCase();
-                fs.copyFileSync(`${path}/${file}`, `${pathToCopyAt}/${rpyName}`);
-            }
-        });
     });
+    console.log(`Successfully copied ${counter} replay(s) to ${path}`)
+}
+
+
+function replaysMatchJson(game, path, pathWr) {
+    const jsonPath = `D:/GitHub/nylilsa.github.io/json/wr/verified/${game}.json`;
+    const verifiedData = fetchJson(jsonPath);
+    const playerList = mapGame(game).playerList;
+    const difficultyList = mapGame(game).difficultyList;
+    for (let i = 0; i < difficultyList.length; i++) {
+        const difficulty = difficultyList[i];
+        for (let j = 0; j < playerList.length; j++) {
+            const player = playerList[j];
+            const categoryData = verifiedData[difficulty][player];
+            const pathToFiles = `${pathWr}/${difficulty}/${player}`;
+            const categoryFiles = fs.readdirSync(pathToFiles);
+            for (let k = 0; k < categoryData.length; k++) {
+                const score = categoryData[k][0];
+                const rpyName = `${game}_${difficulty}_${player}_${score}.rpy`.toLowerCase();
+                const fileToCheck = `${pathWr}/${difficulty}/${player}/${rpyName}`;
+                const boolJsonToReplay = fs.existsSync(fileToCheck);
+                // checks if json entry does not have a corresponding replay
+                if (boolJsonToReplay) {
+                    const index = categoryFiles.indexOf(rpyName);
+                    categoryFiles.splice(index, 1);
+                } else {
+                    console.warn("\x1b[31m", `${fileToCheck} does not exist but is in the json! \n Score: ${score}`, "\x1b[0m")
+                }
+            }
+
+            if (categoryFiles.length > 0) {
+                categoryFiles.forEach(element => {
+                    console.warn("\x1b[31m", `${pathToFiles}/${element} exists but is not an entry in the JSON!`, "\x1b[0m")
+                })
+            }
+        }
+    }
+
 }
 
 function mergeArray(arr1, arr2) {
@@ -168,24 +269,25 @@ function sortByScore(arrReplays, arrJson) {
 function mapGame(game, replayData) {
     if (replayData === undefined) {
         switch (game) {
-            case "th18":
-                return Replay18;
+            case "th06":
+                return Replay06;
             case "th15":
                 return Replay15;
+            case "th18":
+                return Replay18;
             default:
                 console.log("Invalid thingy try again pls");
         }
     } else {
         switch (game) {
-            case "th18":
-                return new Replay18(replayData);
+            case "th06":
+                return new Replay06(replayData);
             case "th15":
                 return new Replay15(replayData);
+            case "th18":
+                return new Replay18(replayData);
             default:
                 console.log("Invalid thingy try again pls");
         }
     }
 }
-
-
-init()
