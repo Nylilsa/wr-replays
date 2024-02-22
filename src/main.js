@@ -34,35 +34,158 @@ function init() {
     const path = `D:/GitHub/wr-replays/replays/MAIN/${game}`;
     const pathWr = `D:/GitHub/wr-replays/${game}`;
     const pathNew = `D:/GitHub/wr-replays/new-replays/${game}`;
-    // createDirectory(game, pathWr, pathNew);
+    // createDirectory(game, pathWr);
     // copyReplaysToPath(game, path);
     // createUnverifiedVerifiedJson(game, wrdata, path);
     // moveVerifiedReplays(game, path, pathWr);
+    
     // replaysMatchJson(game, path, pathWr);
-
-    addEntries(game, pathNew);
+    addEntries(game, pathNew, pathWr);
 }
 
 // this function looks at the replays in pathNew, then checks if those replays are valid WR replays or not.
 // if not, console.log it
 // if score matches entry in UNVERIFIED json, then warn user about it and ask user if they want to remove unverified entry to add verified entry and more to correct folder
 // if valid, ask to update the .json file and move to correct folder.
-function addEntries(game, pathNew) {
-    const files = fs.readdirSync(pathNew);
-    
+function addEntries(game, pathNew, pathWr) {
+    createDirIfNotExist(pathNew);
+    const unverifiedData = fetchJson(`D:/GitHub/nylilsa.github.io/json/wr/unverified/${game}.json`);
+    const verifiedData = fetchJson(`D:/GitHub/nylilsa.github.io/json/wr/verified/${game}.json`);
+    const newFiles = fs.readdirSync(pathNew);
+    for (let j=0; j < newFiles.length; j++) {
+        const file = newFiles[j];
+        let isUnverifiedEntry = false;
+        const pathToFile = `${pathNew}/${file}`;
+        const replayData = fs.readFileSync(pathToFile);
+        const rpy = mapGame(game, replayData);
+        const difficulty = rpy.getDifficulty();
+        const character = rpy.getShot();
+        const score = rpy.getScore();
+        const date = rpy.getDate();
+        const name = rpy.getName();
+        const unverifiedCategory = unverifiedData[difficulty][character];
+        const verifiedCategory = verifiedData[difficulty][character];
+        const pathToCopyAt = `${pathWr}/${difficulty}/${character}`;
+        const rpyName = `${game}_${difficulty}_${character}_${score}.rpy`.toLowerCase();
+        const replayAlreadyExistsInVerified = isDuplicateEntry(verifiedCategory, score);
+        if (replayAlreadyExistsInVerified[0]) {
+            console.log("\x1b[33m", `Replay ${file} category ${character+difficulty} is already verified with ${replayAlreadyExistsInVerified[1]}!`, "\x1b[0m");
+            continue;
+        }
+        for (let i = 0; i < unverifiedCategory.length; i++) {
+            unverifiedEntry = unverifiedCategory[i];
+            if (score == unverifiedEntry[0]) { // replay matches unverified entry
+                replayMatchesUnverifiedEntry(i, game, pathToFile, `${pathToCopyAt}/${rpyName}`, unverifiedData, difficulty, character, file, date);
+                isUnverifiedEntry = true;
+                break;
+            }
+        }
+        if (!isUnverifiedEntry) {
+            const category = verifiedData[difficulty][character];
+            const newEntry = [score, name, date.toISOString()];
+            category.push(newEntry);
+            sortArrayDate(category);
+            const removed = reduceByScore(category);
+            if (removed == 0) {
+                while (true) {
+                    const check = readline.question(`${file} seems to be a new entry. Approve of entry ${newEntry}? [Y/N]\n > `);
+                    if (check.toLowerCase() === "y") {
+                        console.log("\x1b[32m", `Approved entry ${newEntry}`);
+                        console.log("\x1b[0m");
+                        fs.copyFileSync(pathToFile, `${pathToCopyAt}/${rpyName}`);
+                        console.log(`Copied file at ${pathToFile} to ${pathToCopyAt}/${rpyName}`);
+                        fs.unlinkSync(pathToFile);
+                        console.log(`Deleted file at ${pathToFile}`);
+                        fs.writeFileSync(`D:/GitHub/nylilsa.github.io/json/wr/verified/${game}.json`, JSON.stringify(verifiedData));
+                        console.log(`Updated JSON at D:/GitHub/nylilsa.github.io/json/wr/verified/${game}.json`)
+                        break;
+                    } else if (check.toLowerCase() === "n") {
+                        console.log("\x1b[31m", `Denied entry ${newEntry}`);
+                        fs.unlinkSync(pathToFile);
+                        console.log(`Deleted file at ${pathToFile}`);
+                        console.log("\x1b[0m");
+                        break;
+                    } else {
+                        console.warn("\x1b[33m", "Invalid input! Please enter 'Y' for yes or 'N' for no.");
+                    }
+                }
+
+            } else {
+                console.log("\x1b[31m", `File ${file} category ${character+difficulty} with ${newEntry} is not a missing/new WR entry nor is it unverified. Please remove this from the folder.`, "\x1b[0m");
+            }
+        }
+    }
 }
 
-function createDirectory(game, pathWr, pathNew) {
-    createDirIfNotExist(pathWr);
-    createDirIfNotExist(pathNew);
+function isDuplicateEntry(array, score) {
+    for (let i=0; i < array.length; i++) {
+        const entryScore = array[i][0];
+        if (entryScore == score) {
+            return [true, array[i]];
+        }
+    }
+    return [false, undefined];
+}
+
+function approveNewEntry(i, game, pathToFile, destination, unverifiedData, difficulty, character, date) {
+    // copies file to folder
+    fs.copyFileSync(pathToFile, destination);
+    console.log(`Copied file at ${pathToFile} to ${destination}`);
+    // removes file
+    fs.unlinkSync(pathToFile);
+    console.log(`Deleted file at ${pathToFile}`);
+    // updates date to be more accurate
+    unverifiedData[difficulty][character][i][2] = date.toISOString();
+    // adds entry to verified json;
+    const jsonPathVerified = `D:/GitHub/nylilsa.github.io/json/wr/verified/${game}.json`;
+    const verifiedJson = fetchJson(jsonPathVerified);
+    verifiedJson[difficulty][character].push(unverifiedData[difficulty][character][i]);
+    sortArrayScore(verifiedJson[difficulty][character]);
+    fs.writeFileSync(jsonPathVerified, JSON.stringify(verifiedJson));
+    console.log(`Updated JSON at ${jsonPathVerified}`);
+    // removes entry from unverified json
+    console.log(`Removed entry ${unverifiedData[difficulty][character][i]}`);
+    unverifiedData[difficulty][character].splice(i, 1);
+    const jsonPathUnverified = `D:/GitHub/nylilsa.github.io/json/wr/unverified/${game}.json`;
+    fs.writeFileSync(jsonPathUnverified, JSON.stringify(unverifiedData));
+    console.log(`Updated JSON at ${jsonPathUnverified}`);
+}
+
+function replayMatchesUnverifiedEntry(i, game, pathToFile, destination, unverifiedData, difficulty, character, file, date) {
+    console.log(`Found a match between replay \x1b[33m${file}\x1b[0m and unverified entry ${unverifiedEntry}`)
+    while (true) {
+        const check = readline.question(`Approve of entry ${unverifiedEntry}? [Y/N]\n > `);
+        if (check.toLowerCase() === "y") {
+            console.log("\x1b[32m", `Approved entry ${unverifiedEntry}`);
+            console.log("\x1b[0m");
+            approveNewEntry(i, game, pathToFile, destination, unverifiedData, difficulty, character, date);
+            break;
+        } else if (check.toLowerCase() === "n") {
+            console.log("\x1b[31m", `Denied entry ${unverifiedEntry}`);
+            fs.unlinkSync(pathToFile);
+            console.log(`Deleted file at ${pathToFile}`);
+            console.log("\x1b[0m");
+            break;
+        } else {
+            console.warn("\x1b[33m", "Invalid input! Please enter 'Y' for yes or 'N' for no.");
+        }
+    }
+}
+
+function createDirectory(game, parent) {
+    createDirIfNotExist(parent);
+    createDifficultyPlayerDir(game, parent);
+}
+
+function createDifficultyPlayerDir(game, parent) {
     const playerList = mapGame(game).playerList;
     const difficultyList = mapGame(game).difficultyList;
     for (let i = 0; i < difficultyList.length; i++) {
         const difficulty = difficultyList[i];
-        createDirIfNotExist(`${pathWr}/${difficulty}`);
+        createDirIfNotExist(`${parent}/${difficulty}`);
         for (let j = 0; j < playerList.length; j++) {
             const player = playerList[j];
-            createDirIfNotExist(`${pathWr}/${difficulty}/${player}`);
+            createDirIfNotExist(`${parent}/${difficulty}/${player}`);
         }
     }
 }
@@ -143,20 +266,20 @@ function logArrays(arr) {
         const entry = arr[i];
         let check;
         while (true) {
-            console.log("\x1b[0m");
-            check = readline.question(`Approve of entry ${entry}? Y/N\n >`);
+            check = readline.question(`Approve of entry ${entry}? Y/N\n > `);
             if (check.toLowerCase() === "y") {
                 console.log("\x1b[32m", `Approved entry ${entry}`);
+                console.log("\x1b[0m");
                 break;
             } else if (check.toLowerCase() === "n") {
                 console.log("\x1b[31m", `Denied entry ${entry}`);
+                console.log("\x1b[0m");
                 arr.splice(i, 1);
                 i--;
                 break;
             } else {
                 console.warn("\x1b[33m", "Invalid input! Please enter 'Y' for yes or 'N' for no.");
             }
-            console.log("\x1b[0m", "\n")
         }
     }
 }
@@ -245,14 +368,17 @@ function sortArrayScore(arr) {
 
 function reduceByScore(arr) {
     let highest = 0;
+    let removed = 0;
     for (let i = 0; i < arr.length; i++) {
         if (arr[i][0] > highest) {
             highest = arr[i][0];
         } else {
             arr.splice(i, 1);
+            removed++;
             i--;
         }
     }
+    return removed;
 }
 
 function sortByScore(arrReplays, arrJson) {
