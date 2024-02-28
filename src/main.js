@@ -154,9 +154,9 @@ function addEntries() {
                         break;
                     } else if (check.toLowerCase() === "n") {
                         console.log("\x1b[31m", `Denied entry ${newEntry}`);
-                        // fs.unlinkSync(pathToFile);
-                        // console.log(`Deleted file at ${pathToFile}`);
-                        // console.log("\x1b[0m");
+                        fs.unlinkSync(pathToFile);
+                        console.log(`Deleted file at ${pathToFile}`);
+                        console.log("\x1b[0m");
                         break;
                     } else {
                         console.warn("\x1b[33m", "Invalid input! Please enter 'Y' for yes or 'N' for no.");
