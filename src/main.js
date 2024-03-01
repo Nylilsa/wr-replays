@@ -6,6 +6,8 @@ const readline = require('readline-sync');
 
 const Replay06 = require("D:/GitHub/replay-reader/Replay06.js");
 const Replay10 = require("D:/GitHub/replay-reader/Replay10.js");
+const Replay11 = require("D:/GitHub/replay-reader/Replay11.js");
+const Replay12 = require("D:/GitHub/replay-reader/Replay12.js");
 const Replay15 = require("D:/GitHub/replay-reader/Replay15.js");
 const Replay18 = require("D:/GitHub/replay-reader/Replay18.js");
 const { match } = require('assert');
@@ -19,7 +21,7 @@ const path = require('path');
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th10";
+const GAME = "th12";
 const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
 const PATH_VERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/verified/${GAME}.json`;
 const PATH_UNVERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/unverified/${GAME}.json`;
@@ -43,15 +45,23 @@ function fetchJson(url) {
 }
 
 function init() {
-    // createDirectory(PATH_WR_REPLAYS);
     // // renameImpureFiles();
+    // createDirectory(PATH_WR_REPLAYS);
     // copyReplaysToPath();
     // createUnverifiedVerifiedJson();
     // moveVerifiedReplays();
 
     // replaysMatchJson();
     addEntries();
+    // convertJson();
 }
+
+// function converts the existing format of [score, name, date] to { score: score, name: name, date: date } for both verified and unverified jsons
+function convertJson() {
+    // TODO, actually implement it
+    console.log(1)
+}
+
 
 // function renameImpureFiles() {
 //     const files = fs.readdirSync(PATH_GAME_REPLAYS);
@@ -99,7 +109,7 @@ function addEntries() {
         for (let i = 0; i < unverifiedCategory.length; i++) {
             const unverifiedEntry = unverifiedCategory[i];
             if (score == unverifiedEntry[0]) { // replay matches unverified entry
-                replayMatchesUnverifiedEntry(i, pathToFile, `${pathToCopyAt}/${rpyName}`, unverifiedData, difficulty, character, file, date);
+                replayMatchesUnverifiedEntry(i, pathToFile, `${pathToCopyAt}/${rpyName}`, unverifiedData, difficulty, character, file, date, unverifiedEntry);
                 isUnverifiedEntry = true;
                 break;
             }
@@ -206,13 +216,13 @@ function approveNewEntry(i, pathToFile, destination, unverifiedData, difficulty,
     fs.writeFileSync(PATH_VERIFIED_JSON, JSON.stringify(verifiedJson));
     console.log(`Updated JSON at ${PATH_VERIFIED_JSON}`);
     // removes entry from unverified json
-    console.log(`Removed entry ${unverifiedData[difficulty][character][i]}`);
+    console.log(`Removed entry ${unverifiedData[difficulty][character][i]} from unverified records`);
     unverifiedData[difficulty][character].splice(i, 1);
     fs.writeFileSync(PATH_UNVERIFIED_JSON, JSON.stringify(unverifiedData));
     console.log(`Updated JSON at ${PATH_UNVERIFIED_JSON}`);
 }
 
-function replayMatchesUnverifiedEntry(i, pathToFile, destination, unverifiedData, difficulty, character, file, date) {
+function replayMatchesUnverifiedEntry(i, pathToFile, destination, unverifiedData, difficulty, character, file, date, unverifiedEntry) {
     console.log(`Found a match between replay \x1b[33m${file}\x1b[0m and unverified entry ${unverifiedEntry}`)
     while (true) {
         const check = readline.question(`Approve of entry ${unverifiedEntry}? [Y/N]\n > `);
@@ -348,9 +358,9 @@ function logArrays(arr) {
 function writeJsonToFolder(verifiedJson, unverifiedJson, production = false) {
     if (production) {
         fs.writeFileSync(PATH_UNVERIFIED_JSON, JSON.stringify(unverifiedJson));
-        console.log("\x1b[32m", `Successfully created file ${pathToJson}/unverified/${GAME}.json`);
+        console.log("\x1b[32m", `Successfully created file ${PATH_UNVERIFIED_JSON}`);
         fs.writeFileSync(PATH_VERIFIED_JSON, JSON.stringify(verifiedJson));
-        console.log("\x1b[32m", `Successfully created file ${pathToJson}/verified/${GAME}.json`);
+        console.log("\x1b[32m", `Successfully created file ${PATH_VERIFIED_JSON}`);
     } else {
         fs.writeFileSync(`unverified-test-${GAME}.json`, JSON.stringify(unverifiedJson));
         fs.writeFileSync(`verified-test-${GAME}.json`, JSON.stringify(verifiedJson));
@@ -378,7 +388,7 @@ function copyReplaysToPath() {
 }
 
 function isRpy(str) {
-    return file.slice(file.length - 4) === ".rpy";
+    return str.slice(str.length - 4) === ".rpy";
 }
 
 function replaysMatchJson() {
@@ -408,7 +418,20 @@ function replaysMatchJson() {
 
             if (categoryFiles.length > 0) {
                 categoryFiles.forEach(element => {
-                    console.warn("\x1b[31m", `${pathToFiles}/${element} exists but is not an entry in the JSON!`, "\x1b[0m")
+                    while (true) {
+                        console.warn("\x1b[31m", `${pathToFiles}/${element} exists but is not an entry in the JSON!`, "\x1b[0m")
+                        const check = readline.question(`Do you want to remove it? [Y/N]\n > `);
+                        if (check.toLowerCase() === "y") {
+                            fs.renameSync(`${pathToFiles}/${element}`, `${PATH_REMOVED_REPLAYS}/${element}`);
+                            console.log(`Moved ${pathToFiles}/${element} to ${PATH_REMOVED_REPLAYS}/${element}`);
+                            break;
+                        } else if (check.toLowerCase() === "n") {
+                            console.log("\x1b[31m", `Did nothing`);
+                            break;
+                        } else {
+                            console.warn("\x1b[33m", "Invalid input! Please enter 'Y' for yes or 'N' for no.");
+                        }
+                    }
                 })
             }
         }
@@ -466,6 +489,12 @@ function mapGame(replayData) {
             break;
         case "th10":
             replayClass = Replay10;
+            break;
+        case "th11":
+            replayClass = Replay11;
+            break;
+        case "th12":
+            replayClass = Replay12;
             break;
         case "th15":
             replayClass = Replay15;
