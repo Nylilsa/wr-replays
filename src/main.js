@@ -21,7 +21,7 @@ const path = require('path');
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th12";
+const GAME = "th18";
 const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
 const PATH_VERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/verified/${GAME}.json`;
 const PATH_UNVERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/unverified/${GAME}.json`;
@@ -422,6 +422,7 @@ function replaysMatchJson() {
                         console.warn("\x1b[31m", `${pathToFiles}/${element} exists but is not an entry in the JSON!`, "\x1b[0m")
                         const check = readline.question(`Do you want to remove it? [Y/N]\n > `);
                         if (check.toLowerCase() === "y") {
+                            createDirIfNotExist(PATH_REMOVED_REPLAYS);
                             fs.renameSync(`${pathToFiles}/${element}`, `${PATH_REMOVED_REPLAYS}/${element}`);
                             console.log(`Moved ${pathToFiles}/${element} to ${PATH_REMOVED_REPLAYS}/${element}`);
                             break;
