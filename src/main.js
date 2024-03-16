@@ -8,6 +8,7 @@ const Replay06 = require("D:/GitHub/replay-reader/Replay06.js");
 const Replay10 = require("D:/GitHub/replay-reader/Replay10.js");
 const Replay11 = require("D:/GitHub/replay-reader/Replay11.js");
 const Replay12 = require("D:/GitHub/replay-reader/Replay12.js");
+const Replay14 = require("D:/GitHub/replay-reader/Replay14.js");
 const Replay15 = require("D:/GitHub/replay-reader/Replay15.js");
 const Replay18 = require("D:/GitHub/replay-reader/Replay18.js");
 const { match } = require('assert');
@@ -21,7 +22,7 @@ const path = require('path');
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th18";
+const GAME = "th14";
 const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
 const PATH_VERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/verified/${GAME}.json`;
 const PATH_UNVERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/unverified/${GAME}.json`;
@@ -45,7 +46,6 @@ function fetchJson(url) {
 }
 
 function init() {
-    // // renameImpureFiles();
     // createDirectory(PATH_WR_REPLAYS);
     // copyReplaysToPath();
     // createUnverifiedVerifiedJson();
@@ -62,20 +62,6 @@ function convertJson() {
     console.log(1)
 }
 
-
-// function renameImpureFiles() {
-//     const files = fs.readdirSync(PATH_GAME_REPLAYS);
-//     files.forEach((file) => {
-//         if (isRpy(file)) {
-//             if (file.includes(" ") || file.substring(0, file.length - 4).includes(".") || file.includes("(") || file.includes(")")) {
-//                 const oldFile = file;
-//                 file = file.substring(0, file.length - 4).replaceAll(".", "a").replaceAll(" ", "b").replaceAll("(", "c").replaceAll(")", "d") + ".rpy";
-//                 fs.renameSync(`${PATH_GAME_REPLAYS}/${oldFile}`, `${PATH_GAME_REPLAYS}/${file}`);
-//                 console.log(`Renamed ${PATH_GAME_REPLAYS}/${oldFile} to ${PATH_GAME_REPLAYS}/${file}`);
-//             }
-//         }
-//     })
-// }
 
 // this function looks at the replays in PATH_NEW_REPLAYS, then checks if those replays are valid WR replays or not.
 // if not, console.log it
@@ -316,9 +302,9 @@ function createUnverifiedVerifiedJson() {
                 const name = rpy.getName();
                 arr.push([score, name, date])
             })
-            sortArrayDate(arr)
-            reduceByScore(arr);
-            const [unmerged, unverifiedObject, verifiedUnmerged] = sortByScore(arr, categoryData)
+            sortArrayDate(arr);
+            const removedElements = reduceByScore(arr);
+            const [unmerged, unverifiedObject, verifiedUnmerged] = sortByScore(arr, categoryData, removedElements)
             if (unmerged.length > 0) {
                 console.warn("\x1b[33m", `New WR entries detected for category ${difficulty + player}!`)
                 logArrays(unmerged)
@@ -454,21 +440,24 @@ function sortArrayScore(arr) {
 
 function reduceByScore(arr) {
     let highest = 0;
+    let removedElements = [];
     for (let i = 0; i < arr.length; i++) {
         if (arr[i][0] > highest) {
             highest = arr[i][0];
         } else {
+            removedElements.push(arr[i]);
             arr.splice(i, 1);
             i--;
         }
     }
+    return removedElements;
 }
 
-function sortByScore(arrReplays, arrJson) {
+function sortByScore(arrReplays, arrJson, removedElements)  {
     const matchingEntries = intersectionArray(arrReplays, arrJson); // array of replays that are already a WR and have a valid replay and their date is good but name isnt
     const intersectionJsonNames = intersectionArray(arrJson, arrReplays); // array of replays that are already a WR and have a valid replay and their name is good
     const newEntries = differenceArray(arrReplays, matchingEntries); // basically does the following: arrReplays = intersection
-    const unverifiedEntries = differenceArray(arrJson, matchingEntries);
+    const unverifiedEntries = differenceArray(arrJson, mergeArray(matchingEntries, removedElements));
     for (let i = 0; i < matchingEntries.length; i++) {
         matchingEntries[i][1] = intersectionJsonNames[i][1]; // changes replay name to already existing name in arrJson
     }
@@ -496,6 +485,9 @@ function mapGame(replayData) {
             break;
         case "th12":
             replayClass = Replay12;
+            break;
+        case "th14":
+            replayClass = Replay14;
             break;
         case "th15":
             replayClass = Replay15;
