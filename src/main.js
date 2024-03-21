@@ -31,6 +31,8 @@ const PATH_WR_REPLAYS = `D:/GitHub/wr-replays/${GAME}`;
 const PATH_GAME_REPLAYS = `D:/GitHub/wr-replays/replays/MAIN/${GAME}`;
 const PATH_REMOVED_REPLAYS = `D:/GitHub/wr-replays/removed-replays/${GAME}`;
 const WR_DATA = fetchJson(PATH_WRPROGRESSION_JSON);
+const PLAYER_LIST = mapGame().playerList;
+const DIFFICULTY_LIST = mapGame().difficultyList;
 
 
 init();
@@ -235,13 +237,11 @@ function createDirectory(parent) {
 }
 
 function createDifficultyPlayerDir(parent) {
-    const playerList = mapGame().playerList;
-    const difficultyList = mapGame().difficultyList;
-    for (let i = 0; i < difficultyList.length; i++) {
-        const difficulty = difficultyList[i];
+    for (let i = 0; i < DIFFICULTY_LIST.length; i++) {
+        const difficulty = DIFFICULTY_LIST[i];
         createDirIfNotExist(`${parent}/${difficulty}`);
-        for (let j = 0; j < playerList.length; j++) {
-            const player = playerList[j];
+        for (let j = 0; j < PLAYER_LIST.length; j++) {
+            const player = PLAYER_LIST[j];
             createDirIfNotExist(`${parent}/${difficulty}/${player}`);
         }
     }
@@ -256,13 +256,11 @@ function createDirIfNotExist(path) {
 
 function moveVerifiedReplays() {
     let counter = 0;
-    const playerList = mapGame().playerList;
-    const difficultyList = mapGame().difficultyList;
     const verifiedJson = fetchJson(PATH_VERIFIED_JSON);
-    for (let i = 0; i < difficultyList.length; i++) {
-        const difficulty = difficultyList[i];
-        for (let j = 0; j < playerList.length; j++) {
-            const player = playerList[j];
+    for (let i = 0; i < DIFFICULTY_LIST.length; i++) {
+        const difficulty = DIFFICULTY_LIST[i];
+        for (let j = 0; j < PLAYER_LIST.length; j++) {
+            const player = PLAYER_LIST[j];
             const categoryData = verifiedJson[difficulty][player];
             for (let k = 0; k < categoryData.length; k++) {
                 counter++;
@@ -279,16 +277,14 @@ function moveVerifiedReplays() {
 }
 
 function createUnverifiedVerifiedJson() {
-    const playerList = mapGame().playerList;
-    const difficultyList = mapGame().difficultyList;
     const unverifiedJson = {};
     const verifiedJson = {};
-    for (let i = 0; i < difficultyList.length; i++) {
-        const difficulty = difficultyList[i];
+    for (let i = 0; i < DIFFICULTY_LIST.length; i++) {
+        const difficulty = DIFFICULTY_LIST[i];
         unverifiedJson[difficulty] = {};
         verifiedJson[difficulty] = {};
-        for (let j = 0; j < playerList.length; j++) {
-            const player = playerList[j];
+        for (let j = 0; j < PLAYER_LIST.length; j++) {
+            const player = PLAYER_LIST[j];
             const categoryData = WR_DATA[GAME][difficulty][player]
             const categoryPath = `${PATH_GAME_REPLAYS}/${difficulty}/${player}`
             const files = fs.readdirSync(categoryPath);
@@ -379,12 +375,10 @@ function isRpy(str) {
 
 function replaysMatchJson() {
     const verifiedData = fetchJson(PATH_VERIFIED_JSON);
-    const playerList = mapGame().playerList;
-    const difficultyList = mapGame().difficultyList;
-    for (let i = 0; i < difficultyList.length; i++) {
-        const difficulty = difficultyList[i];
-        for (let j = 0; j < playerList.length; j++) {
-            const player = playerList[j];
+    for (let i = 0; i < DIFFICULTY_LIST.length; i++) {
+        const difficulty = DIFFICULTY_LIST[i];
+        for (let j = 0; j < PLAYER_LIST.length; j++) {
+            const player = PLAYER_LIST[j];
             const categoryData = verifiedData[difficulty][player];
             const pathToFiles = `${PATH_WR_REPLAYS}/${difficulty}/${player}`;
             const categoryFiles = fs.readdirSync(pathToFiles);
