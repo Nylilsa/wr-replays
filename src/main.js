@@ -22,7 +22,7 @@ const path = require('path');
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th14";
+const GAME = "th12";
 const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
 const PATH_VERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/verified/${GAME}.json`;
 const PATH_UNVERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/unverified/${GAME}.json`;
@@ -49,7 +49,7 @@ function fetchJson(url) {
 
 function init() {
     // createDirectory(PATH_WR_REPLAYS);
-    // copyReplaysToPath();
+    copyReplaysToPath();
     createUnverifiedVerifiedJson();
     // moveVerifiedReplays();
 
@@ -310,7 +310,7 @@ function createUnverifiedVerifiedJson() {
                 console.log(invalidReplays)
                 // remove all replays that are in invalidReplays from verified
                 verified = differenceArray(verified, invalidReplays);
-                sortArrayScore(verified);
+                sortArrayDate(verified);
                 reduceByScore(verified);
                 const newVerified = intersectionArray(verified, jsonVerified);
                 if (newVerified.length > 0) {
@@ -319,7 +319,7 @@ function createUnverifiedVerifiedJson() {
                         const entry = newVerified[i];
                         let check;
                         while (true) {
-                            check = readline.question(`Approve of entry ${entry}? Y/N\n > `);
+                             check = readline.question(`Approve of entry ${entry}? Y/N\n > `);
                             if (check.toLowerCase() === "y") {
                                 console.log("\x1b[32m", `Approved entry ${entry}`);
                                 console.log("\x1b[0m");
@@ -343,7 +343,7 @@ function createUnverifiedVerifiedJson() {
 
             // We merge the category at verified category with unverified json and we then reduce it. We then look at the **if any unverified entries have been removed**, and we are **NOT** looking at the verified entries. The unverified entries that were reduced are then removed from the object with the unverified entries (because those entries are not considered to be WR anymore).
             const temp = mergeArray(verified, jsonUnverified);
-            sortArrayScore(temp);
+            sortArrayDate(temp);
             const removedEntries = reduceByScore(temp); // removedEntries contains array of elements that are removed, which could contain a mix of both verified and unverified entries
             const removedUnverified = intersectionArray(removedEntries, jsonUnverified); // only get unverified entries that have been removed from temp from removedEntries
             jsonUnverified = differenceArray(jsonUnverified, removedUnverified); // update jsonUnverified by removing the invalid unverified entry 
@@ -352,7 +352,7 @@ function createUnverifiedVerifiedJson() {
             verifiedJson[difficulty][player] = verified;
         }
     }
-    // writeJsonToFolder(verifiedJson, unverifiedJson, true);
+    writeJsonToFolder(verifiedJson, unverifiedJson, true);
 }
 
 function removeArray(arr, score) {
