@@ -37,13 +37,14 @@ Score 599,999,990 was achieved on 01/01/2015 is verified (has evidence)
 
 Here's what I should do:
 
-1. Check for any matches between entries in the .json and the replay files. The object now makes a distinction between verified and unverified replays.
+1. Check for any matches between entries in the .json and the replay files. The object now makes a distinction between verified and unverified replays. (done)
 
-2. Split the object into two objects. One object has the unverified data, the other has the verified data.
+2. Split the object into two objects. One object has the unverified data, the other has the verified data. (done)
 Score 600,000,001 was achieved on 01/01/2020 is unverified (no evidence)
 Score 599,999,990 was achieved on 01/01/2015 is verified (now has evidence)
 
-3. Merge the verified data with the new replays. Sort by score and then reduce it by score. The product is a functional verified WR history of the category.
+3. Merge the verified data with the new replays. Sort by score and then reduce it by score. The product is a functional verified WR history of the category. (done)
+VERY IMPORTANT NOTE: IF THE NEW REPLAY IS INVALID THEN IT HAS TO BE REMOVED. YOU NEED TO MANUALLY CHECK THIS BY PROVIDING A PROMPT FOR EVERY NEW REPLAY. IF APPROVE, DO NOTHING. IF DENIED, REMOVE ENTRY AND REPEAT PROCESS OF MERGING THINGS
 You end up with what's at (Extra Marisa TD: Verified checked). The 2020 entries is reduced because it was never a WR to begin with.
 
 4. We merge the category at (Extra Marisa TD: Verified checked) and we then reduce it. We then look at the **if any unverified entries have been removed**, and we are **NOT** looking at the verified entries. The unverified entries that were reduced are then removed from the object with the unverified entries (because those entries are not considered to be WR anymore).

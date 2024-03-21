@@ -50,11 +50,11 @@ function fetchJson(url) {
 function init() {
     // createDirectory(PATH_WR_REPLAYS);
     // copyReplaysToPath();
-    // createUnverifiedVerifiedJson();
+    createUnverifiedVerifiedJson();
     // moveVerifiedReplays();
 
     // replaysMatchJson();
-    addEntries();
+    // addEntries();
     // convertJson();
 }
 
@@ -299,19 +299,69 @@ function createUnverifiedVerifiedJson() {
                 arr.push([score, name, date])
             })
             sortArrayDate(arr);
-            const removedElements = reduceByScore(arr);
-            const [unmerged, unverifiedObject, verifiedUnmerged] = sortByScore(arr, categoryData, removedElements)
-            if (unmerged.length > 0) {
-                console.warn("\x1b[33m", `New WR entries detected for category ${difficulty + player}!`)
-                logArrays(unmerged)
+            // Check for any matches between entries in the .json and the replay files. The object now makes a distinction between verified and unverified replays.
+            // Split the object into two objects. One object has the unverified data, the other has the verified data.
+            const jsonVerified = intersectionArray(categoryData, arr); // gets all replays from categoryData that has a replay
+            let jsonUnverified = differenceArray(categoryData, jsonVerified); //unverified = total - verified
+            // Merge the verified data with the new replays. Sort by score and then reduce it by score. The product is a functional verified WR history of the category.
+            let verified = mergeArray(jsonVerified, arr);
+            const invalidReplays = [];
+            outerLoop: while (true) {
+                console.log(invalidReplays)
+                // remove all replays that are in invalidReplays from verified
+                verified = differenceArray(verified, invalidReplays);
+                sortArrayScore(verified);
+                reduceByScore(verified);
+                const newVerified = intersectionArray(verified, jsonVerified);
+                if (newVerified.length > 0) {
+                    console.warn("\x1b[33m", `New WR entries detected for category ${difficulty + player}!`)
+                    for (let i = 0; i < newVerified.length; i++) {
+                        const entry = newVerified[i];
+                        let check;
+                        while (true) {
+                            check = readline.question(`Approve of entry ${entry}? Y/N\n > `);
+                            if (check.toLowerCase() === "y") {
+                                console.log("\x1b[32m", `Approved entry ${entry}`);
+                                console.log("\x1b[0m");
+                                break;
+                            } else if (check.toLowerCase() === "n") {
+                                console.log("\x1b[31m", `Denied entry ${entry}`);
+                                console.log("\x1b[0m");
+                                invalidReplays.push(newVerified[i]);
+                                newVerified.splice(i, 1);
+                                i--;
+                                continue outerLoop;
+                            } else {
+                                console.warn("\x1b[33m", "Invalid input! Please enter 'Y' for yes or 'N' for no.");
+                            }
+                        }
+                    }
+                }
+                break;
             }
-            const verifiedObject = mergeArray(unmerged, verifiedUnmerged);
-            sortArrayScore(verifiedObject);
-            unverifiedJson[difficulty][player] = unverifiedObject;
-            verifiedJson[difficulty][player] = verifiedObject;
+            //the above: loop through every entry in verified, and manually approve/disapprove of new replays. If replay R is disapproved, remove R from verified, add R to invalidReplays, and loop 
+
+            // We merge the category at verified category with unverified json and we then reduce it. We then look at the **if any unverified entries have been removed**, and we are **NOT** looking at the verified entries. The unverified entries that were reduced are then removed from the object with the unverified entries (because those entries are not considered to be WR anymore).
+            const temp = mergeArray(verified, jsonUnverified);
+            sortArrayScore(temp);
+            const removedEntries = reduceByScore(temp); // removedEntries contains array of elements that are removed, which could contain a mix of both verified and unverified entries
+            const removedUnverified = intersectionArray(removedEntries, jsonUnverified); // only get unverified entries that have been removed from temp from removedEntries
+            jsonUnverified = differenceArray(jsonUnverified, removedUnverified); // update jsonUnverified by removing the invalid unverified entry 
+
+            unverifiedJson[difficulty][player] = jsonUnverified;
+            verifiedJson[difficulty][player] = verified;
         }
     }
-    writeJsonToFolder(verifiedJson, unverifiedJson, true);
+    // writeJsonToFolder(verifiedJson, unverifiedJson, true);
+}
+
+function removeArray(arr, score) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i][0] == score) {
+            arr.splice(i, 1);
+            return;
+        }
+    }
 }
 
 function logArrays(arr) {
@@ -447,7 +497,7 @@ function reduceByScore(arr) {
     return removedElements;
 }
 
-function sortByScore(arrReplays, arrJson, removedElements)  {
+function sortByScore(arrReplays, arrJson, removedElements) {
     const matchingEntries = intersectionArray(arrReplays, arrJson); // array of replays that are already a WR and have a valid replay and their date is good but name isnt
     const intersectionJsonNames = intersectionArray(arrJson, arrReplays); // array of replays that are already a WR and have a valid replay and their name is good
     const newEntries = differenceArray(arrReplays, matchingEntries); // basically does the following: arrReplays = intersection
