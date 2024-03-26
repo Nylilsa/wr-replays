@@ -22,7 +22,7 @@ const path = require('path');
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th12";
+const GAME = "th14";
 const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
 const PATH_VERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/verified/${GAME}.json`;
 const PATH_UNVERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/unverified/${GAME}.json`;
@@ -49,13 +49,67 @@ function fetchJson(url) {
 
 function init() {
     // createDirectory(PATH_WR_REPLAYS);
-    copyReplaysToPath();
-    createUnverifiedVerifiedJson();
+    // copyReplaysToPath();
+    // createUnverifiedVerifiedJson();
     // moveVerifiedReplays();
 
+    // checkReplayValidity();
     // replaysMatchJson();
-    // addEntries();
+    addEntries();
     // convertJson();
+    // convertVerifiedJsonAccurateDate();
+}
+
+// function goes through every verified json entry of GAME, then looks if the date is written correctly in the format 2013-08-16T19:44:15.000Z and not just 2016-08-16
+function convertVerifiedJsonAccurateDate() {
+    let counter = 0;
+    const verifiedJson = fetchJson(PATH_VERIFIED_JSON);
+    for (let i = 0; i < DIFFICULTY_LIST.length; i++) {
+        const difficulty = DIFFICULTY_LIST[i];
+        for (let j = 0; j < PLAYER_LIST.length; j++) {
+            const player = PLAYER_LIST[j];
+            const category = verifiedJson[difficulty][player];
+            for (let k = 0; k < category.length; k++) {
+                const entry = category[k];
+                if (entry[2].length < 15) { // so it follows the format yyyy-mm-dd and not yyyy-mm-ddThh:m:ss.000Z
+                    const score = entry[0];
+                    const fileName = `${GAME}_${difficulty}_${player}_${score}.rpy`.toLowerCase();
+                    const pathToFile = `${PATH_WR_REPLAYS}/${difficulty}/${player}/${fileName}`;
+                    const replayData = fs.readFileSync(pathToFile);
+                    const rpy = mapGame(replayData);
+                    const date = rpy.getDate().toISOString();
+                    verifiedJson[difficulty][player][k][2] = date;
+                    counter++;
+                }
+            }
+        }
+    }
+    fs.writeFileSync(PATH_VERIFIED_JSON, JSON.stringify(verifiedJson));
+    console.log(`Successfully changed ${counter} dates at ${PATH_WRPROGRESSION_JSON} !`);
+}
+
+
+
+// function checks if all replays in the WR folder are valid. Prints statements if it is not
+function checkReplayValidity() {
+    for (let i = 0; i < DIFFICULTY_LIST.length; i++) {
+        const difficulty = DIFFICULTY_LIST[i];
+        for (let j = 0; j < PLAYER_LIST.length; j++) {
+            const player = PLAYER_LIST[j];
+            const path = `${PATH_WR_REPLAYS}/${difficulty}/${player}`;
+            const files = fs.readdirSync(path);
+            files.forEach((file) => {
+                const pathToFile = `${path}/${file}`;
+                const replayData = fs.readFileSync(pathToFile);
+                const rpy = mapGame(replayData);
+                const bool = rpy.isValid();
+                if (!bool) {
+                    console.log(`${pathToFile} is not valid`);
+                }
+            })
+        }
+    }
+    console.log("All replay have been checked for their invalidity");
 }
 
 // function converts the existing format of [score, name, date] to { score: score, name: name, date: date } for both verified and unverified jsons
@@ -312,14 +366,15 @@ function createUnverifiedVerifiedJson() {
                 verified = differenceArray(verified, invalidReplays);
                 sortArrayDate(verified);
                 reduceByScore(verified);
-                const newVerified = intersectionArray(verified, jsonVerified);
+                const newVerified = differenceArray(verified, jsonVerified);
                 if (newVerified.length > 0) {
+                    console.log(newVerified)
                     console.warn("\x1b[33m", `New WR entries detected for category ${difficulty + player}!`)
                     for (let i = 0; i < newVerified.length; i++) {
                         const entry = newVerified[i];
                         let check;
                         while (true) {
-                             check = readline.question(`Approve of entry ${entry}? Y/N\n > `);
+                            // check = readline.question(`Approve of entry ${entry}? Y/N\n > `);
                             if (check.toLowerCase() === "y") {
                                 console.log("\x1b[32m", `Approved entry ${entry}`);
                                 console.log("\x1b[0m");
@@ -412,8 +467,13 @@ function copyReplaysToPath() {
             const score = rpy.getScore();
             const pathToCopyAt = `${PATH_GAME_REPLAYS}/${difficulty}/${character}`;
             const rpyName = `${GAME}_${difficulty}_${character}_${score}.rpy`.toLowerCase();
-            fs.copyFileSync(`${PATH_GAME_REPLAYS}/${file}`, `${pathToCopyAt}/${rpyName}`);
-            counter++;
+            const valid = rpy.isValid();
+            if (valid) {
+                fs.copyFileSync(`${PATH_GAME_REPLAYS}/${file}`, `${pathToCopyAt}/${rpyName}`);
+                counter++;
+            } else {
+                console.log(`Replay ${PATH_GAME_REPLAYS}/${file} is not valid.`)
+            }
         }
     });
     console.log(`Successfully copied ${counter} replay(s) to ${PATH_GAME_REPLAYS}`)
