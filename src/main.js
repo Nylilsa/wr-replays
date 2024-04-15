@@ -8,8 +8,10 @@ const Replay06 = require("D:/GitHub/replay-reader/Replay06.js");
 const Replay10 = require("D:/GitHub/replay-reader/Replay10.js");
 const Replay11 = require("D:/GitHub/replay-reader/Replay11.js");
 const Replay12 = require("D:/GitHub/replay-reader/Replay12.js");
+const Replay13 = require("D:/GitHub/replay-reader/Replay13.js");
 const Replay14 = require("D:/GitHub/replay-reader/Replay14.js");
 const Replay15 = require("D:/GitHub/replay-reader/Replay15.js");
+const Replay16 = require("D:/GitHub/replay-reader/Replay16.js");
 const Replay18 = require("D:/GitHub/replay-reader/Replay18.js");
 const { match } = require('assert');
 const path = require('path');
@@ -22,8 +24,9 @@ const path = require('path');
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th14";
+const GAME = "th13";
 const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
+const PATH_DATA_JSON = `D:/GitHub/nylilsa.github.io/json/gameinfo-new.json`;
 const PATH_VERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/verified/${GAME}.json`;
 const PATH_UNVERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/unverified/${GAME}.json`;
 const PATH_NEW_REPLAYS = `D:/GitHub/wr-replays/new-replays/${GAME}`;
@@ -31,9 +34,12 @@ const PATH_WR_REPLAYS = `D:/GitHub/wr-replays/${GAME}`;
 const PATH_GAME_REPLAYS = `D:/GitHub/wr-replays/replays/MAIN/${GAME}`;
 const PATH_REMOVED_REPLAYS = `D:/GitHub/wr-replays/removed-replays/${GAME}`;
 const WR_DATA = fetchJson(PATH_WRPROGRESSION_JSON);
-const PLAYER_LIST = mapGame().playerList;
-const DIFFICULTY_LIST = mapGame().difficultyList;
+const GAME_DATA = fetchJson(PATH_DATA_JSON);
+const DIFFICULTY_LIST = Object.keys(GAME_DATA["DifficultyCharacters"][GAME]);
 
+function getShottypes(difficulty) {
+    return GAME_DATA["DifficultyCharacters"][GAME][difficulty];
+}
 
 init();
 
@@ -53,9 +59,9 @@ function init() {
     // createUnverifiedVerifiedJson();
     // moveVerifiedReplays();
 
-    // checkReplayValidity();
+    checkReplayValidity();
     // replaysMatchJson();
-    addEntries();
+    // addEntries();
     // convertJson();
     // convertVerifiedJsonAccurateDate();
 }
@@ -66,8 +72,9 @@ function convertVerifiedJsonAccurateDate() {
     const verifiedJson = fetchJson(PATH_VERIFIED_JSON);
     for (let i = 0; i < DIFFICULTY_LIST.length; i++) {
         const difficulty = DIFFICULTY_LIST[i];
-        for (let j = 0; j < PLAYER_LIST.length; j++) {
-            const player = PLAYER_LIST[j];
+        const playerList = getShottypes(difficulty);
+        for (let j = 0; j < playerList.length; j++) {
+            const player = playerList[j];
             const category = verifiedJson[difficulty][player];
             for (let k = 0; k < category.length; k++) {
                 const entry = category[k];
@@ -94,8 +101,9 @@ function convertVerifiedJsonAccurateDate() {
 function checkReplayValidity() {
     for (let i = 0; i < DIFFICULTY_LIST.length; i++) {
         const difficulty = DIFFICULTY_LIST[i];
-        for (let j = 0; j < PLAYER_LIST.length; j++) {
-            const player = PLAYER_LIST[j];
+        const playerList = getShottypes(difficulty);
+        for (let j = 0; j < playerList.length; j++) {
+            const player = playerList[j];
             const path = `${PATH_WR_REPLAYS}/${difficulty}/${player}`;
             const files = fs.readdirSync(path);
             files.forEach((file) => {
@@ -294,8 +302,9 @@ function createDifficultyPlayerDir(parent) {
     for (let i = 0; i < DIFFICULTY_LIST.length; i++) {
         const difficulty = DIFFICULTY_LIST[i];
         createDirIfNotExist(`${parent}/${difficulty}`);
-        for (let j = 0; j < PLAYER_LIST.length; j++) {
-            const player = PLAYER_LIST[j];
+        const playerList = getShottypes(difficulty);
+        for (let j = 0; j < playerList.length; j++) {
+            const player = playerList[j];
             createDirIfNotExist(`${parent}/${difficulty}/${player}`);
         }
     }
@@ -313,8 +322,9 @@ function moveVerifiedReplays() {
     const verifiedJson = fetchJson(PATH_VERIFIED_JSON);
     for (let i = 0; i < DIFFICULTY_LIST.length; i++) {
         const difficulty = DIFFICULTY_LIST[i];
-        for (let j = 0; j < PLAYER_LIST.length; j++) {
-            const player = PLAYER_LIST[j];
+        const playerList = getShottypes(difficulty);
+        for (let j = 0; j < playerList.length; j++) {
+            const player = playerList[j];
             const categoryData = verifiedJson[difficulty][player];
             for (let k = 0; k < categoryData.length; k++) {
                 counter++;
@@ -332,13 +342,14 @@ function moveVerifiedReplays() {
 
 function createUnverifiedVerifiedJson() {
     const unverifiedJson = {};
-    const verifiedJson = {};
+    const verifiedJson = {}
     for (let i = 0; i < DIFFICULTY_LIST.length; i++) {
         const difficulty = DIFFICULTY_LIST[i];
         unverifiedJson[difficulty] = {};
         verifiedJson[difficulty] = {};
-        for (let j = 0; j < PLAYER_LIST.length; j++) {
-            const player = PLAYER_LIST[j];
+        const playerList = getShottypes(difficulty);
+        for (let j = 0; j < playerList.length; j++) {
+            const player = playerList[j];
             const categoryData = WR_DATA[GAME][difficulty][player]
             const categoryPath = `${PATH_GAME_REPLAYS}/${difficulty}/${player}`
             const files = fs.readdirSync(categoryPath);
@@ -374,7 +385,7 @@ function createUnverifiedVerifiedJson() {
                         const entry = newVerified[i];
                         let check;
                         while (true) {
-                            // check = readline.question(`Approve of entry ${entry}? Y/N\n > `);
+                            check = readline.question(`Approve of entry ${entry}? Y/N\n > `);
                             if (check.toLowerCase() === "y") {
                                 console.log("\x1b[32m", `Approved entry ${entry}`);
                                 console.log("\x1b[0m");
@@ -487,8 +498,9 @@ function replaysMatchJson() {
     const verifiedData = fetchJson(PATH_VERIFIED_JSON);
     for (let i = 0; i < DIFFICULTY_LIST.length; i++) {
         const difficulty = DIFFICULTY_LIST[i];
-        for (let j = 0; j < PLAYER_LIST.length; j++) {
-            const player = PLAYER_LIST[j];
+        const playerList = getShottypes(difficulty);
+        for (let j = 0; j < playerList.length; j++) {
+            const player = playerList[j];
             const categoryData = verifiedData[difficulty][player];
             const pathToFiles = `${PATH_WR_REPLAYS}/${difficulty}/${player}`;
             const categoryFiles = fs.readdirSync(pathToFiles);
@@ -590,11 +602,17 @@ function mapGame(replayData) {
         case "th12":
             replayClass = Replay12;
             break;
+        case "th13":
+            replayClass = Replay13;
+            break;
         case "th14":
             replayClass = Replay14;
             break;
         case "th15":
             replayClass = Replay15;
+            break;
+        case "th16":
+            replayClass = Replay16;
             break;
         case "th18":
             replayClass = Replay18;
