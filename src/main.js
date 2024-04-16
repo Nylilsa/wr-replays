@@ -24,7 +24,7 @@ const path = require('path');
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th13";
+const GAME = "th16";
 const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
 const PATH_DATA_JSON = `D:/GitHub/nylilsa.github.io/json/gameinfo-new.json`;
 const PATH_VERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/verified/${GAME}.json`;
@@ -59,9 +59,9 @@ function init() {
     // createUnverifiedVerifiedJson();
     // moveVerifiedReplays();
 
-    checkReplayValidity();
+    // checkReplayValidity();
     // replaysMatchJson();
-    // addEntries();
+    addEntries();
     // convertJson();
     // convertVerifiedJsonAccurateDate();
 }
@@ -92,7 +92,7 @@ function convertVerifiedJsonAccurateDate() {
         }
     }
     fs.writeFileSync(PATH_VERIFIED_JSON, JSON.stringify(verifiedJson));
-    console.log(`Successfully changed ${counter} dates at ${PATH_WRPROGRESSION_JSON} !`);
+    console.log(`Successfully changed ${counter} dates at ${PATH_VERIFIED_JSON} !`);
 }
 
 
