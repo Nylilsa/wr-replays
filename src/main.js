@@ -83,7 +83,7 @@ function convertVerifiedJsonAccurateDate() {
                     const fileName = `${GAME}_${difficulty}_${player}_${score}.rpy`.toLowerCase();
                     const pathToFile = `${PATH_WR_REPLAYS}/${difficulty}/${player}/${fileName}`;
                     const replayData = fs.readFileSync(pathToFile);
-                    const rpy = mapGame(replayData);
+                    const rpy = mapGame(replayData, pathToFile);
                     const date = rpy.getDate().toISOString();
                     verifiedJson[difficulty][player][k][2] = date;
                     counter++;
@@ -109,7 +109,7 @@ function checkReplayValidity() {
             files.forEach((file) => {
                 const pathToFile = `${path}/${file}`;
                 const replayData = fs.readFileSync(pathToFile);
-                const rpy = mapGame(replayData);
+                const rpy = mapGame(replayData, pathToFile);
                 const bool = rpy.isValid();
                 if (!bool) {
                     console.log(`${pathToFile} is not valid`);
@@ -141,7 +141,7 @@ function addEntries() {
         let isUnverifiedEntry = false;
         const pathToFile = `${PATH_NEW_REPLAYS}/${file}`;
         const replayData = fs.readFileSync(pathToFile);
-        const rpy = mapGame(replayData);
+        const rpy = mapGame(replayData, pathToFile);
         const difficulty = rpy.getDifficulty();
         const character = rpy.getShot();
         const score = rpy.getScore();
@@ -357,7 +357,7 @@ function createUnverifiedVerifiedJson() {
             files.forEach(function (file) {
                 const replayPath = `${categoryPath}/${file}`;
                 const replayData = fs.readFileSync(replayPath);
-                const rpy = mapGame(replayData);
+                const rpy = mapGame(replayData, replayPath);
                 const score = rpy.getScore();
                 const date = rpy.getDate();
                 const name = rpy.getName();
@@ -472,7 +472,7 @@ function copyReplaysToPath() {
     files.forEach(function (file) {
         if (isRpy(file)) {
             const replayData = fs.readFileSync(`${PATH_GAME_REPLAYS}/${file}`);
-            const rpy = mapGame(replayData);
+            const rpy = mapGame(replayData, `${PATH_GAME_REPLAYS}/${file}`);
             const difficulty = rpy.getDifficulty();
             const character = rpy.getShot();
             const score = rpy.getScore();
@@ -587,7 +587,7 @@ function differenceArray(arr1, arr2) {
     return arr1.filter(tempArr1 => !arr2.some(tempArr2 => tempArr1[0] === tempArr2[0]));
 }
 
-function mapGame(replayData) {
+function mapGame(replayData, replayPath) {
     let replayClass;
     switch (GAME) {
         case "th06":
@@ -618,12 +618,11 @@ function mapGame(replayData) {
             replayClass = Replay18;
             break;
         default:
-            console.log(`Input ${GAME} is not valid.`);
-            return;
+            throw new Error(`Input ${GAME} is not valid.`);
     }
     if (replayData === undefined) {
         return replayClass;
     } else {
-        return new replayClass(replayData);
+        return new replayClass(replayData, replayPath);
     }
 }
