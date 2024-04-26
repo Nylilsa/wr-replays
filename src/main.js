@@ -8,6 +8,7 @@ const Replay06 = require("D:/GitHub/replay-reader/Replay06.js");
 const Replay10 = require("D:/GitHub/replay-reader/Replay10.js");
 const Replay11 = require("D:/GitHub/replay-reader/Replay11.js");
 const Replay12 = require("D:/GitHub/replay-reader/Replay12.js");
+const Replay128 = require("D:/GitHub/replay-reader/Replay128.js");
 const Replay13 = require("D:/GitHub/replay-reader/Replay13.js");
 const Replay14 = require("D:/GitHub/replay-reader/Replay14.js");
 const Replay15 = require("D:/GitHub/replay-reader/Replay15.js");
@@ -25,7 +26,7 @@ const path = require('path');
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th17";
+const GAME = "th128";
 const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
 const PATH_DATA_JSON = `D:/GitHub/nylilsa.github.io/json/gameinfo-new.json`;
 const PATH_VERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/verified/${GAME}.json`;
@@ -602,6 +603,9 @@ function mapGame(replayData, replayPath) {
             break;
         case "th12":
             replayClass = Replay12;
+            break;
+        case "th128":
+            replayClass = Replay128;
             break;
         case "th13":
             replayClass = Replay13;
