@@ -39,6 +39,10 @@ const WR_DATA = fetchJson(PATH_WRPROGRESSION_JSON);
 const GAME_DATA = fetchJson(PATH_DATA_JSON);
 const DIFFICULTY_LIST = Object.keys(GAME_DATA["DifficultyCharacters"][GAME]);
 
+if (DIFFICULTY_LIST.includes("Overdrive")) {
+    DIFFICULTY_LIST.splice(DIFFICULTY_LIST.indexOf("Overdrive"), 1)
+}
+
 function getShottypes(difficulty) {
     return GAME_DATA["DifficultyCharacters"][GAME][difficulty];
 }
@@ -60,12 +64,12 @@ function init() {
     // copyReplaysToPath();
     // createUnverifiedVerifiedJson();
     // moveVerifiedReplays();
-
-    // checkReplayValidity();
-    // replaysMatchJson();
+    
     // addEntries();
+    checkReplayValidity();
+    replaysMatchJson();
+    convertVerifiedJsonAccurateDate();
     // convertJson();
-    // convertVerifiedJsonAccurateDate();
 }
 
 // function goes through every verified json entry of GAME, then looks if the date is written correctly in the format 2013-08-16T19:44:15.000Z and not just 2016-08-16
