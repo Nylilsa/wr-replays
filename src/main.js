@@ -66,9 +66,9 @@ function init() {
     // moveVerifiedReplays();
     
     // addEntries();
-    checkReplayValidity();
-    replaysMatchJson();
-    convertVerifiedJsonAccurateDate();
+    // checkReplayValidity();
+    // replaysMatchJson();
+    // convertVerifiedJsonAccurateDate();
     // convertJson();
 }
 
