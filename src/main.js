@@ -65,10 +65,10 @@ function init() {
     // createUnverifiedVerifiedJson();
     // moveVerifiedReplays();
     
-    addEntries();
-    // checkReplayValidity();
-    // replaysMatchJson();
-    // convertVerifiedJsonAccurateDate();
+    // addEntries();
+    checkReplayValidity();
+    replaysMatchJson();
+    convertVerifiedJsonAccurateDate();
     // convertJson();
 }
 
