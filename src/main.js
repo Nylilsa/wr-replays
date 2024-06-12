@@ -5,6 +5,7 @@ const fs = require('fs');
 const readline = require('readline-sync');
 
 const Replay06 = require("D:/GitHub/replay-reader/Replay06.js");
+const Replay07 = require("D:/GitHub/replay-reader/Replay07.js");
 const Replay08 = require("D:/GitHub/replay-reader/Replay08.js");
 const Replay10 = require("D:/GitHub/replay-reader/Replay10.js");
 const Replay11 = require("D:/GitHub/replay-reader/Replay11.js");
@@ -27,7 +28,7 @@ const path = require('path');
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th08";
+const GAME = "th07";
 const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
 const PATH_DATA_JSON = `D:/GitHub/nylilsa.github.io/json/gameinfo-new.json`;
 const PATH_VERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/verified/${GAME}.json`;
@@ -64,7 +65,7 @@ function init() {
     // createDirectory(PATH_WR_REPLAYS);
     // copyReplaysToPath();
     // createUnverifiedVerifiedJson();
-    // moveVerifiedReplays();
+    moveVerifiedReplays();
     
     // addEntries();
     // checkReplayValidity();
@@ -414,7 +415,9 @@ function createUnverifiedVerifiedJson() {
             }
             //the above: loop through every entry in verified, and manually approve/disapprove of new replays. If replay R is disapproved, remove R from verified, add R to invalidReplays, and loop 
 
-            // We merge the category at verified category with unverified json and we then reduce it. We then look at the **if any unverified entries have been removed**, and we are **NOT** looking at the verified entries. The unverified entries that were reduced are then removed from the object with the unverified entries (because those entries are not considered to be WR anymore).
+            // We merge the category at verified category with unverified json and we then reduce it.
+            //We then look at the **if any unverified entries have been removed**, and we are **NOT** looking at the verified entries.
+            //The unverified entries that were reduced are then removed from the object with the unverified entries (because those entries are not considered to be WR anymore).
             const temp = mergeArray(verified, jsonUnverified);
             sortArrayDate(temp);
             const removedEntries = reduceByScore(temp); // removedEntries contains array of elements that are removed, which could contain a mix of both verified and unverified entries
@@ -599,6 +602,9 @@ function mapGame(replayData, replayPath) {
     switch (GAME) {
         case "th06":
             replayClass = Replay06;
+            break;
+        case "th07":
+            replayClass = Replay07;
             break;
         case "th08":
             replayClass = Replay08;
