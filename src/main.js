@@ -28,7 +28,7 @@ const path = require('path');
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th07";
+const GAME = "th06";
 const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
 const PATH_DATA_JSON = `D:/GitHub/nylilsa.github.io/json/gameinfo-new.json`;
 const PATH_VERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/verified/${GAME}.json`;
@@ -62,10 +62,10 @@ function fetchJson(url) {
 }
 
 function init() {
-    // createDirectory(PATH_WR_REPLAYS);
+    createDirectory(PATH_WR_REPLAYS);
     // copyReplaysToPath();
-    // createUnverifiedVerifiedJson();
-    moveVerifiedReplays();
+    createUnverifiedVerifiedJson();
+    // moveVerifiedReplays();
     
     // addEntries();
     // checkReplayValidity();
@@ -382,6 +382,7 @@ function createUnverifiedVerifiedJson() {
             outerLoop: while (true) {
                 console.log(invalidReplays)
                 // remove all replays that are in invalidReplays from verified
+                verified = mergeArray(jsonVerified, arr); // needs to be added - condition is CRITICAL for when a replay is deemed invalid
                 verified = differenceArray(verified, invalidReplays);
                 sortArrayDate(verified);
                 reduceByScore(verified);
