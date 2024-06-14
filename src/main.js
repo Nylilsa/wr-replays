@@ -64,7 +64,7 @@ function fetchJson(url) {
 function init() {
     createDirectory(PATH_WR_REPLAYS);
     // copyReplaysToPath();
-    createUnverifiedVerifiedJson();
+    // createUnverifiedVerifiedJson();
     // moveVerifiedReplays();
     
     // addEntries();
@@ -378,7 +378,7 @@ function createUnverifiedVerifiedJson() {
             let jsonUnverified = differenceArray(categoryData, jsonVerified); //unverified = total - verified
             // Merge the verified data with the new replays. Sort by score and then reduce it by score. The product is a functional verified WR history of the category.
             let verified = mergeArray(jsonVerified, arr);
-            const invalidReplays = [];
+            let invalidReplays = [];
             outerLoop: while (true) {
                 console.log(invalidReplays)
                 // remove all replays that are in invalidReplays from verified
@@ -404,10 +404,14 @@ function createUnverifiedVerifiedJson() {
                                 console.log("\x1b[0m");
                                 invalidReplays.push(newVerified[i]);
                                 newVerified.splice(i, 1);
-                                i--;
+                                continue outerLoop;
+                            } else if (check.toLowerCase() === "reset") {
+                                console.log("\x1b[31m", `Resetting...`);
+                                console.log("\x1b[0m");
+                                invalidReplays = [];
                                 continue outerLoop;
                             } else {
-                                console.warn("\x1b[33m", "Invalid input! Please enter 'Y' for yes or 'N' for no.");
+                                console.warn("\x1b[33m", "Invalid input! Please enter 'Y' for yes or 'N' for no or 'reset' to reset");
                             }
                         }
                     }
