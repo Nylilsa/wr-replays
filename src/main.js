@@ -62,12 +62,12 @@ function fetchJson(url) {
 }
 
 function init() {
-    createDirectory(PATH_WR_REPLAYS);
+    // createDirectory(PATH_WR_REPLAYS);
     // copyReplaysToPath();
     // createUnverifiedVerifiedJson();
     // moveVerifiedReplays();
     
-    // addEntries();
+    addEntries();
     // checkReplayValidity();
     // replaysMatchJson();
     // convertVerifiedJsonAccurateDate();
