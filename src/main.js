@@ -28,7 +28,7 @@ const path = require('path');
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th06";
+const GAME = "th07";
 const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
 const PATH_DATA_JSON = `D:/GitHub/nylilsa.github.io/json/gameinfo-new.json`;
 const PATH_VERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/verified/${GAME}.json`;
@@ -172,6 +172,9 @@ function addEntries() {
                 break;
             }
         }
+        if (GAME == "th07") {
+            continue;
+        }
         if (!isUnverifiedEntry) {
             const category = verifiedData[difficulty][character];
             const tempCopy = structuredClone(category);
@@ -266,7 +269,9 @@ function approveNewEntry(i, pathToFile, destination, unverifiedData, difficulty,
     fs.unlinkSync(pathToFile);
     console.log(`Deleted file at ${pathToFile}`);
     // updates date to be more accurate
-    unverifiedData[difficulty][character][i][2] = date.toISOString();
+    if (GAME != "th07") { // cannot do this in pcb because of date
+        unverifiedData[difficulty][character][i][2] = date.toISOString();
+    }
     // adds entry to verified json;
     const verifiedJson = fetchJson(PATH_VERIFIED_JSON);
     verifiedJson[difficulty][character].push(unverifiedData[difficulty][character][i]);
