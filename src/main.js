@@ -67,7 +67,7 @@ function init() {
     // createUnverifiedVerifiedJson();
     // moveVerifiedReplays();
     
-    addEntries();
+    // addEntries();
     // checkReplayValidity();
     // replaysMatchJson();
     // convertVerifiedJsonAccurateDate();
