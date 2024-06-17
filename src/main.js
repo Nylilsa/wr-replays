@@ -28,7 +28,7 @@ const path = require('path');
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th14";
+const GAME = "th16";
 const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
 const PATH_DATA_JSON = `D:/GitHub/nylilsa.github.io/json/gameinfo-new.json`;
 const PATH_VERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/verified/${GAME}.json`;
@@ -67,10 +67,10 @@ function init() {
     // createUnverifiedVerifiedJson();
     // moveVerifiedReplays();
 
-    // addEntries();
+    addEntries();
     // checkReplayValidity();
-    // replaysMatchJson();
-    // convertVerifiedJsonAccurateDate();
+    replaysMatchJson();
+    convertVerifiedJsonAccurateDate();
     // convertJson();
 
     // writeAllScoresUnverified();
