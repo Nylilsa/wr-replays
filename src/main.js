@@ -66,12 +66,60 @@ function init() {
     // copyReplaysToPath();
     // createUnverifiedVerifiedJson();
     // moveVerifiedReplays();
-    
-    addEntries();
+
+    // addEntries();
     // checkReplayValidity();
     // replaysMatchJson();
     // convertVerifiedJsonAccurateDate();
     // convertJson();
+
+    // writeAllScoresUnverified();
+    // compareData();
+}
+
+function writeAllScoresUnverified() {
+    const allGames = ["th06", "th07", "th08", "th10", "th11", "th12", "th128", "th13", "th14", "th15", "th16", "th17", "th18"]
+    // const allGames = ["th06"]
+    const scores = [];
+    allGames.forEach(game => {
+        const json = fetchJson(`D:/GitHub/nylilsa.github.io/json/wr/unverified/${game}.json`);
+        for (let i = 0; i < Object.entries(json).length; i++) {
+            const difficulty = Object.entries(json)[i];
+            for (let j = 0; j < Object.entries(difficulty[1]).length; j++) {
+                const shot = Object.entries(difficulty[1])[j];
+                for (let k = 0; k < shot[1].length; k++) {
+                    const entry = shot[1][k];
+                    const score = entry[0];
+                    scores.push(score)
+                }
+            }
+        }
+    });
+    scores.sort((a, b) => (a - b));
+    console.log(scores)
+    fs.writeFileSync("all_unverified.json", JSON.stringify(scores));
+}
+
+function compareData() {
+    const arr1 = fetchJson("all_unverified.json")
+    const arr2 = fetchJson("asample2.json");
+    let i = 0;
+    let j = 0;
+    const result = [];
+
+    while (i < arr1.length && j < arr2.length) {
+        if (arr1[i] === arr2[j]) {
+            result.push(arr1[i]);
+            i++;
+            j++;
+        } else if (arr1[i] < arr2[j]) {
+            i++;
+        } else {
+            j++;
+        }
+    }
+    console.log(result)
+    return result;
 }
 
 // function goes through every verified json entry of GAME, then looks if the date is written correctly in the format 2013-08-16T19:44:15.000Z and not just 2016-08-16
