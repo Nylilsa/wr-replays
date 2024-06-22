@@ -30,7 +30,7 @@ const { unsubscribe } = require('diagnostics_channel');
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th12";
+const GAME = "th14";
 const ALL_GAMES = ["th06", "th07", "th08", "th10", "th11", "th12", "th128", "th13", "th14", "th15", "th16", "th17", "th18"]
 const PATH_PLAYERS_JSON = `D:/GitHub/nylilsa.github.io/json/players.json`;
 const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
@@ -473,7 +473,7 @@ function approveNewEntry(i, pathToFile, destination, unverifiedData, difficulty,
     console.log(`Deleted file at ${pathToFile}`);
     // updates date to be more accurate
     if (GAME != "th07") { // cannot do this in pcb because of date
-        unverifiedData[difficulty][character][i][2] = date.toISOString();
+        unverifiedData[difficulty][character][i].date = date.toISOString();
     }
     // adds entry to verified json;
     const verifiedJson = fetchJson(PATH_VERIFIED_JSON);
@@ -482,16 +482,16 @@ function approveNewEntry(i, pathToFile, destination, unverifiedData, difficulty,
     fs.writeFileSync(PATH_VERIFIED_JSON, JSON.stringify(verifiedJson));
     console.log(`Updated JSON at ${PATH_VERIFIED_JSON}`);
     // removes entry from unverified json
-    console.log(`Removed entry ${unverifiedData[difficulty][character][i]} from unverified records`);
+    console.log(`Removed entry ${JSON.stringify(unverifiedData[difficulty][character][i])} from unverified records`);
     unverifiedData[difficulty][character].splice(i, 1);
     fs.writeFileSync(PATH_UNVERIFIED_JSON, JSON.stringify(unverifiedData));
     console.log(`Updated JSON at ${PATH_UNVERIFIED_JSON}`);
 }
 
 function replayMatchesUnverifiedEntry(i, pathToFile, destination, unverifiedData, difficulty, character, file, date, unverifiedEntry) {
-    console.log(`Found a match between replay \x1b[33m${file}\x1b[0m and unverified entry ${unverifiedEntry}`)
+    console.log(`Found a match between replay \x1b[33m${file}\x1b[0m and unverified entry ${JSON.stringify(unverifiedEntry)}`)
     while (true) {
-        const check = readline.question(`Approve of entry ${unverifiedEntry}? [Y/N]\n > `);
+        const check = readline.question(`Approve of entry ${JSON.stringify(unverifiedEntry)}? [Y/N]\n > `);
         if (check.toLowerCase() === "y") {
             console.log("\x1b[32m", `Approved entry ${unverifiedEntry}`);
             console.log("\x1b[0m");
