@@ -256,7 +256,7 @@ function writeAllScoresUnverified() {
 
 function compareData() {
     const arr1 = fetchJson("all_unverified.json")
-    const arr2 = fetchJson("asample1.json");
+    const arr2 = fetchJson("asample3.json");
     let i = 0;
     let j = 0;
     const result = [];
