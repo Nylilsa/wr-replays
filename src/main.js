@@ -19,6 +19,7 @@ const Replay17 = require("D:/GitHub/replay-reader/Replay17.js");
 const Replay18 = require("D:/GitHub/replay-reader/Replay18.js");
 const { match } = require('assert');
 const path = require('path');
+const { setDefaultAutoSelectFamilyAttemptTimeout } = require('net');
 
 
 // const testpath = "D:/GitHub/wr-replays/replays/MAIN/th18/Easy/Reimu/th18_easy_reimu_954243810.rpy"
@@ -28,7 +29,9 @@ const path = require('path');
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th16";
+const GAME = "th18";
+const ALL_GAMES = ["th06", "th07", "th08", "th10", "th11", "th12", "th128", "th13", "th14", "th15", "th16", "th17", "th18"]
+const PATH_PLAYERS_JSON = `D:/GitHub/nylilsa.github.io/json/players.json`;
 const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
 const PATH_DATA_JSON = `D:/GitHub/nylilsa.github.io/json/gameinfo-new.json`;
 const PATH_VERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/verified/${GAME}.json`;
@@ -67,21 +70,102 @@ function init() {
     // createUnverifiedVerifiedJson();
     // moveVerifiedReplays();
 
-    addEntries();
+    // addEntries();
     // checkReplayValidity();
-    replaysMatchJson();
-    convertVerifiedJsonAccurateDate();
-    // convertJson();
+    // replaysMatchJson();
+    // convertVerifiedJsonAccurateDate();
+
+    // convertJson(false);
 
     // writeAllScoresUnverified();
     // compareData();
 }
 
+// function converts the existing format of [score, name, date] to { score: score, name: name, date: date } for both verified and unverified jsons - also adds an ID
+function convertJson(enableAllGames) {
+    return; // unused
+    const gamesList = enableAllGames ? ALL_GAMES.reverse() : [GAME];
+    const check = readline.question(`You are about to overwrite the verified/unverified entries of ${gamesList}. Proceed? [Y/N]\n > `);
+    if (check.toLowerCase() === "y") {
+        gamesList.forEach(game => {
+            const pathVerified = `D:/GitHub/nylilsa.github.io/json/wr/verified/${game}.json`
+            const pathUnverified = `D:/GitHub/nylilsa.github.io/json/wr/unverified/${game}.json`
+            writeNewJson(pathVerified);
+            writeNewJson(pathUnverified);
+        })
+    } else {
+        console.log("Aborted function");
+    }
+}
+
+function findNextId(existingIds) {
+    let id = 0;
+    while (existingIds.includes(id)) {
+        id++;
+    }
+    return id;
+}
+
+function writeNewJson(path) {
+    const players = fetchJson(PATH_PLAYERS_JSON);
+    const allPlayersIds = Object.keys(players).map(Number);
+    const json = fetchJson(path);
+    const obj = {};
+    for (let i = 0; i < Object.entries(json).length; i++) {
+        const [difficulty, diffEntries] = Object.entries(json)[i];
+        obj[difficulty] = obj[difficulty] || {};
+        for (let j = 0; j < Object.entries(diffEntries).length; j++) {
+            const [shot, oldcategoryData] = Object.entries(diffEntries)[j];
+            const newCategoryData = convertedData(oldcategoryData, players, allPlayersIds);
+            obj[difficulty][shot] = newCategoryData;
+        }
+    }
+    fs.writeFileSync(path, JSON.stringify(obj));
+    console.log(`Created file at ${path}`);
+    fs.writeFileSync(PATH_PLAYERS_JSON, JSON.stringify(players));
+    console.log(`Updated file at ${PATH_PLAYERS_JSON}`);
+}
+
+function convertedData(data, players, allPlayersIds) {
+    const result = [];
+    for (let i = 0; i < data.length; i++) {
+        const item = data[i];
+        const obj = {
+            id: item.id ?? -1, // Incremental ID starting from 1
+            score: item.score ?? item[0],
+            name: item.name ?? item[1]?.trim(), // Trim any extra spaces
+            date: item.date ?? item[2]
+        };
+        if (item.video !== undefined) {
+            obj.video = item.video; // Conditionally add video if it exists
+        }
+
+        const existingPlayer = Object.entries(players).find(([id, player]) => player.name_en === obj.name);
+        if (existingPlayer) {
+            // Player exists, update the id in the obj
+            obj.id = Number(existingPlayer[0]);
+        } else {
+            // Player doesn't exist, generate a new ID
+            const newId = findNextId(allPlayersIds);
+            allPlayersIds.push(newId); // Add the new ID to the list of existing IDs !!!
+
+            // Add the new player to the players object
+            players[newId] = { name_en: obj.name };
+    
+            // Update the id in the obj
+            obj.id = newId;
+            console.log(`Created new id ${newId} at player ${obj.name}`)
+        }
+
+        result.push(obj);
+    }
+    return result;
+}
+
+
 function writeAllScoresUnverified() {
-    const allGames = ["th06", "th07", "th08", "th10", "th11", "th12", "th128", "th13", "th14", "th15", "th16", "th17", "th18"]
-    // const allGames = ["th06"]
     const scores = [];
-    allGames.forEach(game => {
+    ALL_GAMES.forEach(game => {
         const json = fetchJson(`D:/GitHub/nylilsa.github.io/json/wr/unverified/${game}.json`);
         for (let i = 0; i < Object.entries(json).length; i++) {
             const difficulty = Object.entries(json)[i];
@@ -102,7 +186,7 @@ function writeAllScoresUnverified() {
 
 function compareData() {
     const arr1 = fetchJson("all_unverified.json")
-    const arr2 = fetchJson("asample2.json");
+    const arr2 = fetchJson("asample1.json");
     let i = 0;
     let j = 0;
     const result = [];
@@ -176,11 +260,7 @@ function checkReplayValidity() {
     console.log("All replay have been checked for their invalidity");
 }
 
-// function converts the existing format of [score, name, date] to { score: score, name: name, date: date } for both verified and unverified jsons
-function convertJson() {
-    // TODO, actually implement it
-    console.log(1)
-}
+
 
 
 // this function looks at the replays in PATH_NEW_REPLAYS, then checks if those replays are valid WR replays or not.
