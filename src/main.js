@@ -20,6 +20,7 @@ const Replay18 = require("D:/GitHub/replay-reader/Replay18.js");
 const { match } = require('assert');
 const path = require('path');
 const { setDefaultAutoSelectFamilyAttemptTimeout } = require('net');
+const { unsubscribe } = require('diagnostics_channel');
 
 
 // const testpath = "D:/GitHub/wr-replays/replays/MAIN/th18/Easy/Reimu/th18_easy_reimu_954243810.rpy"
@@ -29,7 +30,7 @@ const { setDefaultAutoSelectFamilyAttemptTimeout } = require('net');
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th18";
+const GAME = "th12";
 const ALL_GAMES = ["th06", "th07", "th08", "th10", "th11", "th12", "th128", "th13", "th14", "th15", "th16", "th17", "th18"]
 const PATH_PLAYERS_JSON = `D:/GitHub/nylilsa.github.io/json/players.json`;
 const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
@@ -40,6 +41,7 @@ const PATH_NEW_REPLAYS = `D:/GitHub/wr-replays/new-replays/${GAME}`;
 const PATH_WR_REPLAYS = `D:/GitHub/wr-replays/${GAME}`;
 const PATH_GAME_REPLAYS = `D:/GitHub/wr-replays/replays/MAIN/${GAME}`;
 const PATH_REMOVED_REPLAYS = `D:/GitHub/wr-replays/removed-replays/${GAME}`;
+const UNSET_ID = -2;
 const WR_DATA = fetchJson(PATH_WRPROGRESSION_JSON);
 const GAME_DATA = fetchJson(PATH_DATA_JSON);
 const DIFFICULTY_LIST = Object.keys(GAME_DATA["DifficultyCharacters"][GAME]);
@@ -70,7 +72,7 @@ function init() {
     // createUnverifiedVerifiedJson();
     // moveVerifiedReplays();
 
-    // addEntries();
+    addEntries();
     // checkReplayValidity();
     // replaysMatchJson();
     // convertVerifiedJsonAccurateDate();
@@ -81,9 +83,77 @@ function init() {
     // compareData();
 }
 
+function convertId(input) {
+    if (Array.isArray(input)) {
+        convertIdArray(input);
+    } else {
+        convertIdEntry(input);
+    }
+}
+
+function convertIdEntry(entry) {
+    if (entry.id !== UNSET_ID) {
+        throw new Error(`Entry does not contain ${UNSET_ID} !`);
+    }
+    const allPlayers = fetchJson(PATH_PLAYERS_JSON);
+    while (true) {
+        const check = readline.question(`Give an ID to the entry with score ${entry.score}:\n > `);
+        if (parseInt(check) >= -1) { // positive integer or -1
+            const id = parseInt(check, 10);
+            const idExists = allPlayers[id] !== undefined;
+            if (idExists) {
+                console.log(`ID ${id} already exists with name ${allPlayers[id].name_en}.`)
+                while (true) {
+                    const confirm = readline.question(`Do you want to assign entry ${entry.score} to player ${allPlayers[id].name_en} ? [Y/N]\n > `);
+                    if (confirm.toLowerCase() === "y") {
+                        entry.id = id;
+                        console.log(`Assigned id ${id} to score ${entry.score}`);
+                        return;
+                    } else {
+                        console.log(`Did nothing.`)
+                        return;
+                    }
+                }
+            } else {
+                const allPlayersIds = Object.keys(allPlayers).map(Number);
+                const newId = findNextId(allPlayersIds);
+                console.log(`ID ${id} does not exist.`);
+                console.log(`Creating new ID with value ${newId}.`);
+                while (true) {
+                    const confirm = readline.question(`Do you want create a new ID ${newId} with a new name ? [Y/N]\n > `);
+                    if (confirm.toLowerCase() === "y") {
+                        entry.id = newId;
+                        console.log(`Assigned id ${newId} to score ${entry.score}`);
+                        const newName = readline.question(`Assign a name to ID ${newId}:\n > `);
+                        allPlayers[newId] = { name_en: newName };
+                        fs.writeFileSync(PATH_PLAYERS_JSON, JSON.stringify(allPlayers));
+                        console.log(`Updated file at ${PATH_PLAYERS_JSON}`);
+                        return;
+                    } else {
+                        console.log(`Did nothing.`)
+                        return;
+                    }
+                }
+
+            }
+        } else {
+            console.log(`Input ${check} is not a positive integer !`)
+        }
+    }
+}
+
+function convertIdArray(array) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i].id !== UNSET_ID) { continue; }
+        convertIdEntry(array[i]);
+        return;
+    }
+    throw new Error(`Could not find an ID of ${UNSET_ID} in array!`);
+}
+
 // function converts the existing format of [score, name, date] to { score: score, name: name, date: date } for both verified and unverified jsons - also adds an ID
 function convertJson(enableAllGames) {
-    return; // unused
+    return;
     const gamesList = enableAllGames ? ALL_GAMES.reverse() : [GAME];
     const check = readline.question(`You are about to overwrite the verified/unverified entries of ${gamesList}. Proceed? [Y/N]\n > `);
     if (check.toLowerCase() === "y") {
@@ -151,7 +221,7 @@ function convertedData(data, players, allPlayersIds) {
 
             // Add the new player to the players object
             players[newId] = { name_en: obj.name };
-    
+
             // Update the id in the obj
             obj.id = newId;
             console.log(`Created new id ${newId} at player ${obj.name}`)
@@ -294,7 +364,7 @@ function addEntries() {
         }
         for (let i = 0; i < unverifiedCategory.length; i++) {
             const unverifiedEntry = unverifiedCategory[i];
-            if (score == unverifiedEntry[0]) { // replay matches unverified entry
+            if (score == unverifiedEntry.score) { // replay matches unverified entry
                 replayMatchesUnverifiedEntry(i, pathToFile, `${pathToCopyAt}/${rpyName}`, unverifiedData, difficulty, character, file, date, unverifiedEntry);
                 isUnverifiedEntry = true;
                 break;
@@ -306,21 +376,25 @@ function addEntries() {
         if (!isUnverifiedEntry) {
             const category = verifiedData[difficulty][character];
             const tempCopy = structuredClone(category);
-            const newEntry = [score, name, date.toISOString()];
-            category.push(newEntry);
+            const newEntryObject = {
+                "id": UNSET_ID,
+                "score": score,
+                "date": date.toISOString()
+            }
+            category.push(newEntryObject);
             sortArrayDate(category);
             reduceByScore(category);
-            const bool = doesEntryExistInArray(category, newEntry);
+            const bool = doesEntryExistInArray(category, newEntryObject);
             const removedReplays = differenceArray(tempCopy, category)
             // there is a flaw with this
-            // intended logic: newEntry is merged with category then its sorted by date
+            // intended logic: newEntryObject is merged with category then its sorted by date
             // the array gets reduced if the next score is less than the current score
-            // the code is supposed to check if the newEntry is actually valid,
+            // the code is supposed to check if the newEntryObject is actually valid,
             // and code removes entry if entry is not valid
             // if this happens 0 times then code in if statement below is run
-            // issue: supposed newEntry is valid, then statement above can still be run
+            // issue: supposed newEntryObject is valid, then statement above can still be run
             // this is because removing existing entries also increments counter
-            // solution: array is reduced by score, then after reduction check if newEntry still exists
+            // solution: array is reduced by score, then after reduction check if newEntryObject still exists
             // if it doesn't exist, it's removed so invalid
             // if it does exist it is a new entry and is valid
             // two cases:
@@ -331,28 +405,29 @@ function addEntries() {
             // and also remove n entries from json, and ask to move all non-WR replays to a separate folder 
             if (bool) {
                 while (true) {
-                    const check = readline.question(`${file} seems to be a new entry. Approve of entry ${newEntry}? [Y/N]\n > `);
+                    const check = readline.question(`${file} seems to be a new entry. Approve of entry ${JSON.stringify(newEntryObject)}? [Y/N]\n > `);
                     if (check.toLowerCase() === "y") {
-                        console.log("\x1b[32m", `Approved entry ${newEntry}`);
+                        console.log("\x1b[32m", `Approved entry ${JSON.stringify(newEntryObject)}`);
                         console.log("\x1b[0m");
                         fs.copyFileSync(pathToFile, `${pathToCopyAt}/${rpyName}`);
                         console.log(`Copied file at ${pathToFile} to ${pathToCopyAt}/${rpyName}`);
                         fs.unlinkSync(pathToFile);
                         console.log(`Deleted file at ${pathToFile}`);
+                        convertId(category);
                         fs.writeFileSync(PATH_VERIFIED_JSON, JSON.stringify(verifiedData));
                         console.log(`Updated JSON at ${PATH_VERIFIED_JSON}`);
                         if (removedReplays.length > 0) { // if exists
                             createDirIfNotExist(PATH_REMOVED_REPLAYS);
                             console.log(`The following outdated replays have been moved to the folder ${PATH_REMOVED_REPLAYS}`);
                             removedReplays.forEach((replay) => {
-                                const replayName = `${GAME}_${difficulty}_${character}_${replay[0]}.rpy`.toLowerCase();
+                                const replayName = `${GAME}_${difficulty}_${character}_${replay.score}.rpy`.toLowerCase();
                                 fs.renameSync(`${pathToCopyAt}/${replayName}`, `${PATH_REMOVED_REPLAYS}/${replayName}`);
                                 console.log(`Moved ${pathToCopyAt}/${replayName} to ${PATH_REMOVED_REPLAYS}/${replayName}`);
                             })
                         }
                         break;
                     } else if (check.toLowerCase() === "n") {
-                        console.log("\x1b[31m", `Denied entry ${newEntry}`);
+                        console.log("\x1b[31m", `Denied entry ${JSON.stringify(newEntryObject)}`);
                         fs.unlinkSync(pathToFile);
                         console.log(`Deleted file at ${pathToFile}`);
                         console.log("\x1b[0m");
@@ -363,7 +438,7 @@ function addEntries() {
                 }
 
             } else {
-                console.log("\x1b[31m", `File ${file} category ${character + difficulty} with ${newEntry} is not a missing/new WR entry nor is it unverified. Please remove this from the folder.`, "\x1b[0m");
+                console.log("\x1b[31m", `File ${file} category ${character + difficulty} with ${JSON.stringify(newEntryObject)} is not a missing/new WR entry nor is it unverified. Please remove this from the folder.`, "\x1b[0m");
             }
         }
     }
@@ -372,7 +447,7 @@ function addEntries() {
 // todo: implement binary search
 function doesEntryExistInArray(array, entry) {
     for (let i = 0; i < array.length; i++) {
-        if (array[i][0] == entry[0]) { // score match
+        if (array[i].score == entry.score) { // score match
             return true;
         }
     }
@@ -381,7 +456,7 @@ function doesEntryExistInArray(array, entry) {
 
 function isDuplicateEntry(array, score) {
     for (let i = 0; i < array.length; i++) {
-        const entryScore = array[i][0];
+        const entryScore = array[i].score;
         if (entryScore == score) {
             return [true, array[i]];
         }
@@ -695,19 +770,19 @@ function mergeArray(arr1, arr2) {
 }
 
 function sortArrayDate(arr) {
-    arr.sort((a, b) => new Date(a[2]) - new Date(b[2]));
+    arr.sort((a, b) => new Date(a.date) - new Date(b.date));
 }
 
 function sortArrayScore(arr) {
-    arr.sort((a, b) => a[0] - b[0]);
+    arr.sort((a, b) => a.score - b.score);
 }
 
 function reduceByScore(arr) {
     let highest = 0;
     let removedElements = [];
     for (let i = 0; i < arr.length; i++) {
-        if (arr[i][0] > highest) {
-            highest = arr[i][0];
+        if (arr[i].score > highest) {
+            highest = arr[i].score;
         } else {
             removedElements.push(arr[i]);
             arr.splice(i, 1);
@@ -729,10 +804,10 @@ function sortByScore(arrReplays, arrJson, removedElements) {
 }
 
 function intersectionArray(arr1, arr2) {
-    return arr1.filter(tempArr1 => arr2.some(tempArr2 => tempArr1[0] === tempArr2[0]));
+    return arr1.filter(tempArr1 => arr2.some(tempArr2 => tempArr1.score === tempArr2.score));
 }
 function differenceArray(arr1, arr2) {
-    return arr1.filter(tempArr1 => !arr2.some(tempArr2 => tempArr1[0] === tempArr2[0]));
+    return arr1.filter(tempArr1 => !arr2.some(tempArr2 => tempArr1.score === tempArr2.score));
 }
 
 function mapGame(replayData, replayPath) {
