@@ -359,7 +359,7 @@ function addEntries() {
         const rpyName = `${GAME}_${difficulty}_${character}_${score}.rpy`.toLowerCase();
         const replayAlreadyExistsInVerified = isDuplicateEntry(verifiedCategory, score);
         if (replayAlreadyExistsInVerified[0]) {
-            console.log("\x1b[33m", `Replay ${file} category ${character + difficulty} is already verified with ${replayAlreadyExistsInVerified[1]}!`, "\x1b[0m");
+            console.log("\x1b[33m", `Replay ${file} category ${character + difficulty} is already verified with ${JSON.stringify(replayAlreadyExistsInVerified[1])}!`, "\x1b[0m");
             continue;
         }
         for (let i = 0; i < unverifiedCategory.length; i++) {
