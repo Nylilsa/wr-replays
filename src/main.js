@@ -17,10 +17,6 @@ const Replay15 = require("D:/GitHub/replay-reader/Replay15.js");
 const Replay16 = require("D:/GitHub/replay-reader/Replay16.js");
 const Replay17 = require("D:/GitHub/replay-reader/Replay17.js");
 const Replay18 = require("D:/GitHub/replay-reader/Replay18.js");
-const { match } = require('assert');
-const path = require('path');
-const { setDefaultAutoSelectFamilyAttemptTimeout } = require('net');
-const { unsubscribe } = require('diagnostics_channel');
 
 
 // const testpath = "D:/GitHub/wr-replays/replays/MAIN/th18/Easy/Reimu/th18_easy_reimu_954243810.rpy"
@@ -30,7 +26,7 @@ const { unsubscribe } = require('diagnostics_channel');
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th128";
+const GAME = "th06";
 const ALL_GAMES = ["th06", "th07", "th08", "th10", "th11", "th12", "th128", "th13", "th14", "th15", "th16", "th17", "th18"]
 const PATH_PLAYERS_JSON = `D:/GitHub/nylilsa.github.io/json/players.json`;
 const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
