@@ -3,7 +3,7 @@ const fs = require('fs');
 const { wrap } = require('module');
 
 const ALL_GAMES = ["th01", "th02", "th03", "th04", "th05"];
-const GAME = "th01";
+const GAME = "th14";
 const PATH_PLAYERS_JSON = `D:/GitHub/nylilsa.github.io/json/players.json`;
 const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
 const PATH_DATA_JSON = `D:/GitHub/nylilsa.github.io/json/gameinfo-new.json`;
