@@ -1,23 +1,9 @@
 "use strict";
 
-const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 const fs = require('fs');
 const readline = require('readline-sync');
 
-const Replay06 = require("D:/GitHub/replay-reader/Replay06.js");
-const Replay07 = require("D:/GitHub/replay-reader/Replay07.js");
-const Replay08 = require("D:/GitHub/replay-reader/Replay08.js");
-const Replay10 = require("D:/GitHub/replay-reader/Replay10.js");
-const Replay11 = require("D:/GitHub/replay-reader/Replay11.js");
-const Replay12 = require("D:/GitHub/replay-reader/Replay12.js");
-const Replay128 = require("D:/GitHub/replay-reader/Replay128.js");
-const Replay13 = require("D:/GitHub/replay-reader/Replay13.js");
-const Replay14 = require("D:/GitHub/replay-reader/Replay14.js");
-const Replay15 = require("D:/GitHub/replay-reader/Replay15.js");
-const Replay16 = require("D:/GitHub/replay-reader/Replay16.js");
-const Replay17 = require("D:/GitHub/replay-reader/Replay17.js");
-const Replay18 = require("D:/GitHub/replay-reader/Replay18.js");
-
+const Replay = require("D:/GitHub/replay-reader/src/Replay.js");
 
 // const testpath = "D:/GitHub/wr-replays/replays/MAIN/th18/Easy/Reimu/th18_easy_reimu_954243810.rpy"
 // const replayData2 = fs.readFileSync(testpath);
@@ -26,7 +12,7 @@ const Replay18 = require("D:/GitHub/replay-reader/Replay18.js");
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th06";
+const GAME = "th15";
 const ALL_GAMES = ["th06", "th07", "th08", "th10", "th11", "th12", "th128", "th13", "th14", "th15", "th16", "th17", "th18"]
 const PATH_PLAYERS_JSON = `D:/GitHub/nylilsa.github.io/json/players.json`;
 const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
@@ -288,8 +274,7 @@ function convertVerifiedJsonAccurateDate() {
                     const score = entry[0];
                     const fileName = `${GAME}_${difficulty}_${player}_${score}.rpy`.toLowerCase();
                     const pathToFile = `${PATH_WR_REPLAYS}/${difficulty}/${player}/${fileName}`;
-                    const replayData = fs.readFileSync(pathToFile);
-                    const rpy = mapGame(replayData, pathToFile);
+                    const rpy = createReplay(pathToFile);
                     const date = rpy.getDate().toISOString();
                     verifiedJson[difficulty][player][k][2] = date;
                     counter++;
@@ -314,8 +299,7 @@ function checkReplayValidity() {
             const files = fs.readdirSync(path);
             files.forEach((file) => {
                 const pathToFile = `${path}/${file}`;
-                const replayData = fs.readFileSync(pathToFile);
-                const rpy = mapGame(replayData, pathToFile);
+                const rpy = createReplay(pathToFile);
                 const bool = rpy.isValid();
                 if (!bool) {
                     console.log(`${pathToFile} is not valid`);
@@ -342,8 +326,7 @@ function addEntries() {
         const file = newFiles[j];
         let isUnverifiedEntry = false;
         const pathToFile = `${PATH_NEW_REPLAYS}/${file}`;
-        const replayData = fs.readFileSync(pathToFile);
-        const rpy = mapGame(replayData, pathToFile);
+        const rpy = createReplay(pathToFile);
         const difficulty = rpy.getDifficulty();
         const character = rpy.getShot();
         const score = rpy.getScore();
@@ -568,8 +551,7 @@ function createUnverifiedVerifiedJson() {
             const arr = [];
             files.forEach(function (file) {
                 const replayPath = `${categoryPath}/${file}`;
-                const replayData = fs.readFileSync(replayPath);
-                const rpy = mapGame(replayData, replayPath);
+                const rpy = createReplay(replayPath);
                 const score = rpy.getScore();
                 const date = rpy.getDate();
                 const name = rpy.getName();
@@ -689,9 +671,8 @@ function copyReplaysToPath() {
     let counter = 0;
     createDifficultyPlayerDir(PATH_GAME_REPLAYS)
     files.forEach(function (file) {
-        if (isRpy(file)) {
-            const replayData = fs.readFileSync(`${PATH_GAME_REPLAYS}/${file}`);
-            const rpy = mapGame(replayData, `${PATH_GAME_REPLAYS}/${file}`);
+        if (Replay.isReplay(file)) {
+            const rpy = createReplay(`${PATH_GAME_REPLAYS}/${file}`);
             const difficulty = rpy.getDifficulty();
             const character = rpy.getShot();
             const score = rpy.getScore();
@@ -707,10 +688,6 @@ function copyReplaysToPath() {
         }
     });
     console.log(`Successfully copied ${counter} replay(s) to ${PATH_GAME_REPLAYS}`)
-}
-
-function isRpy(str) {
-    return str.slice(str.length - 4) === ".rpy";
 }
 
 function replaysMatchJson() {
@@ -806,54 +783,9 @@ function differenceArray(arr1, arr2) {
     return arr1.filter(tempArr1 => !arr2.some(tempArr2 => tempArr1.score === tempArr2.score));
 }
 
-function mapGame(replayData, replayPath) {
-    let replayClass;
-    switch (GAME) {
-        case "th06":
-            replayClass = Replay06;
-            break;
-        case "th07":
-            replayClass = Replay07;
-            break;
-        case "th08":
-            replayClass = Replay08;
-            break;
-        case "th10":
-            replayClass = Replay10;
-            break;
-        case "th11":
-            replayClass = Replay11;
-            break;
-        case "th12":
-            replayClass = Replay12;
-            break;
-        case "th128":
-            replayClass = Replay128;
-            break;
-        case "th13":
-            replayClass = Replay13;
-            break;
-        case "th14":
-            replayClass = Replay14;
-            break;
-        case "th15":
-            replayClass = Replay15;
-            break;
-        case "th16":
-            replayClass = Replay16;
-            break;
-        case "th17":
-            replayClass = Replay17;
-            break;
-        case "th18":
-            replayClass = Replay18;
-            break;
-        default:
-            throw new Error(`Input ${GAME} is not valid.`);
-    }
-    if (replayData === undefined) {
-        return replayClass;
-    } else {
-        return new replayClass(replayData, replayPath);
-    }
+function createReplay(replayPath) {
+    const settings = {
+        path: replayPath,
+    };
+    return new Replay(settings)
 }
