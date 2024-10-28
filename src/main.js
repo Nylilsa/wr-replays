@@ -12,7 +12,7 @@ const Replay = require("D:/GitHub/replay-reader/src/Replay.js");
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th07";
+const GAME = "th08";
 const ALL_GAMES = ["th06", "th07", "th08", "th10", "th11", "th12", "th128", "th13", "th14", "th15", "th16", "th17", "th18"]
 const PATH_PLAYERS_JSON = `D:/GitHub/nylilsa.github.io/json/players.json`;
 const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
@@ -382,7 +382,7 @@ function addEntries() {
             // Case 1: merge entry with array and update json and add rpy to folder
             // Case 2: merge entry with array and update json and add rpy to folder
             // and also remove n entries from json, and ask to move all non-WR replays to a separate folder 
-            if (bool) {
+            if (false) {
                 while (true) {
                     const check = readline.question(`${file} seems to be a new entry. Approve of entry ${JSON.stringify(newEntryObject)}? [Y/N]\n > `);
                     if (check.toLowerCase() === "y") {
