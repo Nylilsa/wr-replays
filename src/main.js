@@ -12,7 +12,7 @@ const Replay = require("D:/GitHub/replay-reader/src/Replay.js");
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th10";
+const GAME = "th07";
 const ALL_GAMES = ["th06", "th07", "th08", "th10", "th11", "th12", "th128", "th13", "th14", "th15", "th16", "th17", "th18"]
 const PATH_PLAYERS_JSON = `D:/GitHub/nylilsa.github.io/json/players.json`;
 const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
@@ -701,7 +701,7 @@ function replaysMatchJson() {
             const pathToFiles = `${PATH_WR_REPLAYS}/${difficulty}/${player}`;
             const categoryFiles = fs.readdirSync(pathToFiles);
             for (let k = 0; k < categoryData.length; k++) {
-                const score = categoryData[k][0];
+                const score = categoryData[k].score;
                 const rpyName = `${GAME}_${difficulty}_${player}_${score}.rpy`.toLowerCase();
                 const fileToCheck = `${PATH_WR_REPLAYS}/${difficulty}/${player}/${rpyName}`;
                 const boolJsonToReplay = fs.existsSync(fileToCheck);
