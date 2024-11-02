@@ -54,6 +54,7 @@ function init() {
     // createUnverifiedVerifiedJson();
     // moveVerifiedReplays();
 
+    // renameReplays();
     addEntries();
     // checkReplayValidity();
     // replaysMatchJson();
@@ -311,7 +312,15 @@ function checkReplayValidity() {
 }
 
 
-
+function renameReplays() {
+    const newFiles = fs.readdirSync(PATH_NEW_REPLAYS);
+    for (let j = 0; j < newFiles.length; j++) {
+        const file = newFiles[j];
+        const pathToFile = `${PATH_NEW_REPLAYS}/${file}`;
+        const rpy = createReplay(pathToFile);
+        rpy.renameFile();
+    }
+}
 
 // this function looks at the replays in PATH_NEW_REPLAYS, then checks if those replays are valid WR replays or not.
 // if not, console.log it
@@ -327,6 +336,7 @@ function addEntries() {
         let isUnverifiedEntry = false;
         const pathToFile = `${PATH_NEW_REPLAYS}/${file}`;
         const rpy = createReplay(pathToFile);
+        console.log(rpy)
         const difficulty = rpy.getDifficulty();
         const character = rpy.getShot();
         const score = rpy.getScore();
@@ -786,6 +796,7 @@ function differenceArray(arr1, arr2) {
 function createReplay(replayPath) {
     const settings = {
         path: replayPath,
+        dirRenameOutput: `new-replays/${GAME}/`,
     };
     return new Replay(settings)
 }
