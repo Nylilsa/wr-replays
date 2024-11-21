@@ -3,7 +3,7 @@
  2. If true, nothing is being done with the data.
 7. We now have an object with data that contains a mix of unverified entries (score entries without a replay), old verified entries (the entries already existed in ``wrprogression.json``) and new entries (that were gathered from the replays).  I now loop through the object with the data, and a prompt appears for every **new entry**. Te prompt asks something along the line ``Do you wish to verify entry [score] done by [name] on date [date]? [Y/N]``
  1. While I could automatically verify this, sometimes there are illegitimate replays. Those replays could have been done by either cheaters, or people who have played with an ultra patch, or people who changed their system time when saving the replay. This process needs to be done manually, hence the prompt.
-8. If a replay has been **approved**, we cycle to the next replay until they all have been exhausted. However, if a replay has been **denied**, it is a bit more complicated. The entry is then removed from the data, and the data is merged with the object ``removed``. Step 7-8 is repeated until no more replays are denied.
+8. If a replay has been **approved**, we cycle to the next replay until they all have been exhausted. However, if a replay has been **denied**, it is a bit more complicated. The entry is then removed from the data, and the data is merged with the object ``removed``. Step 7-8 is repeated until no more replays are denied..
 
 
 Suppose I have the following:
