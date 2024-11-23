@@ -52,7 +52,6 @@ class Entry {
         }
         return removedElements;
     }
-    
 }
 
 module.exports = Entry;
