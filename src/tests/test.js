@@ -1,62 +1,113 @@
-const MyTest = require('./MyTest');
+"use strict";
 
-// Define test groups
-function testArrayLength() {
-    MyTest.assertEquals([1, 2, 3].length, 3, "Array length should be 3");
-    MyTest.assertEquals([].length, 1, "Empty array length should be 0"); // Intentional fail
+const MyTest = require('./MyTest.js');
+const Entry = require('../Entry.js');
+
+function testEntries() {
+    let entry;
+    // Normal entry
+    entry = { "id": 12, "score": 1234567890, "date": "2021-03-06T10:40:30.000Z" };
+    MyTest.assertEquals(Entry.isValidEntry(entry), true);
+    // Entry is array instead of object
+    entry = [12, 1234567890, "2021-03-06T10:40:30.000Z"];
+    MyTest.assertEquals(Entry.isValidEntry(entry), false);
+    // Entry with more than default keys
+    entry = { "id": 0, "score": 5, "date": "2021-03-06", "citation": [] };
+    MyTest.assertEquals(Entry.isValidEntry(entry), true);
+    // Key "date" is misspelled as "datee"
+    entry = { "id": 12, "score": 1234567890, "datee": "2021-03-06T10:40:30.000Z" };
+    MyTest.assertEquals(Entry.isValidEntry(entry), false);
+    // Keys have null or undefined
+    entry = { "id": undefined, "score": null, "date": undefined };
+    MyTest.assertEquals(Entry.isValidEntry(entry), false);
+    // Keys "id" is negative
+    entry = { "id": -2, "score": 10, "date": "2021-03-06" };
+    MyTest.assertEquals(Entry.isValidEntry(entry), false);
+    // Keys "score" is negative
+    entry = { "id": 1, "score": -10, "date": "2021-03-06" };
+    MyTest.assertEquals(Entry.isValidEntry(entry), false);
+    // key "score" is non-divisible by 5
+    entry = { "id": 16, "score": 240240249, "date": "1990-03-06" };
+    MyTest.assertEquals(Entry.isValidEntry(entry), false);
+    // Key "date" is not written with "-" as separators
+    entry = { "id": 10, "score": 100, "date": "2021/03/06" };
+    MyTest.assertEquals(Entry.isValidEntry(entry), false);
+    // Key "date" follows dd-mm-yyyy format
+    entry = { "id": 10, "score": 100, "date": "18-02-2022T08:34:12.000Z" };
+    MyTest.assertEquals(Entry.isValidEntry(entry), false);
+    // Key "date" follows yyyy-dd-mm format instead
+    entry = { "id": 10, "score": 100, "date": "2022-18-02T08:34:12.000Z" };
+    MyTest.assertEquals(Entry.isValidEntry(entry), false);
+    // Key "date" does not follow yyyy-mm-dd format: missing leading zero
+    entry = { "id": 10, "score": 100, "date": "2022-2-18T08:34:12.000Z" };
+    MyTest.assertEquals(Entry.isValidEntry(entry), false);
 }
 
-function testAddition() {
-    MyTest.assertEquals(1 + 1, 2, "Simple addition should work");
-    MyTest.assertEquals(5 + 5, 10, "5 + 5 should equal 10");
-    MyTest.assertEquals(1 + 2, 4, "1 + 2 should equal 3"); // Intentional fail
+function testCategories() {
+    let category;
+    // Valid category
+    category = [
+        { "id": 162, "score": 451050800, "date": "2011-08-20T06:17:55.000Z" },
+        { "id": 162, "score": 475170130, "date": "2011-08-27T07:08:19.000Z" },
+    ]
+    MyTest.assertEquals(Entry.isCategory(category), true)
+    // An entry is invalid ("date" is misspelled as "datee")
+    category = [
+        { "id": 162, "score": 451050800, "date": "2011-08-20T06:17:55.000Z" },
+        { "id": 162, "score": 475170130, "datee": "2011-08-27T07:08:19.000Z" },
+    ]
+    MyTest.assertEquals(Entry.isCategory(category), false)
+    // An entry is invalid (An "id" is negative)
+    category = [
+        { "id": 162, "score": 451050800, "date": "2011-08-20T06:17:55.000Z" },
+        { "id": -2, "score": 475170130, "date": "2011-08-27T07:08:19.000Z" },
+    ]
+    MyTest.assertEquals(Entry.isCategory(category), false)
+    // This is an entry, not a category.
+    category = { "id": 162, "score": 451050800, "date": "2011-08-20T06:17:55.000Z" }
+    MyTest.assertEquals(Entry.isCategory(category), false)
 }
 
-function testThrows() {
-    MyTest.assertThrows(() => {
-        throw new Error("Test error");
-    }, "Function should throw an error");
-    MyTest.assertThrows(() => {
-        // This doesn't throw
-    }, "Function should throw an error but didn't"); // Intentional fail
+function testSortDate() {
+    let c1, c2;
+    c1 = [
+        { "id": 162, "score": 451050800, "date": "2011-08-20T06:17:55.000Z" },
+        { "id": 427, "score": 451811910, "date": "2011-08-22T01:21:35.000Z" },
+        { "id": 162, "score": 475170130, "date": "2011-08-27T07:08:19.000Z" },
+        { "id": 162, "score": 486213610, "date": "2011-08-28T00:56:50.000Z" },
+        { "id": 162, "score": 515940470, "date": "2011-09-04T02:36:22.000Z" },
+        { "id": 428, "score": 537619110, "date": "2012-01-13T23:15:32.000Z" },
+        { "id": 162, "score": 540522180, "date": "2012-01-20T06:33:15.000Z" },
+        { "id": 162, "score": 558060980, "date": "2012-04-17T12:46:28.000Z" },
+        { "id": 406, "score": 558906970, "date": "2012-10-22T05:43:27.000Z" },
+        { "id": 429, "score": 566200720, "date": "2013-09-01T07:50:31.000Z" },
+        { "id": 12, "score": 567754510, "date": "2021-03-22T13:45:17.000Z" },
+        { "id": 347, "score": 577024970, "date": "2021-04-15T15:21:02.000Z" },
+        { "id": 347, "score": 579189210, "date": "2021-07-21T20:47:02.000Z" },
+        { "id": 29, "score": 583256930, "date": "2022-11-01T08:11:39.000Z" },
+    ]
+    c1 = [
+        { "id": 162, "score": 451050800, "date": "2011-08-20T06:17:55.000Z" },
+        { "id": 406, "score": 558906970, "date": "2012-10-22T05:43:27.000Z" },
+        { "id": 347, "score": 579189210, "date": "2021-07-21T20:47:02.000Z" },
+        { "id": 29, "score": 583256930, "date": "2022-11-01T08:11:39.000Z" },
+    ]
+    c2 = [
+        { "id": 406, "score": 558906970, "date": "2012-10-22T05:43:27.000Z" },
+        { "id": 29, "score": 583256930, "date": "2022-11-01T08:11:39.000Z" },
+        { "id": 162, "score": 451050800, "date": "2011-08-20T06:17:55.000Z" },
+        { "id": 347, "score": 579189210, "date": "2021-07-21T20:47:02.000Z" },
+    ]
+    MyTest.assertEquals([1], [1])
 }
 
-// Run all tests and generate a report
 function runAllTests() {
-    const testFunctions = [testArrayLength, testAddition, testThrows];
-    const failedFunctions = [];
-
-    MyTest.reset();
-
-    testFunctions.forEach((testFunction) => {
-        MyTest.reset(); // Reset counters for each test group
+    const testFunctions = [testEntries, testCategories, testSortDate];
+    for (let i = 0; i < testFunctions.length; i++) {
+        const testFunction = testFunctions[i];
+        console.log(`${i + 1}. Testing function ${testFunction.name}.`)
         testFunction();
-
-        if (MyTest.failed > 0) {
-            failedFunctions.push({
-                functionName: testFunction.name,
-                failures: [...MyTest.failures],
-            });
-        }
-    });
-
-    console.log("\n===== Test Summary =====");
-    if (failedFunctions.length > 0) {
-        console.log("\nFailed Test Functions:");
-        failedFunctions.forEach(({ functionName, failures }) => {
-            console.log(`- ${functionName}`);
-            failures.forEach((fail, index) => {
-                console.log(`  ${index + 1}. ${fail.message}`);
-                console.log(`     Reason: ${fail.error}`);
-            });
-        });
-    } else {
-        console.log("All test functions passed!");
     }
-
-    console.log("\n===== Overall Results =====");
-    MyTest.report();
 }
 
-// Execute tests
 runAllTests();
