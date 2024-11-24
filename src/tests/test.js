@@ -7,40 +7,45 @@ function testEntries() {
     let entry;
     // Normal entry
     entry = { "id": 12, "score": 1234567890, "date": "2021-03-06T10:40:30.000Z" };
-    MyTest.assertEquals(Entry.isValidEntry(entry), true);
+    MyTest.assertEquals(Entry.validateEntry(entry), true);
     // Entry is array instead of object
     entry = [12, 1234567890, "2021-03-06T10:40:30.000Z"];
-    MyTest.assertEquals(Entry.isValidEntry(entry), false);
+    MyTest.assertThrows(() => Entry.validateEntry(entry), Entry.ERR_NOT_OBJECT(entry));
     // Entry with more than default keys
     entry = { "id": 0, "score": 5, "date": "2021-03-06", "citation": [] };
-    MyTest.assertEquals(Entry.isValidEntry(entry), true);
+    MyTest.assertEquals(Entry.validateEntry(entry), true);
     // Key "date" is misspelled as "datee"
     entry = { "id": 12, "score": 1234567890, "datee": "2021-03-06T10:40:30.000Z" };
-    MyTest.assertEquals(Entry.isValidEntry(entry), false);
+    MyTest.assertThrows(() => Entry.validateEntry(entry), Entry.ERR_MISSING_KEYS("date"));
     // Keys have null or undefined
-    entry = { "id": undefined, "score": null, "date": undefined };
-    MyTest.assertEquals(Entry.isValidEntry(entry), false);
+    entry = { "id": 26, "score": null, "date": undefined };
+    MyTest.assertThrows(() => Entry.validateEntry(entry), Entry.ERR_INVALID_KEY_VALUE("score", null));
     // Keys "id" is negative
     entry = { "id": -2, "score": 10, "date": "2021-03-06" };
-    MyTest.assertEquals(Entry.isValidEntry(entry), false);
+    MyTest.assertThrows(() => Entry.validateEntry(entry), Entry.ERR_ID_IS_NEGATIVE(entry.id));
+    // Keys "id" is not an integer
+    entry = { "id": 2.5, "score": 10, "date": "2021-03-06" };
+    MyTest.assertThrows(() => Entry.validateEntry(entry), Entry.ERR_ID_NOT_INTEGER(entry.id));
     // Keys "score" is negative
     entry = { "id": 1, "score": -10, "date": "2021-03-06" };
-    MyTest.assertEquals(Entry.isValidEntry(entry), false);
+    MyTest.assertThrows(() => Entry.validateEntry(entry), Entry.ERR_SCORE_IS_NEGATIVE(entry.score));
+    entry = { "id": 1, "score": 10.25, "date": "2021-03-06" };
+    MyTest.assertThrows(() => Entry.validateEntry(entry), Entry.ERR_SCORE_NOT_INTEGER(entry.score));
     // key "score" is non-divisible by 5
     entry = { "id": 16, "score": 240240249, "date": "1990-03-06" };
-    MyTest.assertEquals(Entry.isValidEntry(entry), false);
+    MyTest.assertThrows(() => Entry.validateEntry(entry), Entry.ERR_SCORE_NOT_DIVISIBLE_BY_FIVE(entry.score));
     // Key "date" is not written with "-" as separators
     entry = { "id": 10, "score": 100, "date": "2021/03/06" };
-    MyTest.assertEquals(Entry.isValidEntry(entry), false);
+    MyTest.assertThrows(() => Entry.validateEntry(entry), Entry.ERR_DATE_FORMAT_INVALID(entry.date));
     // Key "date" follows dd-mm-yyyy format
     entry = { "id": 10, "score": 100, "date": "18-02-2022T08:34:12.000Z" };
-    MyTest.assertEquals(Entry.isValidEntry(entry), false);
+    MyTest.assertThrows(() => Entry.validateEntry(entry), Entry.ERR_DATE_VALUE_INVALID(entry.date));
     // Key "date" follows yyyy-dd-mm format instead
     entry = { "id": 10, "score": 100, "date": "2022-18-02T08:34:12.000Z" };
-    MyTest.assertEquals(Entry.isValidEntry(entry), false);
+    MyTest.assertThrows(() => Entry.validateEntry(entry), Entry.ERR_DATE_VALUE_INVALID(entry.date));
     // Key "date" does not follow yyyy-mm-dd format: missing leading zero
     entry = { "id": 10, "score": 100, "date": "2022-2-18T08:34:12.000Z" };
-    MyTest.assertEquals(Entry.isValidEntry(entry), false);
+    MyTest.assertThrows(() => Entry.validateEntry(entry), Entry.ERR_DATE_VALUE_INVALID(entry.date));
 }
 
 function testCategories() {

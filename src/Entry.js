@@ -1,18 +1,20 @@
 class Entry {
-    static ERR_STATIC_CLASS = "Entry is a static class and cannot be instantiated.";
-    static ERR_NOT_OBJECT = "Entry is not an object, but instead is of type ";
-    static ERR_MISSING_KEYS = "Entry is missing key: ";
-    static ERR_INVALID_KEY_VALUE = "Entry has invalid key-value pair: ";
-    static ERR_ID_NOT_INTEGER = "Entry has non-integer id: ";
-    static ERR_ID_IS_NEGATIVE = "Entry has negative id: ";
-    static ERR_SCORE_NOT_INTEGER = "Entry has non-integer score: ";
-    static ERR_SCORE_NOT_DIVISIBLE_BY_FIVE = "Entry has score that's not divisible by 5: ";
-    static ERR_SCORE_IS_NEGATIVE = "Entry has negative score: ";
-    static ERR_DATE_VALUE_INVALID = "Entry has invalid date value: ";
-    static ERR_DATE_FORMAT_INVALID = "Entry follows invalid date formatting: ";
+    static ERR_STATIC_CLASS() { return `Entry is a static class and cannot be instantiated.`; }
+    static ERR_NOT_OBJECT(entry) { return `Invalid entry: ${entry}. Expected an object, got ${typeof entry}.`; }
+    static ERR_MISSING_KEYS(key) { return `Missing required key: '${key}' in entry.`; }
+    static ERR_INVALID_KEY_VALUE(key, value) { return `Invalid value for key '${key}': ${value}.`; }
+    static ERR_ID_NOT_INTEGER(id) { return `Invalid ID: ${id}. Expected an integer.`; }
+    static ERR_ID_IS_NEGATIVE(id) { return `Invalid ID: ${id}. Expected a non-negative value.`; }
+    static ERR_SCORE_NOT_INTEGER(score) { return `Invalid score: ${score}. Expected an integer.`; }
+    static ERR_SCORE_NOT_DIVISIBLE_BY_FIVE(score) { return `Invalid score: ${score}. Expected a multiple of 5.`; }
+    static ERR_SCORE_IS_NEGATIVE(score) { return `Invalid score: ${score}. Expected a non-negative value.`; }
+    static ERR_DATE_VALUE_INVALID(date) { return `Invalid date value: ${date}.`; }
+    static ERR_DATE_FORMAT_INVALID(date) { return `Invalid date format: '${date}'. Expected a valid date string.`; }
+
     constructor() {
         throw new Error(Entry.ERR_STATIC_CLASS);
     }
+
     static fetchJson(url) {
         let temp = fs.readFileSync(url, 'utf8', (err, data) => {
             if (err) {
@@ -31,42 +33,75 @@ class Entry {
      * date follows ISO of yyyy-mm-dd format
      * @param {object} entry 
      * @example {"id": 12, "score": 535286680, "date": "2021-03-06T10:40:30.000Z"}
-     * @returns boolean
+     * @returns true
      */
-    // note to self tbd wip: instead of returning a boolean,
-    // i want it to return nothing,
-    // but if a condition fails i want it to throw an error
-    // want to do this for all functions
-    // this should avoid the scoping hell {{{{{{}}}}}}
-    static isValidEntry(entry) {
-        const isObject = !Array.isArray(entry) && entry instanceof Object;
-        const hasKeys = ["id", "score", "date"].every(key => entry.hasOwnProperty(key));
-        const hasValidValue = ["id", "score", "date"].every(key => entry[key] !== null && entry[key] !== undefined);
-        const isIdInteger = Number.isInteger(entry.id);
-        const isIdNonNegative = entry.id >= 0;
-        const isScoreInteger = Number.isInteger(entry.score);
-        // Every valid Touhou 1cc's score ends with a 0, expect for HRtP, which can end with a 5.
-        const isScoreDivisibleByFive = entry.score % 5 === 0;
-        const isScoreNegative = entry.score >= 0;
-        const isDateValid = Entry.#isDateValid(entry.date);
-        return [isObject, hasKeys, hasValidValue, isIdInteger, isIdNonNegative, isScoreInteger, isScoreDivisibleByFive, isScoreNegative, isDateValid].every(bool => bool);
+    static validateEntry(entry) {
+        if (Array.isArray(entry) || !(entry instanceof Object)) {
+            throw new Error(Entry.ERR_NOT_OBJECT(entry));
+        }
+        const requiredKeys = ["id", "score", "date"];
+        for (const key of requiredKeys) {
+            if (!entry.hasOwnProperty(key)) {
+                throw new Error(Entry.ERR_MISSING_KEYS(key));
+            }
+            if (entry[key] === null || entry[key] === undefined) {
+                throw new Error(Entry.ERR_INVALID_KEY_VALUE(key, entry[key]));
+            }
+        }
+        Entry.#validateId(entry.id);
+        Entry.#validateScore(entry.score);
+        Entry.#validateDate(entry.date);
+        return true;
     }
+    /**
+     * Determines if a id is a valid id
+     * @param {number} id 
+     * @returns true
+     */
+    static #validateId(id) {
+        if (!Number.isInteger(id)) {
+            throw new Error(Entry.ERR_ID_NOT_INTEGER(id));
+        }
+        if (id < 0) {
+            throw new Error(Entry.ERR_ID_IS_NEGATIVE(id));
+        }
+        return true;
+    };
+    /**
+     * Determines if a score is a valid score
+     * @param {number} score 
+     * @returns true
+     */
+    static #validateScore(score) {
+        if (!Number.isInteger(score)) {
+            throw new Error(Entry.ERR_SCORE_NOT_INTEGER(score));
+        }
+        if (score % 5 !== 0) {
+            throw new Error(Entry.ERR_SCORE_NOT_DIVISIBLE_BY_FIVE(score));
+        }
+        if (score < 0) {
+            throw new Error(Entry.ERR_SCORE_IS_NEGATIVE(score));
+        }
+        return true;
+    };
     /**
      * Determines if a date string is a valid date
      * Must follow yyyy-mm-dd format
      * or ISO format
      * @param {string} dateStr 
-     * @returns boolean
+     * @returns true
      */
-    static #isDateValid(dateStr) {
-        // Parse the date
+    static #validateDate(dateStr) {
         const parsedDate = new Date(dateStr);
         if (isNaN(parsedDate.getTime())) {
-            return false; // Not a valid date
+            throw new Error(Entry.ERR_DATE_VALUE_INVALID(dateStr));
         }
         // matches yyyy-mm-dd or ISO format
         const regex = /^\d{4}-\d{2}-\d{2}(T.*Z)?$/;
-        return regex.test(dateStr);
+        if (!regex.test(dateStr)) {
+            throw new Error(Entry.ERR_DATE_FORMAT_INVALID(dateStr));
+        }
+        return true;
     };
     /**
      * Checks if category is array, and if all its elements are an entry.
@@ -74,7 +109,7 @@ class Entry {
      * @returns boolean
      */
     static isCategory(category) {
-        return Array.isArray(category) && category.every((entry) => {return Entry.isValidEntry(entry)});
+        return Array.isArray(category) && category.every((entry) => { return Entry.validateEntry(entry) });
     }
     static sortCategoryDate(category) {
         category.sort((a, b) => new Date(a.date) - new Date(b.date));
