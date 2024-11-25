@@ -1,6 +1,7 @@
 class Entry {
     static ERR_STATIC_CLASS() { return `Entry is a static class and cannot be instantiated.`; }
     static ERR_NOT_OBJECT(entry) { return `Invalid entry: ${entry}. Expected an object, got ${typeof entry}.`; }
+    static ERR_NOT_ENTRY(category) { return `Invalid category: ${category}. Expected an array, got ${typeof category}.`; }
     static ERR_MISSING_KEYS(key) { return `Missing required key: '${key}' in entry.`; }
     static ERR_INVALID_KEY_VALUE(key, value) { return `Invalid value for key '${key}': ${value}.`; }
     static ERR_ID_NOT_INTEGER(id) { return `Invalid ID: ${id}. Expected an integer.`; }
@@ -15,15 +16,6 @@ class Entry {
         throw new Error(Entry.ERR_STATIC_CLASS);
     }
 
-    static fetchJson(url) {
-        let temp = fs.readFileSync(url, 'utf8', (err, data) => {
-            if (err) {
-                console.error(`Error reading the file: ${err}`);
-                return;
-            }
-        });
-        return JSON.parse(temp);
-    }
     // has date, score, id
     /**
      * Determines if entry is object, and if
@@ -108,13 +100,20 @@ class Entry {
      * @param {array} category 
      * @returns boolean
      */
-    static isCategory(category) {
-        return Array.isArray(category) && category.every((entry) => { return Entry.validateEntry(entry) });
+    static validateCategory(category) {
+        if (!Array.isArray(category)) {
+            throw new Error(Entry.ERR_NOT_ENTRY(category));
+        }
+        category.every((entry) => {
+            return Entry.validateEntry(entry);
+        });
+        return true;
     }
     static sortCategoryDate(category) {
         category.sort((a, b) => new Date(a.date) - new Date(b.date));
     }
     static sortCategoryScore(category) {
+        Entry.validateCategory(category);
         category.sort((a, b) => a.score - b.score);
     }
     static isCategorySortedDate(category) {
