@@ -12,13 +12,18 @@ const Replay = require("D:/GitHub/replay-reader/src/Replay.js");
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th06";
+const GAME = "th10";
 const ALL_GAMES = ["th06", "th07", "th08", "th10", "th11", "th12", "th128", "th13", "th14", "th15", "th16", "th17", "th18"]
-const PATH_PLAYERS_JSON = `D:/GitHub/nylilsa.github.io/json/players.json`;
-const PATH_WRPROGRESSION_JSON = `D:/GitHub/nylilsa.github.io/json/wrprogression.json`;
-const PATH_DATA_JSON = `D:/GitHub/nylilsa.github.io/json/gameinfo-new.json`;
-const PATH_VERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/verified/${GAME}.json`;
-const PATH_UNVERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/unverified/${GAME}.json`;
+const PATH_PLAYERS_JSON = `D:/GitHub/wr-replays/json/players.json`;
+const PATH_WRPROGRESSION_JSON = `D:/GitHub/wr-replays/json/old-wrprogression.json`;
+const PATH_DATA_JSON = `D:/GitHub/wr-replays/json/gameinfo.json`;
+const PATH_VERIFIED_JSON = `D:/GitHub/wr-replays/json/verified/${GAME}.json`;
+const PATH_UNVERIFIED_JSON = `D:/GitHub/wr-replays/json/unverified/${GAME}.json`;
+const PATH_DISQUALIFIED_JSON = `D:/GitHub/wr-replays/json/disqualified/${GAME}.json`;
+const PATH_VALID_REPLAYS_JSON = `D:/GitHub/wr-replays/json/valid-replays/${GAME}.json`;
+const PATH_NYLILSA_VERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/verified/${GAME}.json`;
+const PATH_NYLILSA_UNVERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/unverified/${GAME}.json`;
+const PATH_NYLILSA_PLAYERS_JSON = `D:/GitHub/nylilsa.github.io/json/players.json`;
 const PATH_NEW_REPLAYS = `D:/GitHub/wr-replays/new-replays/${GAME}`;
 const PATH_WR_REPLAYS = `D:/GitHub/wr-replays/${GAME}`;
 const PATH_GAME_REPLAYS = `D:/GitHub/wr-replays/replays/MAIN/${GAME}`;
@@ -38,8 +43,8 @@ function getShottypes(difficulty) {
 
 init();
 
-function fetchJson(url) {
-    let temp = fs.readFileSync(url, 'utf8', (err, data) => {
+function fetchJson(path) {
+    let temp = fs.readFileSync(path, 'utf8', (err, data) => {
         if (err) {
             console.error(`Error reading the file: ${err}`);
             return;
@@ -48,7 +53,69 @@ function fetchJson(url) {
     return JSON.parse(temp);
 }
 
+function writeJson(path, data) {
+    const jsonData = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+    fs.writeFileSync(path, JSON.stringify(jsonData));
+    if (path === PATH_VERIFIED_JSON) {
+        fs.writeFileSync(PATH_NYLILSA_VERIFIED_JSON, jsonData);
+    } else if (path === PATH_UNVERIFIED_JSON) {
+        fs.writeFileSync(PATH_NYLILSA_UNVERIFIED_JSON, jsonData);
+    } else if (path === PATH_PLAYERS_JSON) {
+        fs.writeFileSync(PATH_NYLILSA_PLAYERS_JSON, jsonData);
+    }
+}
+
+function displayMenu() {
+    const options = [
+        "Add replays",
+        "Validate JSONs",
+        "Validate replays",
+        "Exit application"
+    ];
+    console.log("Select an option:");
+    options.forEach((option, index) => {
+        console.log(`${index + 1}. ${option}`); // Display options as a numbered list
+    });
+    while (true) {
+        const userChoice = readline.questionInt("Enter your choice [1-" + options.length + "]\n> ");
+        if (userChoice >= 1 && userChoice <= options.length) {
+            return userChoice;
+        } else {
+            console.log("Invalid choice. Please select a valid option.");
+        }
+    }
+}
+
 function init() {
+    while (true) {
+        const choice = displayMenu();
+        switch (choice) {
+            case 1: {
+                addEntries();
+                console.log("Finished running addEntries()")
+                // add getNoEntryNames and generateMappings
+                break;
+            }
+            case 2: {
+                checkReplayValidity();
+                // add getNoEntryNames and generateMappings
+            }
+                break;
+            case 3: {
+                replaysMatchJson();
+            }
+                break;
+            case 4: {
+                console.log("Exiting application.");
+                process.exit(0);
+                break;
+            }
+            default: {
+                console.log("Unexpected error.");
+            }
+        }
+        console.log();
+    }
     // createDirectory(PATH_WR_REPLAYS);
     // copyReplaysToPath();
     // createUnverifiedVerifiedJson();
@@ -66,6 +133,28 @@ function init() {
     // compareData();
 }
 
+/**
+ * Get confirmation from the user with a custom message and optional warning.
+ * @param {string} message - The main message to display for the confirmation prompt.
+ * @param {string} [warning] - An optional warning message to display before the prompt.
+ * @returns {boolean} - Returns true if the user confirms with 'Y', false if 'N'.
+ */
+function getConfirmation(message, warning = null) {
+    if (warning) {
+        console.warn("\x1b[31m", warning, "\x1b[0m");
+    }
+    while (true) {
+        const response = readline.question(message + ' [Y/N]\n > ');
+        if (response.toLowerCase() === 'y') {
+            return true;
+        } else if (response.toLowerCase() === 'n') {
+            return false;
+        } else {
+            console.warn("\x1b[33m", "Invalid input! Please enter 'Y' for yes or 'N' for no.", "\x1b[0m");
+        }
+    }
+}
+
 function convertId(input) {
     if (Array.isArray(input)) {
         convertIdArray(input);
@@ -79,45 +168,38 @@ function convertIdEntry(entry) {
         throw new Error(`Entry does not contain ${UNSET_ID} !`);
     }
     const allPlayers = fetchJson(PATH_PLAYERS_JSON);
-    while (true) {
+    mainLoop: while (true) {
         const check = readline.question(`Give an ID to the entry with score ${entry.score}:\n > `);
         if (parseInt(check) >= -1) { // positive integer or -1
             const id = parseInt(check, 10);
             const idExists = allPlayers[id] !== undefined;
             if (idExists) {
                 console.log(`ID ${id} already exists with name ${allPlayers[id].name_en}.`)
-                while (true) {
-                    const confirm = readline.question(`Do you want to assign entry ${entry.score} to player ${allPlayers[id].name_en} ? [Y/N]\n > `);
-                    if (confirm.toLowerCase() === "y") {
-                        entry.id = id;
-                        console.log(`Assigned id ${id} to score ${entry.score}`);
-                        return;
-                    } else {
-                        console.log(`Did nothing.`)
-                        return;
-                    }
+                if (getConfirmation(`Do you want to assign entry ${entry.score} to player ${allPlayers[id].name_en} ?`)) {
+                    entry.id = id;
+                    console.log(`Assigned id ${id} to score ${entry.score}`);
+                    return;
+                } else {
+                    console.log(`Did nothing.`)
+                    continue mainLoop;
                 }
             } else {
                 const allPlayersIds = Object.keys(allPlayers).map(Number);
                 const newId = findNextId(allPlayersIds);
                 console.log(`ID ${id} does not exist.`);
                 console.log(`Creating new ID with value ${newId}.`);
-                while (true) {
-                    const confirm = readline.question(`Do you want create a new ID ${newId} with a new name ? [Y/N]\n > `);
-                    if (confirm.toLowerCase() === "y") {
-                        entry.id = newId;
-                        console.log(`Assigned id ${newId} to score ${entry.score}`);
-                        const newName = readline.question(`Assign a name to ID ${newId}:\n > `);
-                        allPlayers[newId] = { name_en: newName };
-                        fs.writeFileSync(PATH_PLAYERS_JSON, JSON.stringify(allPlayers));
-                        console.log(`Updated file at ${PATH_PLAYERS_JSON}`);
-                        return;
-                    } else {
-                        console.log(`Did nothing.`)
-                        return;
-                    }
+                if (getConfirmation(`Do you want create a new ID ${newId} with a new name ?`)) {
+                    entry.id = newId;
+                    console.log(`Assigned id ${newId} to score ${entry.score}`);
+                    const newName = readline.question(`Assign a name to ID ${newId}:\n > `);
+                    allPlayers[newId] = { name_en: newName };
+                    fs.writeFileSync(PATH_PLAYERS_JSON, JSON.stringify(allPlayers));
+                    console.log(`Updated file at ${PATH_PLAYERS_JSON}`);
+                    return;
+                } else {
+                    console.log(`Did nothing.`)
+                    return;
                 }
-
             }
         } else {
             console.log(`Input ${check} is not a positive integer !`)
@@ -138,8 +220,8 @@ function convertIdArray(array) {
 function convertJson(enableAllGames) {
     return;
     const gamesList = enableAllGames ? ALL_GAMES.reverse() : [GAME];
-    const check = readline.question(`You are about to overwrite the verified/unverified entries of ${gamesList}. Proceed? [Y/N]\n > `);
-    if (check.toLowerCase() === "y") {
+    const prompt = `You are about to overwrite the verified/unverified entries of ${gamesList}. Proceed ?`;
+    if (getConfirmation(prompt)) {
         gamesList.forEach(game => {
             const pathVerified = `D:/GitHub/nylilsa.github.io/json/wr/verified/${game}.json`
             const pathUnverified = `D:/GitHub/nylilsa.github.io/json/wr/unverified/${game}.json`
@@ -393,42 +475,38 @@ function addEntries() {
             // Case 2: merge entry with array and update json and add rpy to folder
             // and also remove n entries from json, and ask to move all non-WR replays to a separate folder 
             if (bool) {
-                while (true) {
-                    const check = readline.question(`${file} seems to be a new entry. Approve of entry ${JSON.stringify(newEntryObject)}? [Y/N]\n > `);
-                    if (check.toLowerCase() === "y") {
-                        console.log("\x1b[32m", `Approved entry ${JSON.stringify(newEntryObject)}`);
-                        console.log("\x1b[0m");
-                        fs.copyFileSync(pathToFile, `${pathToCopyAt}/${rpyName}`);
-                        console.log(`Copied file at ${pathToFile} to ${pathToCopyAt}/${rpyName}`);
-                        fs.unlinkSync(pathToFile);
-                        console.log(`Deleted file at ${pathToFile}`);
-                        convertId(category);
-                        fs.writeFileSync(PATH_VERIFIED_JSON, JSON.stringify(verifiedData));
-                        console.log(`Updated JSON at ${PATH_VERIFIED_JSON}`);
-                        if (removedReplays.length > 0) { // if exists
-                            createDirIfNotExist(PATH_REMOVED_REPLAYS);
-                            console.log(`The following outdated replays have been moved to the folder ${PATH_REMOVED_REPLAYS}`);
-                            removedReplays.forEach((replay) => {
-                                const replayName = `${GAME}_${difficulty}_${character}_${replay.score}.rpy`.toLowerCase();
-                                fs.renameSync(`${pathToCopyAt}/${replayName}`, `${PATH_REMOVED_REPLAYS}/${replayName}`);
-                                console.log(`Moved ${pathToCopyAt}/${replayName} to ${PATH_REMOVED_REPLAYS}/${replayName}`);
-                            })
-                        }
-                        break;
-                    } else if (check.toLowerCase() === "n") {
-                        console.log("\x1b[31m", `Denied entry ${JSON.stringify(newEntryObject)}`);
-                        fs.unlinkSync(pathToFile);
-                        console.log(`Deleted file at ${pathToFile}`);
-                        console.log("\x1b[0m");
-                        break;
-                    } else {
-                        console.warn("\x1b[33m", "Invalid input! Please enter 'Y' for yes or 'N' for no.");
+                const prompt = `${file} seems to be a new entry. Approve of entry ${JSON.stringify(newEntryObject)} ?`;
+                if (getConfirmation(prompt)) {
+                    console.log("\x1b[32m", `Approved entry ${JSON.stringify(newEntryObject)}`);
+                    console.log("\x1b[0m");
+                    fs.copyFileSync(pathToFile, `${pathToCopyAt}/${rpyName}`);
+                    console.log(`Copied file at ${pathToFile} to ${pathToCopyAt}/${rpyName}`);
+                    fs.unlinkSync(pathToFile);
+                    console.log(`Deleted file at ${pathToFile}`);
+                    convertId(category);
+                    fs.writeFileSync(PATH_VERIFIED_JSON, JSON.stringify(verifiedData));
+                    console.log(`Updated JSON at ${PATH_VERIFIED_JSON}`);
+                    if (removedReplays.length > 0) { // if exists
+                        createDirIfNotExist(PATH_REMOVED_REPLAYS);
+                        console.log(`The following outdated replays have been moved to the folder ${PATH_REMOVED_REPLAYS}`);
+                        removedReplays.forEach((replay) => {
+                            const replayName = `${GAME}_${difficulty}_${character}_${replay.score}.rpy`.toLowerCase();
+                            fs.renameSync(`${pathToCopyAt}/${replayName}`, `${PATH_REMOVED_REPLAYS}/${replayName}`);
+                            console.log(`Moved ${pathToCopyAt}/${replayName} to ${PATH_REMOVED_REPLAYS}/${replayName}`);
+                        })
                     }
+                    break;
+                } else {
+                    console.log("\x1b[31m", `Denied entry ${JSON.stringify(newEntryObject)}`);
+                    fs.unlinkSync(pathToFile);
+                    console.log(`Deleted file at ${pathToFile}`);
+                    console.log("\x1b[0m");
+                    break;
                 }
-
-            } else {
-                console.log("\x1b[31m", `File ${file} category ${character + difficulty} with ${JSON.stringify(newEntryObject)} is not a missing/new WR entry nor is it unverified. Please remove this from the folder.`, "\x1b[0m");
             }
+
+        } else {
+            console.log("\x1b[31m", `File ${file} category ${character + difficulty} with ${JSON.stringify(newEntryObject)} is not a missing/new WR entry nor is it unverified. Please remove this from the folder.`, "\x1b[0m");
         }
     }
 }
@@ -479,23 +557,18 @@ function approveNewEntry(i, pathToFile, destination, unverifiedData, difficulty,
 
 function replayMatchesUnverifiedEntry(i, pathToFile, destination, unverifiedData, difficulty, character, file, date, unverifiedEntry) {
     console.log(`Found a match between replay \x1b[33m${file}\x1b[0m and unverified entry ${JSON.stringify(unverifiedEntry)}`)
-    while (true) {
-        const check = readline.question(`Approve of entry ${JSON.stringify(unverifiedEntry)}? [Y/N]\n > `);
-        if (check.toLowerCase() === "y") {
-            console.log("\x1b[32m", `Approved entry ${unverifiedEntry}`);
-            console.log("\x1b[0m");
-            approveNewEntry(i, pathToFile, destination, unverifiedData, difficulty, character, date);
-            break;
-        } else if (check.toLowerCase() === "n") {
-            console.log("\x1b[31m", `Denied entry ${unverifiedEntry}`);
-            fs.unlinkSync(pathToFile);
-            console.log(`Deleted file at ${pathToFile}`);
-            console.log("\x1b[0m");
-            break;
-        } else {
-            console.warn("\x1b[33m", "Invalid input! Please enter 'Y' for yes or 'N' for no.");
-        }
+    const prompt = `Approve of entry ${JSON.stringify(unverifiedEntry)} ?`;
+    if (getConfirmation(prompt)) {
+        console.log("\x1b[32m", `Approved entry ${unverifiedEntry}`);
+        console.log("\x1b[0m");
+        approveNewEntry(i, pathToFile, destination, unverifiedData, difficulty, character, date);
+    } else {
+        console.log("\x1b[31m", `Denied entry ${unverifiedEntry}`);
+        fs.unlinkSync(pathToFile);
+        console.log(`Deleted file at ${pathToFile}`);
+        console.log("\x1b[0m");
     }
+
 }
 
 function createDirectory(parent) {
@@ -644,22 +717,15 @@ function removeArray(arr, score) {
 function logArrays(arr) {
     for (let i = 0; i < arr.length; i++) {
         const entry = arr[i];
-        let check;
-        while (true) {
-            check = readline.question(`Approve of entry ${entry}? Y/N\n > `);
-            if (check.toLowerCase() === "y") {
-                console.log("\x1b[32m", `Approved entry ${entry}`);
-                console.log("\x1b[0m");
-                break;
-            } else if (check.toLowerCase() === "n") {
-                console.log("\x1b[31m", `Denied entry ${entry}`);
-                console.log("\x1b[0m");
-                arr.splice(i, 1);
-                i--;
-                break;
-            } else {
-                console.warn("\x1b[33m", "Invalid input! Please enter 'Y' for yes or 'N' for no.");
-            }
+        const prompt = `Approve of entry ${entry} ?`;
+        if (getConfirmation(prompt)) {
+            console.log("\x1b[32m", `Approved entry ${entry}`);
+            console.log("\x1b[0m");
+        } else {
+            console.log("\x1b[31m", `Denied entry ${entry}`);
+            console.log("\x1b[0m");
+            arr.splice(i, 1);
+            i--;
         }
     }
 }
@@ -723,26 +789,19 @@ function replaysMatchJson() {
                     console.warn("\x1b[31m", `${fileToCheck} does not exist but is in the json! \n Score: ${score}`, "\x1b[0m")
                 }
             }
-
-            if (categoryFiles.length > 0) {
-                categoryFiles.forEach(element => {
-                    while (true) {
-                        console.warn("\x1b[31m", `${pathToFiles}/${element} exists but is not an entry in the JSON!`, "\x1b[0m")
-                        const check = readline.question(`Do you want to remove it? [Y/N]\n > `);
-                        if (check.toLowerCase() === "y") {
-                            createDirIfNotExist(PATH_REMOVED_REPLAYS);
-                            fs.renameSync(`${pathToFiles}/${element}`, `${PATH_REMOVED_REPLAYS}/${element}`);
-                            console.log(`Moved ${pathToFiles}/${element} to ${PATH_REMOVED_REPLAYS}/${element}`);
-                            break;
-                        } else if (check.toLowerCase() === "n") {
-                            console.log("\x1b[31m", `Did nothing`);
-                            break;
-                        } else {
-                            console.warn("\x1b[33m", "Invalid input! Please enter 'Y' for yes or 'N' for no.");
-                        }
-                    }
-                })
+            categoryFiles.forEach(element => {
+                const warning = `${pathToFiles}/${element} exists but is not an entry in the JSON!`
+                const prompt = `Do you want to remove it?`
+                if (getConfirmation(prompt, warning)) {
+                    createDirIfNotExist(PATH_REMOVED_REPLAYS);
+                    fs.renameSync(`${pathToFiles}/${element}`, `${PATH_REMOVED_REPLAYS}/${element}`);
+                    console.log(`Moved ${pathToFiles}/${element} to ${PATH_REMOVED_REPLAYS}/${element}`);
+                } else {
+                    console.log("\x1b[37m", `Did nothing`);
+                }
             }
+            )
+
         }
     }
 
