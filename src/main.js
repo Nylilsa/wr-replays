@@ -60,8 +60,8 @@ function fetchJson(path) {
 }
 
 function writeJson(path, data) {
-    const jsonData = typeof data === 'string' ? JSON.parse(data) : data;
-    fs.writeFileSync(path, JSON.stringify(jsonData));
+    const jsonData = typeof data === 'string' ? JSON.stringify(JSON.parse(data)) : JSON.stringify(data);
+    fs.writeFileSync(path, jsonData);
     console.log(`Updated file at ${path}`);
     if (path === PATH_VERIFIED_JSON) {
         fs.writeFileSync(PATH_NYLILSA_VERIFIED_JSON, jsonData);
