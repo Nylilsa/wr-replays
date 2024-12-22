@@ -60,8 +60,9 @@ function fetchJson(path) {
 }
 
 function writeJson(path, data) {
-    const jsonData = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+    const jsonData = typeof data === 'string' ? JSON.parse(data) : data;
     fs.writeFileSync(path, JSON.stringify(jsonData));
+    return;
     if (path === PATH_VERIFIED_JSON) {
         fs.writeFileSync(PATH_NYLILSA_VERIFIED_JSON, jsonData);
     } else if (path === PATH_UNVERIFIED_JSON) {
@@ -119,7 +120,7 @@ function init() {
             }
             case 5: {
                 console.log("Debug started");
-                getNoEntryNames();
+                generateMappings();
                 break;
             }
             default: {
@@ -171,7 +172,7 @@ function getNoEntryNames() {
     let counter = 0;
     const playerIds = [];
     const allPlayers = fetchJson(PATH_PLAYERS_JSON);
-    const allCategories = getVerifiedAndUnverifiedGames(ALL_GAMES)
+    const allCategories = getVerifiedAndUnverifiedGames(ALL_GAMES);
     for (const [id, obj] of Object.entries(allPlayers)) {
         if (playerIds.indexOf(id) == -1) {
             playerIds.push(Number(id));
@@ -441,6 +442,49 @@ function convertVerifiedJsonAccurateDate() {
 }
 
 
+function generateMappings() {
+    // For every game
+    const coveredIds = [];
+    const allPlayers = fetchJson(PATH_PLAYERS_JSON);
+    const allCategories = getVerifiedAndUnverifiedGames(ALL_GAMES);
+    for (const [gameId, gameObj] of Object.entries(allCategories)) {
+        const vArrays = ["unverified", "verified"];
+        console.log(gameId);
+        // For every status
+        for (let i = 0; i < vArrays.length; i++) {
+            const vValue = vArrays[i];
+            const difficulties = gameObj[vValue];
+            // For every difficulty
+            for (const [difficulty, shottypes] of Object.entries(difficulties)) {
+                // console.log(difficulty)
+                // For every shottype
+                for (const [shottype, entries] of Object.entries(shottypes)) {
+                    // console.log(shottype)
+                    // For every entry
+                    loopEntries: for (const [entry, data] of Object.entries(entries)) {
+                        // For every player
+                        for (let [playerId, playerObj] of Object.entries(allPlayers)) {
+                            // If id of entry matches player id
+                            if (data.id == playerId) {
+                                const categories = playerObj[`${vValue}`] ||= {};
+                                const game = categories[gameId] ||= {};
+                                const diff = game[difficulty] ||= [];
+                                if (diff.includes(shottype)) {
+                                    // If already exists, then look at next entries
+                                    continue loopEntries;
+                                } else {
+                                    // Otherwise push category to player id
+                                    diff.push(shottype);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    writeJson(PATH_PLAYERS_JSON, allPlayers);
+}
 
 // function checks if all replays in the WR folder are valid. Prints statements if it is not
 function checkReplayValidity() {

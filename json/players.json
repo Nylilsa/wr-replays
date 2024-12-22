@@ -110,7 +110,7 @@
             "th11": { "Hard": ["ReimuC", "MarisaC"] },
             "th12": {
                 "Easy"   : ["ReimuA", "ReimuB" , "MarisaA", "MarisaB", "SanaeA", "SanaeB"],
-                "Normal" : ["ReimuA", "MarisaA", "SanaeA" , "ReimuB"                     ],
+                "Normal" : ["ReimuA", "MarisaA", "SanaeA" , "ReimuB" , "SanaeB"          ],
                 "Hard"   : ["ReimuA", "MarisaA", "SanaeA" , "SanaeB"                     ],
                 "Lunatic": ["ReimuA", "ReimuB" , "MarisaA", "MarisaB", "SanaeA", "SanaeB"]
             },
@@ -382,7 +382,7 @@
     "77": { "name_en": "優さん", "verified": { "th16": { "Lunatic": ["CirnoSpring"] }, "th17": { "Extra": ["ReimuWolf"] } } },
     "78": { "name_en": "theshim", "verified": { "th02": { "Lunatic": ["ReimuC"] }, "th12": { "Normal": ["ReimuA"] } }, "unverified": { "th02": { "Lunatic": ["ReimuC"] } } },
     "79": { "name_en": "YM", "verified": { "th15": { "Normal": ["Reimu"] }, "th17": { "Extra": ["ReimuOtter"] } } },
-    "80": { "name_en": "mu021", "verified": { "th01": { "Lunatic": ["Jigoku"] } } },
+    "80": { "name_en": "mu021", "verified": { "th01": { "Lunatic": ["Jigoku", "Makai"] } } },
     "81": {
         "name_en": "EMPL",
         "name_jp": "エンプル",
@@ -465,7 +465,12 @@
         "name_jp": "くどう",
         "unverified": { "th16": { "Normal": ["CirnoWinter"], "Hard": ["AyaWinter"] } },
         "verified": {
-            "th16": { "Easy": ["ReimuWinter", "CirnoWinter", "MarisaWinter"], "Normal": ["CirnoWinter", "AyaWinter"], "Hard": ["ReimuWinter", "CirnoWinter", "AyaWinter"], "Lunatic": ["AyaWinter"] }
+            "th16": {
+                "Easy"   : ["ReimuWinter", "CirnoWinter", "MarisaWinter"],
+                "Normal" : ["CirnoWinter", "AyaWinter"                  ],
+                "Hard"   : ["ReimuWinter", "CirnoWinter", "AyaWinter"   ],
+                "Lunatic": ["AyaWinter"  , "CirnoSpring"                ]
+            }
         }
     },
     "97": { "name_en": "Vex", "verified": { "th01": { "Lunatic": ["Makai"] } }, "unverified": { "th01": { "Lunatic": ["Makai"] } } },
