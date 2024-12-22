@@ -5,7 +5,7 @@ const readline = require('readline-sync');
 
 const Replay = require("D:/GitHub/replay-reader/src/Replay.js");
 
-// const testpath = "D:/GitHub/wr-replays/replays/MAIN/th18/Easy/Reimu/th18_easy_reimu_954243810.rpy"
+// const testpath = "${BASE_WR_REPLAYS}/replays/MAIN/th18/Easy/Reimu/th18_easy_reimu_954243810.rpy"
 // const replayData2 = fs.readFileSync(testpath);
 // const replay = new Replay18(replayData2);
 // console.log(replay)
@@ -13,21 +13,27 @@ const Replay = require("D:/GitHub/replay-reader/src/Replay.js");
 // console.log(replay)
 
 const GAME = "th10";
-const ALL_GAMES = ["th06", "th07", "th08", "th10", "th11", "th12", "th128", "th13", "th14", "th15", "th16", "th17", "th18"]
-const PATH_PLAYERS_JSON = `D:/GitHub/wr-replays/json/players.json`;
-const PATH_WRPROGRESSION_JSON = `D:/GitHub/wr-replays/json/old-wrprogression.json`;
-const PATH_DATA_JSON = `D:/GitHub/wr-replays/json/gameinfo.json`;
-const PATH_VERIFIED_JSON = `D:/GitHub/wr-replays/json/verified/${GAME}.json`;
-const PATH_UNVERIFIED_JSON = `D:/GitHub/wr-replays/json/unverified/${GAME}.json`;
-const PATH_DISQUALIFIED_JSON = `D:/GitHub/wr-replays/json/disqualified/${GAME}.json`;
-const PATH_VALID_REPLAYS_JSON = `D:/GitHub/wr-replays/json/valid-replays/${GAME}.json`;
-const PATH_NYLILSA_VERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/verified/${GAME}.json`;
-const PATH_NYLILSA_UNVERIFIED_JSON = `D:/GitHub/nylilsa.github.io/json/wr/unverified/${GAME}.json`;
-const PATH_NYLILSA_PLAYERS_JSON = `D:/GitHub/nylilsa.github.io/json/players.json`;
-const PATH_NEW_REPLAYS = `D:/GitHub/wr-replays/new-replays/${GAME}`;
-const PATH_WR_REPLAYS = `D:/GitHub/wr-replays/${GAME}`;
-const PATH_GAME_REPLAYS = `D:/GitHub/wr-replays/replays/MAIN/${GAME}`;
-const PATH_REMOVED_REPLAYS = `D:/GitHub/wr-replays/removed-replays/${GAME}`;
+const ALL_GAMES = ["th01", "th02", "th03", "th04", "th05",
+    "th06", "th07", "th08", "th10", "th11",
+    "th12", "th128", "th13", "th14", "th15",
+    "th16", "th17", "th18"];
+// const ALL_GAMES = ["th06", "th07", "th08", "th10", "th11", "th12", "th128", "th13", "th14", "th15", "th16", "th17", "th18"]
+const BASE_WR_REPLAYS = "D:/GitHub/wr-replays";
+const BASE_NYLILSA_GITHUB = "D:/GitHub/nylilsa.github.io";
+const PATH_PLAYERS_JSON = `${BASE_WR_REPLAYS}/json/players.json`;
+const PATH_WRPROGRESSION_JSON = `${BASE_WR_REPLAYS}/json/old-wrprogression.json`;
+const PATH_DATA_JSON = `${BASE_WR_REPLAYS}/json/gameinfo.json`;
+const PATH_VERIFIED_JSON = `${BASE_WR_REPLAYS}/json/verified/${GAME}.json`;
+const PATH_UNVERIFIED_JSON = `${BASE_WR_REPLAYS}/json/unverified/${GAME}.json`;
+const PATH_DISQUALIFIED_JSON = `${BASE_WR_REPLAYS}/json/disqualified/${GAME}.json`;
+const PATH_VALID_REPLAYS_JSON = `${BASE_WR_REPLAYS}/json/valid-replays/${GAME}.json`;
+const PATH_NYLILSA_VERIFIED_JSON = `${BASE_NYLILSA_GITHUB}/json/wr/verified/${GAME}.json`;
+const PATH_NYLILSA_UNVERIFIED_JSON = `${BASE_NYLILSA_GITHUB}/json/wr/unverified/${GAME}.json`;
+const PATH_NYLILSA_PLAYERS_JSON = `${BASE_NYLILSA_GITHUB}/json/players.json`;
+const PATH_NEW_REPLAYS = `${BASE_WR_REPLAYS}/new-replays/${GAME}`;
+const PATH_WR_REPLAYS = `${BASE_WR_REPLAYS}/${GAME}`;
+const PATH_GAME_REPLAYS = `${BASE_WR_REPLAYS}/replays/MAIN/${GAME}`;
+const PATH_REMOVED_REPLAYS = `${BASE_WR_REPLAYS}/removed-replays/${GAME}`;
 const UNSET_ID = -2;
 const WR_DATA = fetchJson(PATH_WRPROGRESSION_JSON);
 const GAME_DATA = fetchJson(PATH_DATA_JSON);
@@ -70,8 +76,10 @@ function displayMenu() {
         "Add replays",
         "Validate JSONs",
         "Validate replays",
-        "Exit application"
+        "Exit application",
+        "Debug"
     ];
+    console.log(`Game selected: ${GAME}`);
     console.log("Select an option:");
     options.forEach((option, index) => {
         console.log(`${index + 1}. ${option}`); // Display options as a numbered list
@@ -99,15 +107,19 @@ function init() {
             case 2: {
                 checkReplayValidity();
                 // add getNoEntryNames and generateMappings
-            }
                 break;
+            }
             case 3: {
                 replaysMatchJson();
-            }
                 break;
+            }
             case 4: {
                 console.log("Exiting application.");
                 process.exit(0);
+            }
+            case 5: {
+                console.log("Debug started");
+                getNoEntryNames();
                 break;
             }
             default: {
@@ -153,6 +165,65 @@ function getConfirmation(message, warning = null) {
             console.warn("\x1b[33m", "Invalid input! Please enter 'Y' for yes or 'N' for no.", "\x1b[0m");
         }
     }
+}
+
+function getNoEntryNames() {
+    let counter = 0;
+    const playerIds = [];
+    const allPlayers = fetchJson(PATH_PLAYERS_JSON);
+    const allCategories = getVerifiedAndUnverifiedGames(ALL_GAMES)
+    for (const [id, obj] of Object.entries(allPlayers)) {
+        if (playerIds.indexOf(id) == -1) {
+            playerIds.push(Number(id));
+        }
+    }
+
+    const coveredIds = [];
+    // For every game
+    for (const [gameId, gameObj] of Object.entries(allCategories)) {
+        const vArrays = ["unverified", "verified"];
+        // console.log(gameId);
+        // For every status
+        for (let i = 0; i < vArrays.length; i++) {
+            const vValue = vArrays[i];
+            const difficulties = gameObj[vValue];
+            // For every difficulty
+            for (const [difficulty, shottypes] of Object.entries(difficulties)) {
+                // console.log(difficulty)
+                // For every shottype
+                for (const [shottype, entries] of Object.entries(shottypes)) {
+                    // console.log(shottype)
+                    // For every entry
+                    for (const [entry, data] of Object.entries(entries)) {
+                        // For every player
+                        if (coveredIds.indexOf(data.id) === -1) {
+                            coveredIds.push(data.id);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    const difference = playerIds.filter(x => !coveredIds.includes(x));
+    console.log(difference)
+    console.log(`${difference.length} players do not have a record.`)
+}
+
+function getVerifiedAndUnverifiedGames(list) {
+    const results = {};
+    for (const game of list) {
+        try {
+            const verifiedData = fetchJson(`${BASE_WR_REPLAYS}/json/verified/${game}.json`);
+            const unverifiedData = fetchJson(`${BASE_WR_REPLAYS}/json/unverified/${game}.json`);
+            results[game] = {
+                verified: verifiedData,
+                unverified: unverifiedData
+            };
+        } catch (error) {
+            throw new Error(`Error fetching data for ${game}:`, error);
+        }
+    }
+    return results;
 }
 
 function convertId(input) {
@@ -223,8 +294,8 @@ function convertJson(enableAllGames) {
     const prompt = `You are about to overwrite the verified/unverified entries of ${gamesList}. Proceed ?`;
     if (getConfirmation(prompt)) {
         gamesList.forEach(game => {
-            const pathVerified = `D:/GitHub/nylilsa.github.io/json/wr/verified/${game}.json`
-            const pathUnverified = `D:/GitHub/nylilsa.github.io/json/wr/unverified/${game}.json`
+            const pathVerified = `${BASE_NYLILSA_GITHUB}/json/wr/verified/${game}.json`
+            const pathUnverified = `${BASE_NYLILSA_GITHUB}/json/wr/unverified/${game}.json`
             writeNewJson(pathVerified);
             writeNewJson(pathUnverified);
         })
@@ -301,7 +372,7 @@ function convertedData(data, players, allPlayersIds) {
 function writeAllScoresUnverified() {
     const scores = [];
     ALL_GAMES.forEach(game => {
-        const json = fetchJson(`D:/GitHub/nylilsa.github.io/json/wr/unverified/${game}.json`);
+        const json = fetchJson(`${BASE_NYLILSA_GITHUB}/json/wr/unverified/${game}.json`);
         for (let i = 0; i < Object.entries(json).length; i++) {
             const difficulty = Object.entries(json)[i];
             for (let j = 0; j < Object.entries(difficulty[1]).length; j++) {
