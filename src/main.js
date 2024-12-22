@@ -60,19 +60,20 @@ function fetchJson(path) {
 }
 
 function writeJson(path, data) {
+    makeFile(path, data);
+    if (path === PATH_VERIFIED_JSON) {
+        makeFile(PATH_NYLILSA_VERIFIED_JSON, data);
+    } else if (path === PATH_UNVERIFIED_JSON) {
+        makeFile(PATH_NYLILSA_UNVERIFIED_JSON, data);
+    } else if (path === PATH_PLAYERS_JSON) {
+        makeFile(PATH_NYLILSA_PLAYERS_JSON, data);
+    }
+}
+
+function makeFile(path, data) {
     const jsonData = typeof data === 'string' ? JSON.stringify(JSON.parse(data)) : JSON.stringify(data);
     fs.writeFileSync(path, jsonData);
     console.log(`Updated file at ${path}`);
-    if (path === PATH_VERIFIED_JSON) {
-        fs.writeFileSync(PATH_NYLILSA_VERIFIED_JSON, jsonData);
-        console.log(`Updated file at ${PATH_NYLILSA_VERIFIED_JSON}`);
-    } else if (path === PATH_UNVERIFIED_JSON) {
-        fs.writeFileSync(PATH_NYLILSA_UNVERIFIED_JSON, jsonData);
-        console.log(`Updated file at ${PATH_NYLILSA_UNVERIFIED_JSON}`);
-    } else if (path === PATH_PLAYERS_JSON) {
-        fs.writeFileSync(PATH_NYLILSA_PLAYERS_JSON, jsonData);
-        console.log(`Updated file at ${PATH_NYLILSA_PLAYERS_JSON}`);
-    }
 }
 
 function displayMenu() {
@@ -80,8 +81,8 @@ function displayMenu() {
         "Add replays",
         "Validate JSONs",
         "Validate replays",
-        "Exit application",
-        "Debug"
+        "Copy files to nylilsa.github.io",
+        "Exit application"
     ];
     console.log(`Game selected: ${GAME}`);
     console.log("Select an option:");
@@ -120,12 +121,11 @@ function init() {
                 break;
             }
             case 4: {
-                console.log("Exiting application.");
-                process.exit(0);
+                copyToNylilsa();
             }
             case 5: {
-                console.log("Debug started");
-                break;
+                console.log("Exiting application.");
+                process.exit(0);
             }
             default: {
                 console.log("Unexpected error.");
@@ -149,6 +149,15 @@ function init() {
 
     // writeAllScoresUnverified();
     // compareData();
+}
+
+function copyToNylilsa() {
+    makeFile(PATH_NYLILSA_PLAYERS_JSON, fetchJson(PATH_PLAYERS_JSON));
+    for (let i = 0; i < ALL_GAMES.length; i++) {
+        const game = ALL_GAMES[i];
+        makeFile(`${BASE_NYLILSA_GITHUB}/json/wr/verified/${game}.json`, fetchJson(`${BASE_WR_REPLAYS}/json/verified/${game}.json`));
+        makeFile(`${BASE_NYLILSA_GITHUB}/json/wr/unverified/${game}.json`, fetchJson(`${BASE_WR_REPLAYS}/json/unverified/${game}.json`));
+    }
 }
 
 function createEmptyJsons(path) {
