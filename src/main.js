@@ -25,8 +25,8 @@ const PATH_WRPROGRESSION_JSON = `${BASE_WR_REPLAYS}/json/old-wrprogression.json`
 const PATH_DATA_JSON = `${BASE_WR_REPLAYS}/json/gameinfo.json`;
 const PATH_VERIFIED_JSON = `${BASE_WR_REPLAYS}/json/verified/${GAME}.json`;
 const PATH_UNVERIFIED_JSON = `${BASE_WR_REPLAYS}/json/unverified/${GAME}.json`;
-const PATH_DISQUALIFIED_JSON = `${BASE_WR_REPLAYS}/json/disqualified/${GAME}.json`;
-const PATH_VALID_REPLAYS_JSON = `${BASE_WR_REPLAYS}/json/valid-replays/${GAME}.json`;
+const PATH_FALSE_REPLAYS_JSON = `${BASE_WR_REPLAYS}/json/false-replays/${GAME}.json`;
+const PATH_TRUE_REPLAYS_JSON = `${BASE_WR_REPLAYS}/json/true-replays/${GAME}.json`;
 const PATH_NYLILSA_VERIFIED_JSON = `${BASE_NYLILSA_GITHUB}/json/wr/verified/${GAME}.json`;
 const PATH_NYLILSA_UNVERIFIED_JSON = `${BASE_NYLILSA_GITHUB}/json/wr/unverified/${GAME}.json`;
 const PATH_NYLILSA_PLAYERS_JSON = `${BASE_NYLILSA_GITHUB}/json/players.json`;
@@ -43,8 +43,8 @@ if (DIFFICULTY_LIST.includes("Overdrive")) {
     DIFFICULTY_LIST.splice(DIFFICULTY_LIST.indexOf("Overdrive"), 1)
 }
 
-function getShottypes(difficulty) {
-    return GAME_DATA["DifficultyCharacters"][GAME][difficulty];
+function getShottypes(difficulty, game = GAME) {
+    return GAME_DATA["DifficultyCharacters"][game][difficulty];
 }
 
 init();
@@ -102,12 +102,14 @@ function init() {
             case 1: {
                 addEntries();
                 console.log("Finished running addEntries()")
-                // add getNoEntryNames and generateMappings
+                getNoEntryNames();
+                generateMappings();
                 break;
             }
             case 2: {
                 checkReplayValidity();
-                // add getNoEntryNames and generateMappings
+                getNoEntryNames();
+                generateMappings();
                 break;
             }
             case 3: {
@@ -120,7 +122,7 @@ function init() {
             }
             case 5: {
                 console.log("Debug started");
-                generateMappings();
+                createEmptyJsons(`${BASE_WR_REPLAYS}/json/true-replays`);
                 break;
             }
             default: {
@@ -129,6 +131,7 @@ function init() {
         }
         console.log();
     }
+    // createEmptyJsons(path)
     // createDirectory(PATH_WR_REPLAYS);
     // copyReplaysToPath();
     // createUnverifiedVerifiedJson();
@@ -144,6 +147,28 @@ function init() {
 
     // writeAllScoresUnverified();
     // compareData();
+}
+
+function createEmptyJsons(path) {
+    for (let i = 0; i < ALL_GAMES.length; i++) {
+        const obj = {};
+        const game = ALL_GAMES[i];
+        const difficulties = Object.keys(GAME_DATA["DifficultyCharacters"][game]);
+        if (difficulties.includes("Overdrive")) {
+            difficulties.splice(difficulties.indexOf("Overdrive"), 1)
+        }
+        for (let j = 0; j < difficulties.length; j++) {
+            const difficulty = difficulties[j];
+            obj[difficulty] = {};
+            const shottypes = getShottypes(difficulty, game);
+            console.log(game, difficulty, shottypes)
+            for (let k = 0; k < shottypes.length; k++) {
+                const shottype = shottypes[k];
+                obj[difficulty][shottype] = {};
+            }
+        }
+        writeJson(`${path}/${game}.json`, obj);
+    }
 }
 
 /**
