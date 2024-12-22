@@ -62,13 +62,16 @@ function fetchJson(path) {
 function writeJson(path, data) {
     const jsonData = typeof data === 'string' ? JSON.parse(data) : data;
     fs.writeFileSync(path, JSON.stringify(jsonData));
-    return;
+    console.log(`Updated file at ${path}`);
     if (path === PATH_VERIFIED_JSON) {
         fs.writeFileSync(PATH_NYLILSA_VERIFIED_JSON, jsonData);
+        console.log(`Updated file at ${PATH_NYLILSA_VERIFIED_JSON}`);
     } else if (path === PATH_UNVERIFIED_JSON) {
         fs.writeFileSync(PATH_NYLILSA_UNVERIFIED_JSON, jsonData);
+        console.log(`Updated file at ${PATH_NYLILSA_UNVERIFIED_JSON}`);
     } else if (path === PATH_PLAYERS_JSON) {
         fs.writeFileSync(PATH_NYLILSA_PLAYERS_JSON, jsonData);
+        console.log(`Updated file at ${PATH_NYLILSA_PLAYERS_JSON}`);
     }
 }
 
