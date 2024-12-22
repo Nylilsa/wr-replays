@@ -293,7 +293,7 @@ function convertIdEntry(entry) {
                     console.log(`Assigned id ${newId} to score ${entry.score}`);
                     const newName = readline.question(`Assign a name to ID ${newId}:\n > `);
                     allPlayers[newId] = { name_en: newName };
-                    fs.writeFileSync(PATH_PLAYERS_JSON, JSON.stringify(allPlayers));
+                    writeJson(PATH_PLAYERS_JSON, allPlayers);
                     console.log(`Updated file at ${PATH_PLAYERS_JSON}`);
                     return;
                 } else {
@@ -355,10 +355,9 @@ function writeNewJson(path) {
             obj[difficulty][shot] = newCategoryData;
         }
     }
-    fs.writeFileSync(path, JSON.stringify(obj));
+    writeJson(path, obj);
     console.log(`Created file at ${path}`);
-    fs.writeFileSync(PATH_PLAYERS_JSON, JSON.stringify(players));
-    console.log(`Updated file at ${PATH_PLAYERS_JSON}`);
+    writeJson(PATH_PLAYERS_JSON, players);
 }
 
 function convertedData(data, players, allPlayersIds) {
@@ -416,7 +415,7 @@ function writeAllScoresUnverified() {
     });
     scores.sort((a, b) => (a - b));
     console.log(scores)
-    fs.writeFileSync("all_unverified.json", JSON.stringify(scores));
+    writeJson("all_unverified.json", scores);
 }
 
 function compareData() {
@@ -465,7 +464,7 @@ function convertVerifiedJsonAccurateDate() {
             }
         }
     }
-    fs.writeFileSync(PATH_VERIFIED_JSON, JSON.stringify(verifiedJson));
+    writeJson(PATH_VERIFIED_JSON, verifiedJson);
     console.log(`Successfully changed ${counter} dates at ${PATH_VERIFIED_JSON} !`);
 }
 
@@ -627,8 +626,7 @@ function addEntries() {
                     fs.unlinkSync(pathToFile);
                     console.log(`Deleted file at ${pathToFile}`);
                     convertId(category);
-                    fs.writeFileSync(PATH_VERIFIED_JSON, JSON.stringify(verifiedData));
-                    console.log(`Updated JSON at ${PATH_VERIFIED_JSON}`);
+                    writeJson(PATH_VERIFIED_JSON, JSON.stringify(verifiedData));
                     if (removedReplays.length > 0) { // if exists
                         createDirIfNotExist(PATH_REMOVED_REPLAYS);
                         console.log(`The following outdated replays have been moved to the folder ${PATH_REMOVED_REPLAYS}`);
@@ -689,13 +687,11 @@ function approveNewEntry(i, pathToFile, destination, unverifiedData, difficulty,
     const verifiedJson = fetchJson(PATH_VERIFIED_JSON);
     verifiedJson[difficulty][character].push(unverifiedData[difficulty][character][i]);
     sortArrayScore(verifiedJson[difficulty][character]);
-    fs.writeFileSync(PATH_VERIFIED_JSON, JSON.stringify(verifiedJson));
-    console.log(`Updated JSON at ${PATH_VERIFIED_JSON}`);
+    writeJson(PATH_VERIFIED_JSON, verifiedJson);
     // removes entry from unverified json
     console.log(`Removed entry ${JSON.stringify(unverifiedData[difficulty][character][i])} from unverified records`);
     unverifiedData[difficulty][character].splice(i, 1);
-    fs.writeFileSync(PATH_UNVERIFIED_JSON, JSON.stringify(unverifiedData));
-    console.log(`Updated JSON at ${PATH_UNVERIFIED_JSON}`);
+    writeJson(PATH_UNVERIFIED_JSON, unverifiedData);
 }
 
 function replayMatchesUnverifiedEntry(i, pathToFile, destination, unverifiedData, difficulty, character, file, date, unverifiedEntry) {
@@ -875,13 +871,13 @@ function logArrays(arr) {
 
 function writeJsonToFolder(verifiedJson, unverifiedJson, production = false) {
     if (production) {
-        fs.writeFileSync(PATH_UNVERIFIED_JSON, JSON.stringify(unverifiedJson));
+        writeJson(PATH_UNVERIFIED_JSON, unverifiedJson);
         console.log("\x1b[32m", `Successfully created file ${PATH_UNVERIFIED_JSON}`);
-        fs.writeFileSync(PATH_VERIFIED_JSON, JSON.stringify(verifiedJson));
+        writeJson(PATH_VERIFIED_JSON, verifiedJson);
         console.log("\x1b[32m", `Successfully created file ${PATH_VERIFIED_JSON}`);
     } else {
-        fs.writeFileSync(`unverified-test-${GAME}.json`, JSON.stringify(unverifiedJson));
-        fs.writeFileSync(`verified-test-${GAME}.json`, JSON.stringify(verifiedJson));
+        writeJson(`unverified-test-${GAME}.json`, unverifiedJson);
+        writeJson(`verified-test-${GAME}.json`, verifiedJson);
     }
 }
 
