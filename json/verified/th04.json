@@ -64,7 +64,8 @@
             { "id": 119, "score": 152800960, "date": "2022-01-06", "sources": ["https://youtu.be/ihbfhakdD_Q"] },
             { "id": 119, "score": 154393090, "date": "2022-02-28", "sources": ["https://youtu.be/mkKobzbPWww"] },
             { "id": 124, "score": 155733380, "date": "2022-05-25", "sources": ["https://youtu.be/MkKxKOx58WI"] },
-            { "id": 124, "score": 157345690, "date": "2022-12-11", "sources": ["https://youtu.be/zPJUWqawoQM"] }
+            { "id": 124, "score": 157345690, "date": "2022-12-11", "sources": ["https://youtu.be/zPJUWqawoQM"] },
+            { "id": 119, "score": 158611300, "date": "2024-12-19", "sources": ["https://youtu.be/zDMERXjgwYs"] }
         ],
         "MarisaB": [
             { "id": 197, "score":  95206480, "date": "2019-01-22", "sources": ["https://youtu.be/O3b4cgx_cbI"] },
@@ -78,7 +79,8 @@
             { "id": 197, "score": 79085070, "date": "2018-07-15", "sources": ["https://youtu.be/e6LeW7zcMQI"] },
             { "id": 119, "score": 79158920, "date": "2021-05-14", "sources": ["https://youtu.be/YnTcysxIsjU"] },
             { "id": 119, "score": 79460010, "date": "2021-05-24", "sources": ["https://youtu.be/MOj5brbDiMU"] },
-            { "id": 119, "score": 79685000, "date": "2024-05-16", "sources": ["https://youtu.be/EQ0oHxBukpY"] }
+            { "id": 119, "score": 79685000, "date": "2024-05-16", "sources": ["https://youtu.be/EQ0oHxBukpY"] },
+            { "id": 119, "score": 79712110, "date": "2024-12-13", "sources": ["https://youtu.be/DOvi761XM2o"] }
         ],
         "ReimuB": [
             { "id": 1, "score": 80086200, "date": "2017-09-09", "sources": ["https://youtu.be/7_z89Pca1vU"] },

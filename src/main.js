@@ -12,7 +12,7 @@ const Replay = require("D:/GitHub/replay-reader/src/Replay.js");
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th10";
+const GAME = "th15";
 const ALL_GAMES = ["th01", "th02", "th03", "th04", "th05",
     "th06", "th07", "th08", "th10", "th11",
     "th12", "th128", "th13", "th14", "th15",
@@ -104,9 +104,9 @@ function init() {
         switch (choice) {
             case 1: {
                 addEntries();
-                console.log("Finished running addEntries()")
-                getNoEntryNames();
+                console.log("Finished running addEntries()");
                 generateMappings();
+                console.log("Finished running generateMappings()");
                 break;
             }
             case 2: {
@@ -125,7 +125,6 @@ function init() {
             }
             case 5: {
                 console.log("Debug started");
-                createEmptyJsons(`${BASE_WR_REPLAYS}/json/true-replays`);
                 break;
             }
             default: {
@@ -476,7 +475,7 @@ function generateMappings() {
     const allCategories = getVerifiedAndUnverifiedGames(ALL_GAMES);
     for (const [gameId, gameObj] of Object.entries(allCategories)) {
         const vArrays = ["unverified", "verified"];
-        console.log(gameId);
+        // console.log(gameId);
         // For every status
         for (let i = 0; i < vArrays.length; i++) {
             const vValue = vArrays[i];
@@ -636,16 +635,13 @@ function addEntries() {
                             console.log(`Moved ${pathToCopyAt}/${replayName} to ${PATH_REMOVED_REPLAYS}/${replayName}`);
                         })
                     }
-                    break;
                 } else {
                     console.log("\x1b[31m", `Denied entry ${JSON.stringify(newEntryObject)}`);
                     fs.unlinkSync(pathToFile);
                     console.log(`Deleted file at ${pathToFile}`);
                     console.log("\x1b[0m");
-                    break;
                 }
             }
-
         } else {
             console.log("\x1b[31m", `File ${file} category ${character + difficulty} with ${JSON.stringify(newEntryObject)} is not a missing/new WR entry nor is it unverified. Please remove this from the folder.`, "\x1b[0m");
         }
