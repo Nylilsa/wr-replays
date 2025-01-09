@@ -124,6 +124,9 @@ function init() {
                 copyToNylilsa();
             }
             case 5: {
+                mergeUserIds();
+            }
+            case 5: {
                 console.log("Exiting application.");
                 process.exit(0);
             }
@@ -149,6 +152,16 @@ function init() {
 
     // writeAllScoresUnverified();
     // compareData();
+}
+// if id10 and id30 are actually the same person, merge them together
+function mergeUserIds() {
+    // run generateMappings so every id has path to files
+    const id1 = -1
+    const id2 = -1 // for both, ask user to input id. warn user if no id found
+    // ask which id should be deleted and which one should stay
+
+    // merge ids together, i.e. delete everything from id1 and replace it with id2.
+    // do this in players.json but also in every th.json file
 }
 
 function copyToNylilsa() {
