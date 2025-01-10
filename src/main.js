@@ -81,7 +81,7 @@ function displayMenu() {
         "Add replays",
         "Validate JSONs",
         "Validate replays",
-        "Copy files to nylilsa.github.io",
+        "Merge user IDs",
         "Exit application"
     ];
     console.log(`Game selected: ${GAME}`);
@@ -108,6 +108,8 @@ function init() {
                 console.log("Finished running addEntries()");
                 generateMappings();
                 console.log("Finished running generateMappings()");
+                copyToNylilsa();
+                console.log("Finished running copyToNylilsa()");
                 break;
             }
             case 2: {
@@ -121,10 +123,8 @@ function init() {
                 break;
             }
             case 4: {
-                copyToNylilsa();
-            }
-            case 5: {
                 mergeUserIds();
+                break;
             }
             case 5: {
                 console.log("Exiting application.");
@@ -132,6 +132,7 @@ function init() {
             }
             default: {
                 console.log("Unexpected error.");
+                break;
             }
         }
         console.log();
@@ -155,9 +156,14 @@ function init() {
 }
 // if id10 and id30 are actually the same person, merge them together
 function mergeUserIds() {
+    console.log(1)
+    const ids = {
+        id1: undefined,
+        id2: undefined,
+    }
     // run generateMappings so every id has path to files
-    const id1 = -1
-    const id2 = -1 // for both, ask user to input id. warn user if no id found
+    ids.id1 = -1
+    ids.id2 = -1 // for both, ask user to input id. warn user if no id found
     // ask which id should be deleted and which one should stay
 
     // merge ids together, i.e. delete everything from id1 and replace it with id2.
