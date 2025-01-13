@@ -1,1 +1,20 @@
-{"Easy":{"ReimuA":{},"ReimuB":{},"ReimuC":{},"MarisaA":{},"MarisaB":{},"MarisaC":{}},"Normal":{"ReimuA":{},"ReimuB":{},"ReimuC":{},"MarisaA":{},"MarisaB":{},"MarisaC":{}},"Hard":{"ReimuA":{},"ReimuB":{},"ReimuC":{},"MarisaA":{},"MarisaB":{},"MarisaC":{}},"Lunatic":{"ReimuA":{},"ReimuB":{},"ReimuC":{},"MarisaA":{},"MarisaB":{},"MarisaC":{}},"Extra":{"ReimuA":{},"ReimuB":{},"ReimuC":{},"MarisaA":{},"MarisaB":{},"MarisaC":{}}}
+{
+    "Easy": {"ReimuA": [], "ReimuB": [], "ReimuC": [], "MarisaA": [], "MarisaB": [], "MarisaC": []},
+    "Normal": {"ReimuA": [], "ReimuB": [], "ReimuC": [], "MarisaA": [], "MarisaB": [], "MarisaC": []},
+    "Hard": {"ReimuA": [], "ReimuB": [], "ReimuC": [], "MarisaA": [], "MarisaB": [], "MarisaC": []},
+    "Lunatic": {
+        "ReimuA": [],
+        "ReimuB": [],
+        "ReimuC": [],
+        "MarisaA": [],
+        "MarisaB": [
+            {
+                "score": 2403923900,
+                "date": "2008-03-05T08:34:49.000Z",
+                "meta": {"dateAdded": "2025-01-13T05:31:45.000Z", "invalidReason": "replay is presumably an ultra replay", "additionalDetails": "none"}
+            }
+        ],
+        "MarisaC": []
+    },
+    "Extra": {"ReimuA": [], "ReimuB": [], "ReimuC": [], "MarisaA": [], "MarisaB": [], "MarisaC": []}
+}

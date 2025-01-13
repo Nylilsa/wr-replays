@@ -12,7 +12,7 @@ const Replay = require("D:/GitHub/replay-reader/src/Replay.js");
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th15";
+const GAME = "th10";
 const ALL_GAMES = ["th01", "th02", "th03", "th04", "th05",
     "th06", "th07", "th08", "th10", "th11",
     "th12", "th128", "th13", "th14", "th15",
@@ -194,7 +194,7 @@ function createEmptyJsons(path) {
             console.log(game, difficulty, shottypes)
             for (let k = 0; k < shottypes.length; k++) {
                 const shottype = shottypes[k];
-                obj[difficulty][shottype] = {};
+                obj[difficulty][shottype] = [];
             }
         }
         writeJson(`${path}/${game}.json`, obj);
@@ -582,6 +582,7 @@ function addEntries() {
     const unverifiedData = fetchJson(PATH_UNVERIFIED_JSON);
     const verifiedData = fetchJson(PATH_VERIFIED_JSON);
     const newFiles = fs.readdirSync(PATH_NEW_REPLAYS);
+    const falseData = fetchJson(PATH_FALSE_REPLAYS_JSON);
     for (let j = 0; j < newFiles.length; j++) {
         const file = newFiles[j];
         let isUnverifiedEntry = false;
@@ -595,9 +596,15 @@ function addEntries() {
         const name = rpy.getName();
         const unverifiedCategory = unverifiedData[difficulty][character];
         const verifiedCategory = verifiedData[difficulty][character];
+        const falseCategory = falseData[difficulty][character];
         const pathToCopyAt = `${PATH_WR_REPLAYS}/${difficulty}/${character}`;
         const rpyName = `${GAME}_${difficulty}_${character}_${score}.rpy`.toLowerCase();
+        const replayAlreadyExistsInFalse = isDuplicateEntry(falseCategory, score);
         const replayAlreadyExistsInVerified = isDuplicateEntry(verifiedCategory, score);
+        if (replayAlreadyExistsInFalse[0]) {
+            console.log("\x1b[33m", `Replay ${file} category ${character + difficulty} is an invalid replay. Reason: ${replayAlreadyExistsInFalse[1]?.["meta"]?.["invalidReason"]}`, "\x1b[0m");
+            continue;
+        }
         if (replayAlreadyExistsInVerified[0]) {
             console.log("\x1b[33m", `Replay ${file} category ${character + difficulty} is already verified with ${JSON.stringify(replayAlreadyExistsInVerified[1])}!`, "\x1b[0m");
             continue;
