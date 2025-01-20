@@ -125,6 +125,7 @@ function init() {
             case 4: {
                 generateMappings();
                 mergeUserIds();
+                generateMappings();
                 break;
             }
             case 5: {
@@ -155,31 +156,34 @@ function init() {
     // writeAllScoresUnverified();
     // compareData();
 }
+
 // if id10 and id30 are actually the same person, merge them together
+// merge ids together, i.e. delete everything from id1 and replace it with id2.
+// do this in players.json but also in every th.json file
 function mergeUserIds() {
     const players = fetchJson(PATH_PLAYERS_JSON);
-    // console.log(players)
     const ids = {
         id1: undefined,
         id2: undefined,
     }
-
     while (true) {
-        ids.id1 = askForId(Object.keys(players));
+        ids.id1 = askForId(Object.keys(players), "id1");
         console.log(`Selected player ${players[ids.id1]["name_en"]}`);
-        ids.id2 = askForId(Object.keys(players));
+        ids.id2 = askForId(Object.keys(players), "id2, this id will be removed");
         console.log(`Selected player ${players[ids.id2]["name_en"]}`);
-
         if (ids.id1 === ids.id2) {
             console.warn("\x1b[31m", "ID1 and ID2 cannot be the same. Please input different IDs.", "\x1b[0m");
         } else {
-            break;
+            const message = `Do you want to overwrite ${players[ids.id2]["name_en"]} (${ids.id2}) with player ${players[ids.id1]["name_en"]} (${ids.id1}) ?`;
+            if (getConfirmation(message)) {
+                ids.id1 = parseInt(ids.id1);
+                ids.id2 = parseInt(ids.id2);
+                break;
+            } else {
+                console.log(`Did nothing.`);
+            }
         }
     }
-
-    //id2 is removed. id1 remains
-    console.log(players[ids.id1])
-    console.log(players[ids.id2])
     const id2Categories = [players[ids.id2]["verified"], players[ids.id2]["unverified"]];
     for (let i = 0; i < id2Categories.length; i++) {
         const str = (i == 0) ? "verified" : "unverified";
@@ -188,38 +192,36 @@ function mergeUserIds() {
         const games = Object.keys(category); // ["th10", "th12"]
         for (let j = 0; j < games.length; j++) {
             const game = games[j]; // "th10"
-            const json = fetchJson(`${BASE_WR_REPLAYS}/json/${str}/${game}.json`);
+            const path = `${BASE_WR_REPLAYS}/json/${str}/${game}.json`;
+            const json = fetchJson(path);
             const difficulties = Object.keys(category[game]);
             for (let k = 0; k < difficulties.length; k++) {
-                const difficulty = difficulties[k];
+                const difficulty = difficulties[k]; // Hard
                 const shottypes = category[game][difficulty];
                 for (let l = 0; l < shottypes.length; l++) {
-                    const shottype = shottypes[l];
+                    const shottype = shottypes[l]; // MarisaA
                     console.log(str + game + difficulty + shottype)
                     const jsonCategory = json[difficulty][shottype];
-                    console.log(jsonCategory)
+                    // console.log(jsonCategory)
                     for (let m = 0; m < jsonCategory.length; m++) {
                         const entry = jsonCategory[m];
-                        if (entry[id] !== ids.id2) { continue; }
-                        entry[id] = ids.id1;
-                        // finish implementation here
-                        
+                        if (entry["id"] != ids.id2) { continue; }
+                        // console.log(entry)
+                        entry["id"] = ids.id1;
+                        // console.log(entry)
                     }
                 }
-
-
             }
-
+            writeJson(path, json);
         }
-
     }
-    // merge ids together, i.e. delete everything from id1 and replace it with id2.
-    // do this in players.json but also in every th.json file
+    delete players[ids.id2];
+    writeJson(PATH_PLAYERS_JSON, players);
 }
 
-function askForId(existingIds) {
+function askForId(existingIds, optionalString) {
     while (true) {
-        const id = readline.question("Please input an ID:\n > ");
+        const id = readline.question(`Please input an ID (${optionalString}):\n > `);
         if (existingIds.includes(id)) {
             return id;
         } else {
