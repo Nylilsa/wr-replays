@@ -126,6 +126,7 @@ function init() {
                 generateMappings();
                 mergeUserIds();
                 generateMappings();
+                copyToNylilsa();
                 break;
             }
             case 5: {
