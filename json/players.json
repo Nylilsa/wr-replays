@@ -1256,11 +1256,6 @@
     "471": { "name_en": "vivin", "verified": { "th12": { "Easy": ["ReimuA", "ReimuB", "MarisaB", "SanaeA"], "Normal": ["ReimuB"] }, "th128": { "Hard": ["A-2"] } } },
     "472": { "name_en": "CLR", "name_jp": "えあ", "verified": { "th128": { "Hard": ["A-1", "A-2", "B-1", "B-2", "C-1", "C-2"], "Lunatic": ["A-1", "A-2", "B-1", "B-2", "C-1", "C-2"] } } },
     "473": { "name_en": "minama", "name_jp": "みなま", "verified": { "th10": { "Lunatic": ["ReimuB"] }, "th128": { "Hard": ["A-1", "C-1"], "Lunatic": ["C-1"] } } },
-    "475": {
-        "name_en": "HECATE",
-        "name_jp": "へかて",
-        "verified": { "th10": { "Lunatic": ["ReimuB"] }, "th12": { "Lunatic": ["ReimuA", "MarisaA", "SanaeA", "SanaeB"] }, "th128": { "Lunatic": ["A-1"] } }
-    },
     "476": { "name_en": "MegaPulse", "unverified": { "th128": { "Lunatic": ["A-2"] } }, "verified": { "th128": { "Lunatic": ["A-1", "A-2", "B-2"] } } },
     "479": { "name_en": "Dagoth2hu", "verified": { "th128": { "Lunatic": ["A-1", "C-2"] } } },
     "481": { "name_en": "7", "name_jp": "七", "verified": { "th128": { "Lunatic": ["A-2"] } } },
@@ -1428,7 +1423,11 @@
     },
     "563": { "name_en": "Ameri", "unverified": { "th12": { "Hard": ["MarisaB"] } }, "verified": { "th12": { "Lunatic": ["MarisaB"] } } },
     "564": { "name_en": "TAKE", "verified": { "th12": { "Lunatic": ["SanaeA"] } } },
-    "566": { "name_en": "Aqura", "name_jp": "あくら", "verified": { "th06": { "Lunatic": ["ReimuB"] }, "th12": { "Lunatic": ["SanaeA"] } } },
+    "566": {
+        "name_en": "Aqura",
+        "name_jp": "あくら",
+        "verified": { "th06": { "Lunatic": ["ReimuB"] }, "th12": { "Lunatic": ["SanaeA", "ReimuA", "MarisaA", "SanaeB"] }, "th10": { "Lunatic": ["ReimuB"] }, "th128": { "Lunatic": ["A-1"] } }
+    },
     "567": { "name_en": "E-Splice", "name_jp": "アイスプライス", "verified": { "th12": { "Lunatic": ["SanaeA", "SanaeB", "ReimuA"], "Hard": ["ReimuB", "MarisaB"] } } },
     "568": { "name_en": "Mona_Lun", "verified": { "th12": { "Lunatic": ["SanaeB"] } } },
     "569": { "name_en": "S.Mesie", "verified": { "th12": { "Lunatic": ["SanaeB"] } } },
