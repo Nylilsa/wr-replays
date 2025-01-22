@@ -1391,14 +1391,27 @@
         "name_en": "LIDERA",
         "name_jp": "リデラ",
         "verified": {
-            "th06": { "Easy": ["ReimuA" , "MarisaA", "MarisaB"           ]                                                                },
-            "th10": { "Easy": ["MarisaC"                                 ]                                                                },
-            "th11": { "Easy": ["ReimuA" , "ReimuB" , "MarisaA", "MarisaC"]                                                                },
-            "th12": {                                                       "Hard": ["SanaeB"], "Extra": ["SanaeB"]                       },
-            "th13": {                                                                                                "Lunatic": ["Reimu"] },
-            "th15": { "Easy": ["Marisa" , "Reisen"                       ]                                                                }
+            "th06": { "Easy": ["ReimuA", "MarisaA", "MarisaB"], "Extra": ["MarisaB"] },
+            "th10": {
+                "Easy"   : ["MarisaC"                                            ],
+                "Normal" : ["MarisaA", "MarisaB"                                 ],
+                "Hard"   : ["ReimuA" , "ReimuB" , "ReimuC" , "MarisaA", "MarisaB"],
+                "Lunatic": ["ReimuA" , "ReimuB" , "MarisaA"                      ],
+                "Extra"  : ["ReimuA"                                             ]
+            },
+            "th11": { "Easy": ["ReimuA", "ReimuB", "MarisaA", "MarisaC", "ReimuC"], "Hard": ["ReimuB", "MarisaA", "MarisaC"], "Lunatic": ["ReimuB", "MarisaA", "MarisaC"] },
+            "th12": { "Hard": ["SanaeB"], "Extra": ["SanaeB"] },
+            "th13": { "Lunatic": ["Reimu"] },
+            "th15": { "Easy": ["Marisa", "Reisen"] },
+            "th08": { "Easy": ["Yuyuko"], "Normal": ["Yukari", "Alice", "Sakuya", "Remilia", "Yuyuko"], "Hard": ["Yukari", "Alice", "Sakuya", "Remilia", "Yuyuko"] },
+            "th128": {
+                "Easy"   : ["A-1", "A-2", "B-1", "B-2", "C-1"       ],
+                "Normal" : ["A-1", "A-2", "B-1", "B-2", "C-2"       ],
+                "Hard"   : ["A-1", "A-2", "B-1", "B-2", "C-1", "C-2"],
+                "Lunatic": ["A-1", "A-2", "B-1", "B-2", "C-1", "C-2"]
+            }
         },
-        "unverified": { "th15": { "Easy": ["Reisen"] } }
+        "unverified": { "th15": { "Easy": ["Reisen"] }, "th06": { "Extra": ["MarisaB"] } }
     },
     "553": { "name_en": "F.K", "verified": { "th11": { "Hard": ["MarisaA"] }, "th12": { "Lunatic": ["ReimuA", "ReimuB", "MarisaA", "SanaeA"] } } },
     "554": { "name_en": "misa", "verified": { "th12": { "Lunatic": ["ReimuA", "SanaeB"] } } },
@@ -1555,23 +1568,6 @@
         "name_en": "Scarlet Moose",
         "verified": { "th05": { "Hard": ["Reimu", "Yuuka"], "Lunatic": ["Marisa", "Yuuka"] }, "th11": { "Hard": ["ReimuA", "ReimuB", "MarisaA"] } },
         "unverified": { "th05": { "Hard": ["Reimu"], "Lunatic": ["Marisa"] } }
-    },
-    "670": {
-        "name_en": "Slime",
-        "name_jp": "水性すらいむ",
-        "verified": {
-            "th08": { "Easy": ["Yuyuko"], "Normal": ["Yukari", "Alice", "Sakuya", "Remilia", "Yuyuko"], "Hard": ["Yukari", "Alice", "Sakuya", "Remilia", "Yuyuko"] },
-            "th10": { "Normal": ["MarisaA", "MarisaB"], "Hard": ["ReimuA", "ReimuB", "ReimuC", "MarisaA", "MarisaB"], "Lunatic": ["ReimuA", "MarisaA", "ReimuB"], "Extra": ["ReimuA"] },
-            "th11": { "Hard": ["ReimuB", "MarisaC", "MarisaA"], "Lunatic": ["ReimuB", "MarisaC", "MarisaA"], "Easy": ["ReimuC"] },
-            "th06": { "Extra": ["MarisaB"] },
-            "th128": {
-                "Easy"   : ["A-1", "A-2", "B-1", "B-2", "C-1"       ],
-                "Normal" : ["A-1", "A-2", "B-1", "B-2", "C-2"       ],
-                "Hard"   : ["A-1", "A-2", "B-1", "B-2", "C-1", "C-2"],
-                "Lunatic": ["A-1", "A-2", "B-1", "B-2", "C-1", "C-2"]
-            }
-        },
-        "unverified": { "th06": { "Extra": ["MarisaB"] } }
     },
     "671": { "name_en": "HardALL", "verified": { "th11": { "Hard": ["ReimuB"] } } },
     "672": { "name_en": "farewall", "verified": { "th10": { "Normal": ["MarisaA"], "Hard": ["ReimuC", "MarisaB"], "Lunatic": ["MarisaA"] }, "th11": { "Hard": ["ReimuB", "MarisaC"] } } },
