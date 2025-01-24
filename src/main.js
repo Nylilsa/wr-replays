@@ -127,7 +127,7 @@ function init() {
                 mergeUserIds();
                 generateMappings();
                 copyToNylilsa();
-                break;
+                process.exit(0);
             }
             case 5: {
                 console.log("Exiting application.");
