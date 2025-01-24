@@ -1954,8 +1954,8 @@
     "913": { "name_en": "Aira", "unverified": { "th08": { "Hard": ["Youmu"] } } },
     "917": {
         "name_en": "SUMETANE",
-        "unverified": { "th06": { "Lunatic": ["ReimuB"] }, "th08": { "Lunatic": ["Ghost Team"], "Extra": ["Ghost Team"] } },
-        "verified": { "th08": { "Extra": ["Ghost Team"] } }
+        "unverified": { "th06": { "Lunatic": ["ReimuB", "ReimuA"] }, "th08": { "Lunatic": ["Ghost Team"], "Extra": ["Ghost Team"] } },
+        "verified": { "th08": { "Extra": ["Ghost Team"] }, "th06": { "Lunatic": ["ReimuA", "ReimuB"] } }
     },
     "918": { "name_en": "RAN", "unverified": { "th08": { "Lunatic": ["Ghost Team"] } } },
     "920": { "name_en": "Kentvers", "unverified": { "th08": { "Lunatic": ["Sakuya"] } } },
@@ -2109,7 +2109,6 @@
     "1020": { "name_en": "NO.15", "verified": { "th06": { "Hard": ["MarisaB"] } } },
     "1021": { "name_en": "TYSI", "verified": { "th06": { "Hard": ["MarisaB"] } } },
     "1022": { "name_en": "Watan", "verified": { "th06": { "Hard": ["MarisaB"], "Extra": ["MarisaA", "MarisaB"] } } },
-    "1023": { "name_en": "yuhuin", "verified": { "th06": { "Lunatic": ["ReimuA", "ReimuB"] } } },
     "1024": { "name_en": "Sylid", "verified": { "th06": { "Lunatic": ["ReimuA", "MarisaB"] } } },
     "1025": { "name_en": "Maria", "unverified": { "th06": { "Lunatic": ["MarisaA"] } }, "verified": { "th06": { "Lunatic": ["ReimuA", "MarisaA", "MarisaB"] } } },
     "1026": { "name_en": "Miki", "verified": { "th06": { "Lunatic": ["ReimuA", "ReimuB", "MarisaA"] } } },
@@ -2162,7 +2161,6 @@
     "1055": { "name_en": "APPLE POT", "unverified": { "th06": { "Hard": ["MarisaA"] } } },
     "1056": { "name_en": "司那", "unverified": { "th06": { "Lunatic": ["ReimuA"] } } },
     "1057": { "name_en": "よっしい", "unverified": { "th06": { "Lunatic": ["ReimuA"] } } },
-    "1058": { "name_en": "湯", "unverified": { "th06": { "Lunatic": ["ReimuA"] } } },
     "1059": { "name_en": "469SMUT", "unverified": { "th06": { "Lunatic": ["ReimuB"] } } },
     "1060": { "name_en": "misumi", "unverified": { "th06": { "Lunatic": ["ReimuB"] } } },
     "1062": { "name_en": "ryong", "unverified": { "th06": { "Extra": ["ReimuA"] } } },
