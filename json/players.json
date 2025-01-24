@@ -1704,9 +1704,9 @@
         },
         "verified": {
             "th08": {
-                "Hard"   : ["Border Team" , "Magic Team", "Ghost Team"  , "Reimu"     , "Yukari", "Marisa", "Alice" , "Sakuya", "Youmu" , "Yuyuko"                    ],
-                "Lunatic": ["Border Team" , "Magic Team", "Scarlet Team", "Ghost Team", "Reimu" , "Yukari", "Marisa", "Alice" , "Sakuya", "Remilia", "Youmu", "Yuyuko"],
-                "Extra"  : ["Scarlet Team", "Reimu"     , "Marisa"      , "Sakuya"                                                                                    ]
+                "Hard"   : ["Border Team" , "Magic Team", "Ghost Team"  , "Reimu"     , "Yukari", "Marisa", "Alice" , "Sakuya", "Youmu" , "Yuyuko" , "Scarlet Team"          ],
+                "Lunatic": ["Border Team" , "Magic Team", "Scarlet Team", "Ghost Team", "Reimu" , "Yukari", "Marisa", "Alice" , "Sakuya", "Remilia", "Youmu"       , "Yuyuko"],
+                "Extra"  : ["Scarlet Team", "Reimu"     , "Marisa"      , "Sakuya"                                                                                           ]
             },
             "th10": { "Lunatic": ["ReimuA"] }
         }
