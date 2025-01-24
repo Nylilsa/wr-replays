@@ -1331,9 +1331,8 @@
             }
         }
     },
-    "516": { "name_en": "りぷらいず", "verified": { "th12": { "Easy": ["MarisaA"] } } },
+    "516": { "name_en": "Reprise", "name_jp": "りぷらいず", "verified": { "th12": { "Easy": ["MarisaA"] } } },
     "517": { "name_en": "Blendtec", "verified": { "th12": { "Easy": ["MarisaA"] } } },
-    "518": { "name_en": "Reprise", "verified": { "th12": { "Easy": ["MarisaA"] } } },
     "522": {
         "name_en": "nyanko",
         "name_jp": "にゃんこ",
