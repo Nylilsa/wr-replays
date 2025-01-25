@@ -1225,7 +1225,6 @@
     },
     "453": { "name_en": "clock_eu26", "verified": { "th128": { "Easy": ["B-1", "C-1", "C-2"], "Normal": ["A-1", "B-1", "B-2", "C-1", "C-2"] } } },
     "454": { "name_en": "まろん＠栗粉餡", "verified": { "th128": { "Easy": ["B-2"], "Normal": ["A-2", "C-1", "C-2"], "Hard": ["A-2", "B-1", "B-2", "C-2"] } } },
-    "455": { "name_en": "(^o^)", "verified": { "th128": { "Easy": ["C-1"] } } },
     "457": {
         "name_en": "ひろなex",
         "unverified": { "th11": { "Hard": ["ReimuC"] } },
@@ -1246,7 +1245,6 @@
     },
     "462": { "name_en": "Gasoline", "name_jp": "がそりん", "verified": { "th128": { "Normal": ["A-1", "A-2"] } } },
     "463": { "name_en": "maron128", "verified": { "th128": { "Normal": ["A-2", "B-1", "B-2"] } } },
-    "464": { "name_en": "gameo", "verified": { "th128": { "Normal": ["C-1"] } } },
     "470": { "name_en": "P", "verified": { "th128": { "Hard": ["A-2"] } } },
     "471": { "name_en": "vivin", "verified": { "th12": { "Easy": ["ReimuA", "ReimuB", "MarisaB", "SanaeA"], "Normal": ["ReimuB"] }, "th128": { "Hard": ["A-2"] } } },
     "472": { "name_en": "CLR", "name_jp": "えあ", "verified": { "th128": { "Hard": ["A-1", "A-2", "B-1", "B-2", "C-1", "C-2"], "Lunatic": ["A-1", "A-2", "B-1", "B-2", "C-1", "C-2"] } } },
