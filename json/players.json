@@ -1170,7 +1170,6 @@
     "420": { "name_en": "hewlett", "verified": { "th13": { "Lunatic": ["Reimu", "Marisa", "Sanae", "Youmu"] } } },
     "423": { "name_en": "K.A", "verified": { "th13": { "Lunatic": ["Sanae"] } } },
     "426": { "name_en": "Nyaaa~", "verified": { "th13": { "Lunatic": ["Youmu"] } } },
-    "427": { "name_en": "Lan", "verified": { "th10": { "Easy": ["MarisaA"] }, "th13": { "Extra": ["Reimu"] } } },
     "428": {
         "name_en": "MOZAN",
         "unverified": { "th11": { "Hard": ["ReimuA"] } },
@@ -1916,7 +1915,6 @@
     "884": { "name_en": "LUC_XX", "verified": { "th08": { "Extra": ["Border Team"] } } },
     "885": { "name_en": "DS(Ex)13", "verified": { "th08": { "Extra": ["Border Team"] } } },
     "886": { "name_en": "KAEDE", "verified": { "th08": { "Extra": ["Magic Team"] } } },
-    "887": { "name_en": "yeswill", "verified": { "th08": { "Extra": ["Magic Team", "Youmu"] } } },
     "888": { "name_en": "HAL", "verified": { "th08": { "Extra": ["Scarlet Team"] } } },
     "889": { "name_en": "KIRT", "verified": { "th08": { "Extra": ["Scarlet Team"] } } },
     "890": { "name_en": "Lapo", "verified": { "th08": { "Extra": ["Scarlet Team"] } } },
@@ -1965,7 +1963,11 @@
     },
     "922": { "name_en": "Tokkuri", "unverified": { "th07": { "Phantasm": ["ReimuA", "ReimuB", "MarisaB"] }, "th08": { "Extra": ["Border Team", "Reimu", "Sakuya", "Youmu"] } } },
     "923": { "name_en": "J2", "unverified": { "th08": { "Extra": ["Magic Team", "Marisa"] } } },
-    "924": { "name_en": "LyRa_Lan", "unverified": { "th08": { "Extra": ["Youmu"] } } },
+    "924": {
+        "name_en": "LyRa_Lan",
+        "unverified": { "th08": { "Extra": ["Youmu"] } },
+        "verified": { "th10": { "Easy": ["MarisaA"] }, "th13": { "Extra": ["Reimu"] }, "th08": { "Extra": ["Magic Team", "Youmu"] } }
+    },
     "925": { "name_en": "Chal", "unverified": { "th08": { "Extra": ["Yuyuko"] } } },
     "926": { "name_en": "クラエス", "unverified": { "th07": { "Easy": ["SakuyaA"] } }, "verified": { "th07": { "Easy": ["ReimuA", "ReimuB", "MarisaA", "MarisaB", "SakuyaA", "SakuyaB"] } } },
     "927": { "name_en": "木村圭", "verified": { "th07": { "Easy": ["ReimuB"] } } },
