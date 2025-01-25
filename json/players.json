@@ -971,11 +971,11 @@
     "304": { "name_en": "時のローグ", "unverified": { "th14": { "Hard": ["MarisaA"] } }, "verified": { "th14": { "Hard": ["ReimuA", "MarisaA", "SakuyaA"], "Extra": ["MarisaA"] } } },
     "305": { "name_en": "T.E.V", "verified": { "th14": { "Hard": ["ReimuA"] } } },
     "306": {
-        "name_en": "ぺろぺろ",
-        "verified": { "th12": { "Lunatic": ["ReimuA"] }, "th14": { "Hard": ["ReimuA"], "Lunatic": ["ReimuA", "MarisaA", "SakuyaA"] } },
+        "name_en": "peropero",
+        "name_jp": "ぺろぺろ",
+        "verified": { "th12": { "Lunatic": ["ReimuA", "SanaeB"] }, "th14": { "Hard": ["ReimuA", "MarisaA", "SakuyaA"], "Lunatic": ["ReimuA", "MarisaA", "SakuyaA"] } },
         "unverified": { "th14": { "Lunatic": ["SakuyaA"] } }
     },
-    "307": { "name_en": "mion", "verified": { "th14": { "Hard": ["ReimuA", "MarisaA", "SakuyaA"], "Lunatic": ["SakuyaA"] } } },
     "308": {
         "name_en": "Momijitsuki",
         "verified": { "th04": { "Normal": ["MarisaA"] }, "th05": { "Lunatic": ["Mima"] } },
@@ -1395,7 +1395,6 @@
         "unverified": { "th15": { "Easy": ["Reisen"] }, "th06": { "Extra": ["MarisaB"] } }
     },
     "553": { "name_en": "F.K", "verified": { "th11": { "Hard": ["MarisaA"] }, "th12": { "Lunatic": ["ReimuA", "ReimuB", "MarisaA", "SanaeA"] } } },
-    "554": { "name_en": "misa", "verified": { "th12": { "Lunatic": ["ReimuA", "SanaeB"] } } },
     "556": { "name_en": "KOZO!", "verified": { "th11": { "Extra": ["ReimuB", "ReimuC"] }, "th12": { "Lunatic": ["ReimuB"] } } },
     "557": { "name_en": "ast", "verified": { "th06": { "Extra": ["ReimuB"] }, "th12": { "Lunatic": ["ReimuB"] } } },
     "558": { "name_en": "yoz", "verified": { "th12": { "Lunatic": ["ReimuB"] } } },
