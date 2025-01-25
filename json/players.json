@@ -1947,7 +1947,8 @@
     "912": { "name_en": "NANAO", "unverified": { "th08": { "Hard": ["Ghost Team", "Marisa"] } } },
     "913": { "name_en": "Aira", "unverified": { "th08": { "Hard": ["Youmu"] } } },
     "917": {
-        "name_en": "SUMETANE",
+        "name_en": "misumi",
+        "name_jp": "みすみ",
         "unverified": { "th06": { "Lunatic": ["ReimuB", "ReimuA"] }, "th08": { "Lunatic": ["Ghost Team"], "Extra": ["Ghost Team"] } },
         "verified": { "th08": { "Extra": ["Ghost Team"] }, "th06": { "Lunatic": ["ReimuA", "ReimuB"] } }
     },
@@ -2160,7 +2161,6 @@
     "1056": { "name_en": "司那", "unverified": { "th06": { "Lunatic": ["ReimuA"] } } },
     "1057": { "name_en": "よっしい", "unverified": { "th06": { "Lunatic": ["ReimuA"] } } },
     "1059": { "name_en": "469SMUT", "unverified": { "th06": { "Lunatic": ["ReimuB"] } } },
-    "1060": { "name_en": "misumi", "unverified": { "th06": { "Lunatic": ["ReimuB"] } } },
     "1062": { "name_en": "ryong", "unverified": { "th06": { "Extra": ["ReimuA"] } } },
     "1063": { "name_en": "FKL", "unverified": { "th06": { "Extra": ["ReimuA"] } } },
     "1064": { "name_en": "mewte", "unverified": { "th06": { "Extra": ["ReimuB", "MarisaA"] } } },
