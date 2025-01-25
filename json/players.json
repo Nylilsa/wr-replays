@@ -1417,7 +1417,6 @@
         "name_jp": "ニャムニャム",
         "verified": { "th12": { "Lunatic": ["MarisaA"], "Extra": ["ReimuA", "ReimuB", "MarisaA", "MarisaB", "SanaeA", "SanaeB"] }, "th128": { "Extra": ["Cirno"] } }
     },
-    "563": { "name_en": "Ameri", "unverified": { "th12": { "Hard": ["MarisaB"] } }, "verified": { "th12": { "Lunatic": ["MarisaB"] } } },
     "564": { "name_en": "TAKE", "verified": { "th12": { "Lunatic": ["SanaeA"] } } },
     "566": {
         "name_en": "Aqura",
