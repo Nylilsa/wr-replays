@@ -1198,10 +1198,6 @@
     "438": { "name_en": "みかみ", "unverified": { "th13": { "Extra": ["Reimu"] } } },
     "439": { "name_en": "mkmyuh", "unverified": { "th13": { "Extra": ["Sanae"] } } },
     "441": { "name_en": "BKW", "verified": { "th128": { "Easy": ["A-1", "A-2", "C-2"] } } },
-    "443": {
-        "name_en": "なおきLC",
-        "verified": { "th128": { "Easy": ["A-1", "B-2", "C-2"], "Normal": ["A-1", "B-1", "B-2", "C-1"], "Hard": ["A-2", "B-1", "B-2", "C-1"], "Lunatic": ["A-1", "B-1", "C-1"] } }
-    },
     "444": { "name_en": "FrankHB", "verified": { "th128": { "Easy": ["A-1", "A-2"] } } },
     "445": {
         "name_en": "GMR",
@@ -1478,8 +1474,16 @@
     "620": { "name_en": "ct9a", "unverified": { "th12": { "Hard": ["SanaeA"] } } },
     "621": {
         "name_en": "NAOKI",
+        "name_jp": "なおきLC",
         "unverified": { "th12": { "Lunatic": ["ReimuB"] } },
-        "verified": { "th128": { "Easy": ["B-1", "C-1"], "Normal": ["C-1", "C-2"], "Hard": ["A-1", "C-2"], "Lunatic": ["A-2", "B-2", "C-2"] } }
+        "verified": {
+            "th128": {
+                "Easy"   : ["B-1", "C-1", "A-1", "B-2", "C-2"       ],
+                "Normal" : ["C-1", "C-2", "A-1", "B-1", "B-2"       ],
+                "Hard"   : ["A-1", "C-2", "A-2", "B-1", "B-2", "C-1"],
+                "Lunatic": ["A-2", "B-2", "C-2", "A-1", "B-1", "C-1"]
+            }
+        }
     },
     "622": {
         "name_en": "MB",
