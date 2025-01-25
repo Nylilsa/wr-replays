@@ -1103,7 +1103,7 @@
         }
     },
     "370": { "name_en": "OPON", "verified": { "th13": { "Easy": ["Reimu", "Marisa", "Sanae"], "Normal": ["Sanae"] } } },
-    "371": { "name_en": "もみぢ", "verified": { "th13": { "Easy": ["Marisa", "Youmu"] } } },
+    "371": { "name_en": "momiji", "name_jp": "もみぢ", "verified": { "th13": { "Easy": ["Marisa", "Youmu"], "Normal": ["Marisa"] } } },
     "373": { "name_en": "HI-RO", "name_jp": "ヒーロ", "verified": { "th13": { "Easy": ["Marisa"], "Normal": ["Marisa"] } } },
     "374": {
         "name_en": "eclipse",
@@ -1118,7 +1118,6 @@
     "381": { "name_en": "TMY", "verified": { "th13": { "Normal": ["Reimu"] } } },
     "382": { "name_en": "Rem", "verified": { "th13": { "Normal": ["Reimu"] } } },
     "384": { "name_en": "Hinata", "verified": { "th13": { "Normal": ["Reimu"], "Lunatic": ["Sanae"] } } },
-    "385": { "name_en": "MMJ", "verified": { "th13": { "Normal": ["Marisa"] } } },
     "386": { "name_en": "fk.", "verified": { "th13": { "Normal": ["Marisa", "Youmu"] } } },
     "389": { "name_en": "funky", "verified": { "th13": { "Normal": ["Sanae"] } } },
     "391": { "name_en": "CHICKEN", "verified": { "th13": { "Normal": ["Youmu"] } } },
