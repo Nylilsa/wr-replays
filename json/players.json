@@ -699,12 +699,13 @@
         "verified": { "th14": { "Lunatic": ["ReimuA", "ReimuB"], "Extra": ["ReimuA", "ReimuB", "SakuyaB"] }, "th15": { "Lunatic": ["Marisa"] }, "th16": { "Lunatic": ["MarisaSummer"] } }
     },
     "199": {
-        "name_en": "えなめる",
+        "name_en": "ENAMEL",
+        "name_jp": "えなめる",
         "verified": {
-            "th11": { "Hard": ["MarisaB"]                                                                                                                                },
-            "th14": { "Hard": ["ReimuB" ], "Lunatic": ["ReimuA"      , "MarisaA", "SakuyaA"], "Extra": ["ReimuB", "MarisaA", "SakuyaA", "SakuyaB"]                       },
-            "th15": { "Hard": ["Reisen" ], "Lunatic": ["Reimu"       , "Sanae"  , "Reisen" ], "Extra": ["Reimu" , "Marisa" , "Reisen"            ], "Normal": ["Reisen"] },
-            "th16": {                      "Lunatic": ["MarisaAutumn"                      ]                                                                             }
+            "th11": { "Hard": ["MarisaB"           ]                                                                                                                                          },
+            "th14": { "Hard": ["ReimuB" , "SakuyaB"], "Lunatic": ["ReimuA"      , "MarisaA", "SakuyaA"          ], "Extra": ["ReimuB", "MarisaA", "SakuyaA", "SakuyaB"]                       },
+            "th15": { "Hard": ["Reisen"            ], "Lunatic": ["Reimu"       , "Sanae"  , "Reisen" , "Marisa"], "Extra": ["Reimu" , "Marisa" , "Reisen"            ], "Normal": ["Reisen"] },
+            "th16": {                                 "Lunatic": ["MarisaAutumn"                                ]                                                                             }
         }
     },
     "200": { "name_en": "Mango", "verified": { "th16": { "Lunatic": ["MarisaWinter"] } } },
@@ -804,7 +805,6 @@
     "236": { "name_en": "XINCL", "verified": { "th15": { "Normal": ["Sanae"] } } },
     "237": { "name_en": "Algiz", "verified": { "th15": { "Normal": ["Reisen"] } } },
     "238": { "name_en": "Marcin", "verified": { "th15": { "Hard": ["Reisen"], "Extra": ["Reisen"] } } },
-    "240": { "name_en": "ENAMEL", "verified": { "th14": { "Hard": ["SakuyaB"], "Extra": ["ReimuB"] }, "th15": { "Lunatic": ["Marisa"] } } },
     "241": { "name_en": "ZWB", "verified": { "th10": { "Normal": ["MarisaA"] }, "th15": { "Lunatic": ["Sanae"] } } },
     "242": { "name_en": "SW-el", "verified": { "th15": { "Lunatic": ["Sanae"] } } },
     "243": { "name_en": "Y.S", "verified": { "th14": { "Lunatic": ["SakuyaB"] }, "th15": { "Lunatic": ["Sanae"] } } },
