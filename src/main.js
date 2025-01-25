@@ -82,6 +82,7 @@ function displayMenu() {
         "Validate JSONs",
         "Validate replays",
         "Merge user IDs",
+        "Copy to nylilsa.github.io",
         "Exit application"
     ];
     console.log(`Game selected: ${GAME}`);
@@ -130,6 +131,10 @@ function init() {
                 process.exit(0);
             }
             case 5: {
+                copyToNylilsa();
+                process.exit(0);
+            }
+            case 6: {
                 console.log("Exiting application.");
                 process.exit(0);
             }

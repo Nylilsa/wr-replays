@@ -1,1 +1,24 @@
-{"Easy":{"A-1":[],"A-2":[],"B-1":[],"B-2":[],"C-1":[],"C-2":[]},"Normal":{"A-1":[],"A-2":[],"B-1":[],"B-2":[],"C-1":[],"C-2":[]},"Hard":{"A-1":[],"A-2":[],"B-1":[],"B-2":[],"C-1":[],"C-2":[]},"Lunatic":{"A-1":[],"A-2":[],"B-1":[],"B-2":[],"C-1":[],"C-2":[]},"Extra":{"Cirno":[]}}
+{
+    "Easy": {"A-1": [], "A-2": [], "B-1": [], "B-2": [], "C-1": [], "C-2": []},
+    "Normal": {"A-1": [], "A-2": [], "B-1": [], "B-2": [], "C-1": [], "C-2": []},
+    "Hard": {"A-1": [], "A-2": [], "B-1": [], "B-2": [], "C-1": [], "C-2": []},
+    "Lunatic": {
+        "A-1": [],
+        "A-2": [],
+        "B-1": [],
+        "B-2": [],
+        "C-1": [
+            {
+                "score": 62073030,
+                "date": "2010-08-17",
+                "meta": {
+                    "dateAdded": "2025-01-25T00:29:39.671Z",
+                    "invalidReason": "replay is most likely TASed",
+                    "additionalDetails": "https://web.archive.org/web/20190730235119/https://www.youtube.com/watch?v=nV3d1DXFSpM https://web.archive.org/web/20110623035016/https://www.youtube.com/watch?v=le1v2H8PWWs"
+                }
+            }
+        ],
+        "C-2": []
+    },
+    "Extra": {"Cirno": []}
+}
