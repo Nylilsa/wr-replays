@@ -286,7 +286,7 @@
     },
     "46": { "name_en": "Mon3tr", "unverified": { "th18": { "Easy": ["Sanae"] } } },
     "47": { "name_en": "ZY", "unverified": { "th18": { "Normal": ["Reimu"] } } },
-    "48": { "name_en": "サミー", "verified": { "th12": { "Easy": ["SanaeB"] } } },
+    "48": { "name_en": "SAMMY", "name_jp": "サミー", "verified": { "th12": { "Easy": ["SanaeB", "SanaeA"] } } },
     "49": { "name_en": "Weedy", "verified": { "th17": { "Lunatic": ["MarisaOtter"] } }, "unverified": { "th18": { "Lunatic": ["Sanae"] } } },
     "50": {
         "name_en": "ISO",
@@ -1337,7 +1337,6 @@
         }
     },
     "524": { "name_en": "No Name", "verified": { "th12": { "Easy": ["SanaeA"] } } },
-    "525": { "name_en": "SAMMY", "verified": { "th12": { "Easy": ["SanaeA"] } } },
     "526": { "name_en": "ニトクリスの鏡", "verified": { "th12": { "Easy": ["SanaeA"], "Hard": ["ReimuA", "MarisaA", "SanaeA"] } } },
     "529": { "name_en": "栗悟飯とカメハメ波", "verified": { "th12": { "Easy": ["SanaeB"] } } },
     "530": { "name_en": "PORIE", "verified": { "th12": { "Normal": ["ReimuA"], "Extra": ["ReimuA"] } } },
