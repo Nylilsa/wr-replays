@@ -1071,7 +1071,6 @@
     "351": { "name_en": "dgrsBT", "verified": { "th12": { "Easy": ["MarisaB"] }, "th128": { "Normal": ["A-1"], "Hard": ["A-1"] }, "th14": { "Extra": ["MarisaA"] } } },
     "352": { "name_en": "CID", "unverified": { "th128": { "Extra": ["Cirno"] } }, "verified": { "th128": { "Extra": ["Cirno"] }, "th14": { "Extra": ["MarisaB"] } } },
     "353": { "name_en": "inatami", "verified": { "th13": { "Lunatic": ["Sanae"] }, "th14": { "Extra": ["MarisaB"] } } },
-    "354": { "name_en": "7b.1065#", "verified": { "th14": { "Extra": ["MarisaB"] } } },
     "355": { "name_en": "RADET", "verified": { "th14": { "Extra": ["MarisaB"] } } },
     "356": {
         "name_en": "hinabu",
@@ -1103,7 +1102,6 @@
             "th05" : { "Easy": ["Marisa", "Mima"              ],                                                              "Hard": ["Mima"  ], "Lunatic": ["Mima"] }
         }
     },
-    "368": { "name_en": "7b", "verified": { "th13": { "Easy": ["Reimu"], "Normal": ["Reimu"] } } },
     "370": { "name_en": "OPON", "verified": { "th13": { "Easy": ["Reimu", "Marisa", "Sanae"], "Normal": ["Sanae"] } } },
     "371": { "name_en": "もみぢ", "verified": { "th13": { "Easy": ["Marisa", "Youmu"] } } },
     "373": { "name_en": "HI-RO", "name_jp": "ヒーロ", "verified": { "th13": { "Easy": ["Marisa"], "Normal": ["Marisa"] } } },
