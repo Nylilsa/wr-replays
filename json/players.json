@@ -968,7 +968,12 @@
     "301": { "name_en": "nrook", "verified": { "th05": { "Lunatic": ["Yuuka"] } } },
     "302": { "name_en": "NGMY", "name_jp": "ナギマイ", "verified": { "th14": { "Normal": ["SakuyaB"] } } },
     "303": { "name_en": "ARAX", "verified": { "th05": { "Easy": ["Reimu"], "Normal": ["Reimu"] } }, "unverified": { "th05": { "Easy": ["Reimu"], "Normal": ["Reimu"] } } },
-    "304": { "name_en": "時のローグ", "unverified": { "th14": { "Hard": ["MarisaA"] } }, "verified": { "th14": { "Hard": ["ReimuA", "MarisaA", "SakuyaA"], "Extra": ["MarisaA"] } } },
+    "304": {
+        "name_en": "Rouge",
+        "name_jp": "時のローグ",
+        "unverified": { "th14": { "Hard": ["MarisaA"] } },
+        "verified": { "th14": { "Hard": ["ReimuA", "MarisaA", "SakuyaA"], "Extra": ["MarisaA"], "Lunatic": ["MarisaA"] } }
+    },
     "305": { "name_en": "T.E.V", "verified": { "th14": { "Hard": ["ReimuA"] } } },
     "306": {
         "name_en": "peropero",
@@ -1013,7 +1018,6 @@
         "verified": { "th08": { "Lunatic": ["Border Team", "Magic Team", "Scarlet Team", "Ghost Team", "Youmu"] }, "th14": { "Lunatic": ["ReimuA"] } }
     },
     "323": { "name_en": "Kero", "verified": { "th14": { "Lunatic": ["ReimuA", "SakuyaA", "MarisaB"] } }, "unverified": { "th14": { "Lunatic": ["MarisaB"] } } },
-    "324": { "name_en": "Rouge", "verified": { "th14": { "Lunatic": ["MarisaA"] } } },
     "325": { "name_en": "白花", "verified": { "th07": { "Lunatic": ["MarisaB"] }, "th14": { "Lunatic": ["MarisaA"] } } },
     "326": {
         "name_en": "TEN",
