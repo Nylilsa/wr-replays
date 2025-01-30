@@ -346,7 +346,7 @@
         }
     },
     "51": { "name_en": "S.K.", "verified": { "th10": { "Hard": ["MarisaB"], "Normal": ["ReimuC"] } } },
-    "52": { "name_en": "kana_th6", "verified": { "th06": { "Hard": ["ReimuA", "MarisaA"] } } },
+    "52": { "name_en": "kana_th6", "verified": { "th06": { "Hard": ["ReimuA", "MarisaA", "MarisaB"] } } },
     "53": { "name_en": "Duckator", "verified": { "th12": { "Normal": ["ReimuB"] } } },
     "54": { "name_en": "El Cideon", "verified": { "th12": { "Easy": ["ReimuB", "SanaeB"] } } },
     "57": { "name_en": "hchuang", "verified": { "th12": { "Normal": ["SanaeB"] } } },

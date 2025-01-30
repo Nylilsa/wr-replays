@@ -12,7 +12,7 @@ const Replay = require("D:/GitHub/replay-reader/src/Replay.js");
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th10";
+const GAME = "th06";
 const ALL_GAMES = ["th01", "th02", "th03", "th04", "th05",
     "th06", "th07", "th08", "th10", "th11",
     "th12", "th128", "th13", "th14", "th15",
@@ -83,6 +83,7 @@ function displayMenu() {
         "Validate replays",
         "Merge user IDs",
         "Copy to nylilsa.github.io",
+        "Add video links (PC-98)",
         "Exit application"
     ];
     console.log(`Game selected: ${GAME}`);
@@ -135,6 +136,9 @@ function init() {
                 process.exit(0);
             }
             case 6: {
+                addPc98Source();
+            }
+            case 7: {
                 console.log("Exiting application.");
                 process.exit(0);
             }
@@ -162,6 +166,65 @@ function init() {
     // writeAllScoresUnverified();
     // compareData();
 }
+
+function addPc98Source() {
+    //ask for game
+    const game = askGame();
+    // ask for score
+    const unverified = fetchJson(`${BASE_WR_REPLAYS}/json/unverified/${game}.json`);
+    whileLoop: while (true) {
+        const scoreId = askScore();
+        const difficulties = Object.keys(unverified);
+        console.log(difficulties)
+        for (let k = 0; k < difficulties.length; k++) {
+            const difficulty = difficulties[k]; // Hard
+            const shottypes = Object.keys(unverified[difficulty]);
+            console.log(shottypes)
+            for (let l = 0; l < shottypes.length; l++) {
+                const shottype = shottypes[l]; // MarisaA
+                console.log(game + difficulty + shottype)
+                const jsonCategory = unverified[difficulty][shottype];
+                for (let m = 0; m < jsonCategory.length; m++) {
+                    const entry = jsonCategory[m];
+                    if (entry.score == scoreId) {
+                        console.log(`Found match ${entry.score} of ${game + difficulty + shottype}`)
+                        break whileLoop;
+                    }
+                    console.log(entry)
+                    // console.log(entry)
+                }
+
+            }
+        }
+    }
+    // ask for link
+    // update
+}
+
+function askGame() {
+    const pc98 = ["th01", "th02", "th03", "th04", "th05"];
+    while (true) {
+        const userChoice = readline.questionInt("Enter your game [" + pc98.toString() + "]\n> ");
+        if (userChoice >= 1 && userChoice <= pc98.length) {
+            return pc98[userChoice - 1];
+        } else {
+            console.log("Invalid choice. Please select a valid option.");
+        }
+    }
+}
+
+function askScore() {
+    while (true) {
+        const score = readline.questionInt("Enter the score\n> ");
+        if (score >= 1) {
+            return score;
+        } else {
+            console.log("Invalid choice. Please select a valid option.");
+        }
+    }
+}
+
+
 
 // if id10 and id30 are actually the same person, merge them together
 // merge ids together, i.e. delete everything from id1 and replace it with id2.
