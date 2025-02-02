@@ -188,6 +188,17 @@ function addPc98Source() {
                     const entry = jsonCategory[m];
                     if (entry.score == scoreId) {
                         console.log(`Found match ${entry.score} of ${game + difficulty + shottype}`)
+                        const source = readline.question("Provide a source \n> ");
+                        // when match is found, ask for a source 
+                        
+                        // but there is a catch
+                        // 1. entries in unverified only exist if, evidence shows it is legit,
+                        // 2 if unverified entry + all verified entries => reduce
+                        // then take difference => no more unverified entry,
+                        // it means that unverified entry should never exist because its existence is redundant
+                        // write this part in Validate JSONs
+
+
                         break whileLoop;
                     }
                     console.log(entry)
@@ -196,6 +207,7 @@ function addPc98Source() {
 
             }
         }
+        console.log(`Score ${score} not found.`)
     }
     // ask for link
     // update
