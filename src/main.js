@@ -17,7 +17,7 @@ const ALL_GAMES = ["th01", "th02", "th03", "th04", "th05",
     "th06", "th07", "th08", "th10", "th11",
     "th12", "th128", "th13", "th14", "th15",
     "th16", "th17", "th18"];
-// const ALL_GAMES = ["th06", "th07", "th08", "th10", "th11", "th12", "th128", "th13", "th14", "th15", "th16", "th17", "th18"]
+const ALL_REPLAY_GAMES = ["th06", "th07", "th08", "th10", "th11", "th12", "th128", "th13", "th14", "th15", "th16", "th17", "th18"]
 const BASE_WR_REPLAYS = "D:/GitHub/wr-replays";
 const BASE_NYLILSA_GITHUB = "D:/GitHub/nylilsa.github.io";
 const PATH_PLAYERS_JSON = `${BASE_WR_REPLAYS}/json/players.json`;
@@ -106,6 +106,7 @@ function init() {
         const choice = displayMenu();
         switch (choice) {
             case 1: {
+                // note: order matters
                 addEntries();
                 console.log("Finished running addEntries()");
                 generateMappings();
@@ -115,16 +116,26 @@ function init() {
                 break;
             }
             case 2: {
-                checkReplayValidity();
+                // note: order does not matter
+                checkUnverifiedValidity();
+                console.log("Finished running checkUnverifiedValidity()");
                 getNoEntryNames();
+                console.log("Finished running getNoEntryNames()");
                 generateMappings();
+                console.log("Finished running generateMappings()");
                 break;
             }
             case 3: {
                 replaysMatchJson();
+                console.log("Finished running replaysMatchJson()");
+                checkReplayValidity();
+                console.log("Finished running checkReplayValidity()");
+                generateMappings();
+                console.log("Finished running generateMappings()");
                 break;
             }
             case 4: {
+                // note: order matters
                 generateMappings();
                 mergeUserIds();
                 generateMappings();
@@ -190,7 +201,7 @@ function addPc98Source() {
                         console.log(`Found match ${entry.score} of ${game + difficulty + shottype}`)
                         const source = readline.question("Provide a source \n> ");
                         // when match is found, ask for a source 
-                        
+
                         // but there is a catch
                         // 1. entries in unverified only exist if, evidence shows it is legit,
                         // 2 if unverified entry + all verified entries => reduce
@@ -641,6 +652,7 @@ function generateMappings() {
     // For every game
     const coveredIds = [];
     const allPlayers = fetchJson(PATH_PLAYERS_JSON);
+    const tempClone = structuredClone(allPlayers);
     const allCategories = getVerifiedAndUnverifiedGames(ALL_GAMES);
     for (const [gameId, gameObj] of Object.entries(allCategories)) {
         const vArrays = ["unverified", "verified"];
@@ -678,27 +690,78 @@ function generateMappings() {
             }
         }
     }
-    writeJson(PATH_PLAYERS_JSON, allPlayers);
+    if (JSON.stringify(tempClone) !== JSON.stringify(allPlayers)) {
+        writeJson(PATH_PLAYERS_JSON, allPlayers);
+    }
 }
 
 // function checks if all replays in the WR folder are valid. Prints statements if it is not
 function checkReplayValidity() {
-    for (let i = 0; i < DIFFICULTY_LIST.length; i++) {
-        const difficulty = DIFFICULTY_LIST[i];
-        const playerList = getShottypes(difficulty);
-        for (let j = 0; j < playerList.length; j++) {
-            const player = playerList[j];
-            const path = `${PATH_WR_REPLAYS}/${difficulty}/${player}`;
-            const files = fs.readdirSync(path);
-            files.forEach((file) => {
-                const pathToFile = `${path}/${file}`;
-                const rpy = createReplay(pathToFile);
-                const bool = rpy.isValid();
-                if (!bool) {
-                    console.log(`${pathToFile} is not valid`);
-                }
-            })
+    for (let h = 0; h < ALL_REPLAY_GAMES.length; h++) {
+        const game = ALL_REPLAY_GAMES[h];
+        const difficultyList = Object.keys(GAME_DATA["DifficultyCharacters"][game]);
+        if (difficultyList.includes("Overdrive")) {
+            difficultyList.splice(difficultyList.indexOf("Overdrive"), 1)
         }
+        console.log(difficultyList)
+        for (let i = 0; i < difficultyList.length; i++) {
+            const difficulty = difficultyList[i];
+            console.log(difficulty)
+            const playerList = getShottypes(difficulty, game);
+            console.log(playerList)
+            for (let j = 0; j < playerList.length; j++) {
+                const player = playerList[j];
+                const path = `${BASE_WR_REPLAYS}/${game}/${difficulty}/${player}`;
+                const files = fs.readdirSync(path);
+                files.forEach((file) => {
+                    const pathToFile = `${path}/${file}`;
+                    const rpy = createReplay(pathToFile);
+                    const bool = rpy.isValid();
+                    if (!bool) {
+                        console.log(`${pathToFile} is not valid`);
+                    }
+                })
+            }
+        }
+    }
+    console.log("All replay have been checked for their invalidity");
+}
+
+// function checks following:
+// it merges unverified and verified category together, then it sorts it by score and reduces it by date
+// it then takes the difference between this result and the unverified category
+// if the difference contains a result it means that
+// there's at least one unverified category that technically should not be there
+// if so, print every result
+// else do nothing
+function checkUnverifiedValidity() {
+    // change all games to all games
+    for (let h = 0; h < ALL_REPLAY_GAMES.length; h++) {
+        const game = ALL_REPLAY_GAMES[h];
+        const verifiedData = fetchJson(`${BASE_WR_REPLAYS}/json/verified/${game}.json`);
+        const unverifiedData = fetchJson(`${BASE_WR_REPLAYS}/json/unverified/${game}.json`);
+        const difficultyList = Object.keys(GAME_DATA["DifficultyCharacters"][game]);
+        if (difficultyList.includes("Overdrive")) {
+            difficultyList.splice(difficultyList.indexOf("Overdrive"), 1)
+        }
+        for (let i = 0; i < difficultyList.length; i++) {
+            const difficulty = difficultyList[i];
+            const playerList = getShottypes(difficulty, game);
+            for (let j = 0; j < playerList.length; j++) {
+                const player = playerList[j];
+                const verifiedCategory = verifiedData[difficulty][player];
+                const unverifiedCategory = unverifiedData[difficulty][player];
+                const unverifiedClone = structuredClone(unverifiedCategory)
+                const category = mergeArray(verifiedCategory, unverifiedCategory);
+                sortArrayDate(category);
+                reduceByScore(category);
+                const difference = differenceArray(unverifiedCategory, category);
+                difference.forEach((element) => {
+                    console.log("\x1b[33m", `[${game}]: ${difficulty} ${player} ${element.score} appears in unverified but should not exist`, "\x1b[0m");
+                })
+            }
+        }
+        console.log(`Scanning ${game} for false unverified replays has been completed.`);
     }
     console.log("All replay have been checked for their invalidity");
 }
