@@ -753,6 +753,7 @@ function checkUnverifiedValidity() {
                 const unverifiedCategory = unverifiedData[difficulty][player];
                 const unverifiedClone = structuredClone(unverifiedCategory)
                 const category = mergeArray(verifiedCategory, unverifiedCategory);
+                sortArrayScore(category); // needed for when two dates are exact same (i.e. pcb) 
                 sortArrayDate(category);
                 reduceByScore(category);
                 const difference = differenceArray(unverifiedCategory, category);
