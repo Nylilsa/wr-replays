@@ -1603,7 +1603,6 @@
     "701": { "name_en": "Shion", "unverified": { "th11": { "Easy": ["ReimuA"] } } },
     "702": { "name_en": "Vinny", "verified": { "th11": { "Easy": ["ReimuA"] } } },
     "703": { "name_en": "King_in_Yellow", "unverified": { "th11": { "Easy": ["ReimuB"] } } },
-    "704": { "name_en": "C.Nein", "unverified": { "th11": { "Easy": ["ReimuB"] } } },
     "705": { "name_en": "test", "unverified": { "th11": { "Easy": ["ReimuB"] } } },
     "706": { "name_en": "みｎ", "unverified": { "th11": { "Easy": ["ReimuC"] } } },
     "707": { "name_en": "spongdangly", "unverified": { "th11": { "Easy": ["MarisaA", "MarisaB"] } } },
@@ -1622,8 +1621,6 @@
     "721": { "name_en": "Zemu", "unverified": { "th11": { "Lunatic": ["ReimuA"] } } },
     "722": { "name_en": "FallenAngelV", "unverified": { "th10": { "Lunatic": ["ReimuA"], "Extra": ["ReimuB"] }, "th11": { "Lunatic": ["ReimuA"] } } },
     "723": { "name_en": "AoA", "unverified": { "th11": { "Extra": ["ReimuA"] } } },
-    "724": { "name_en": "Drayen", "unverified": { "th10": { "Lunatic": ["MarisaC"] }, "th11": { "Extra": ["ReimuA"] } } },
-    "725": { "name_en": "JACK10", "unverified": { "th11": { "Extra": ["ReimuB"] } } },
     "726": { "name_en": "MINATO", "verified": { "th10": { "Easy": ["ReimuA"] } } },
     "727": {
         "name_en": "USK",
@@ -1779,7 +1776,6 @@
         }
     },
     "809": { "name_en": "Quarkboy", "unverified": { "th10": { "Normal": ["MarisaA"] } } },
-    "810": { "name_en": "iamAfan", "unverified": { "th10": { "Normal": ["MarisaB"] } } },
     "811": { "name_en": "Elixir", "unverified": { "th10": { "Hard": ["ReimuA"], "Lunatic": ["ReimuB"] } } },
     "812": { "name_en": "Laggy", "unverified": { "th10": { "Hard": ["ReimuB"] } } },
     "813": { "name_en": "Spoil", "verified": { "th10": { "Lunatic": ["ReimuC"] } } },
