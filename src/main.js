@@ -212,7 +212,8 @@ function addPc98Source() {
                         verified[difficulty][shottype].push(entry)
                         // Delete unverified entry in unverified json
                         jsonCategory.splice(m, 1);
-                        m--;
+                        sortArrayDate(verified[difficulty][shottype]);
+                        reduceByScore(verified[difficulty][shottype]);
                         console.log(`Added source ${source} to ${entry.score} of ${game + difficulty + shottype}`)
                         break whileLoop;
                     }

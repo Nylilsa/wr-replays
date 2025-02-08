@@ -476,7 +476,7 @@
             }
         }
     },
-    "97": { "name_en": "Vex", "verified": { "th01": { "Lunatic": ["Makai"] } }, "unverified": { "th01": { "Lunatic": ["Makai"] } } },
+    "97": { "name_en": "Vex", "verified": { "th01": { "Lunatic": ["Makai"], "Hard": ["Makai"] } }, "unverified": { "th01": { "Lunatic": ["Makai"] } } },
     "98": { "name_en": "HWRR", "verified": { "th16": { "Easy": ["CirnoSpring", "AyaSpring"] } } },
     "99": {
         "name_en": "ARF",
