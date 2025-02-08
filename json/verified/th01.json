@@ -1,7 +1,10 @@
 {
     "Easy": {
         "Makai": [ { "id": 1, "score": 11499930, "date": "2018-01-27", "sources": ["https://youtu.be/9cmv4FSSqU8"] } ],
-        "Jigoku": [ { "id": 45, "score": 13117240, "date": "2018-03-26", "sources": ["https://youtu.be/KxCChOrQs0E"] } ]
+        "Jigoku": [
+            { "id": 45, "score": 13117240, "date": "2018-03-26", "sources": ["https://youtu.be/KxCChOrQs0E"                                                          ] },
+            { "id": 89, "score": 11605330, "date": "2015-03-15", "sources": ["https://web.archive.org/web/20210308220431/https://www.youtube.com/watch?v=Nq6PHtwEWyI"] }
+        ]
     },
     "Normal": {"Makai": [], "Jigoku": []},
     "Hard": {"Makai": [], "Jigoku": []},

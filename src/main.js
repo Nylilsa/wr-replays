@@ -148,6 +148,7 @@ function init() {
             }
             case 6: {
                 addPc98Source();
+                break;
             }
             case 7: {
                 console.log("Exiting application.");
@@ -182,7 +183,10 @@ function addPc98Source() {
     //ask for game
     const game = askGame();
     // ask for score
-    const unverified = fetchJson(`${BASE_WR_REPLAYS}/json/unverified/${game}.json`);
+    const unverifiedPath = `${BASE_WR_REPLAYS}/json/unverified/${game}.json`;
+    const verifiedPath = `${BASE_WR_REPLAYS}/json/verified/${game}.json`;
+    const unverified = fetchJson(unverifiedPath);
+    const verified = fetchJson(verifiedPath);
     whileLoop: while (true) {
         const scoreId = askScore();
         const difficulties = Object.keys(unverified);
@@ -197,19 +201,19 @@ function addPc98Source() {
                 const jsonCategory = unverified[difficulty][shottype];
                 for (let m = 0; m < jsonCategory.length; m++) {
                     const entry = jsonCategory[m];
+                    // when match is found, ask for a source 
+                    // assumption: function checkUnverifiedValidity() is run before
                     if (entry.score == scoreId) {
                         console.log(`Found match ${entry.score} of ${game + difficulty + shottype}`)
                         const source = readline.question("Provide a source \n> ");
-                        // when match is found, ask for a source 
-
-                        // but there is a catch
-                        // 1. entries in unverified only exist if, evidence shows it is legit,
-                        // 2 if unverified entry + all verified entries => reduce
-                        // then take difference => no more unverified entry,
-                        // it means that unverified entry should never exist because its existence is redundant
-                        // write this part in Validate JSONs
-
-
+                        // Add source to entry
+                        entry.sources.push(source)
+                        // Copy unverified entry to verified entry
+                        verified[difficulty][shottype].push(entry)
+                        // Delete unverified entry in unverified json
+                        jsonCategory.splice(m, 1);
+                        m--;
+                        console.log(`Added source ${source} to ${entry.score} of ${game + difficulty + shottype}`)
                         break whileLoop;
                     }
                     console.log(entry)
@@ -218,10 +222,10 @@ function addPc98Source() {
 
             }
         }
-        console.log(`Score ${score} not found.`)
+        console.log(`Score ${scoreId} not found.`);
     }
-    // ask for link
-    // update
+    writeJson(unverifiedPath, unverified);
+    writeJson(verifiedPath, verified);
 }
 
 function askGame() {
@@ -751,7 +755,6 @@ function checkUnverifiedValidity() {
                 const player = playerList[j];
                 const verifiedCategory = verifiedData[difficulty][player];
                 const unverifiedCategory = unverifiedData[difficulty][player];
-                const unverifiedClone = structuredClone(unverifiedCategory)
                 const category = mergeArray(verifiedCategory, unverifiedCategory);
                 sortArrayScore(category); // needed for when two dates are exact same (i.e. pcb) 
                 sortArrayDate(category);
