@@ -18,8 +18,8 @@ const ALL_GAMES = ["th01", "th02", "th03", "th04", "th05",
     "th12", "th128", "th13", "th14", "th15",
     "th16", "th17", "th18"];
 const ALL_REPLAY_GAMES = ["th06", "th07", "th08", "th10", "th11", "th12", "th128", "th13", "th14", "th15", "th16", "th17", "th18"]
-const BASE_WR_REPLAYS = "D:/GitHub/wr-replays";
-const BASE_NYLILSA_GITHUB = "D:/GitHub/nylilsa.github.io";
+const BASE_WR_REPLAYS = process.cwd();
+const BASE_NYLILSA_GITHUB = `${BASE_WR_REPLAYS}/json/nylilsa-site`;
 const PATH_PLAYERS_JSON = `${BASE_WR_REPLAYS}/json/players.json`;
 const PATH_WRPROGRESSION_JSON = `${BASE_WR_REPLAYS}/json/old-wrprogression.json`;
 const PATH_DATA_JSON = `${BASE_WR_REPLAYS}/json/gameinfo.json`;
@@ -27,9 +27,9 @@ const PATH_VERIFIED_JSON = `${BASE_WR_REPLAYS}/json/verified/${GAME}.json`;
 const PATH_UNVERIFIED_JSON = `${BASE_WR_REPLAYS}/json/unverified/${GAME}.json`;
 const PATH_FALSE_REPLAYS_JSON = `${BASE_WR_REPLAYS}/json/false-replays/${GAME}.json`;
 const PATH_TRUE_REPLAYS_JSON = `${BASE_WR_REPLAYS}/json/true-replays/${GAME}.json`;
-const PATH_NYLILSA_VERIFIED_JSON = `${BASE_NYLILSA_GITHUB}/json/wr/verified/${GAME}.json`;
-const PATH_NYLILSA_UNVERIFIED_JSON = `${BASE_NYLILSA_GITHUB}/json/wr/unverified/${GAME}.json`;
-const PATH_NYLILSA_PLAYERS_JSON = `${BASE_NYLILSA_GITHUB}/json/players.json`;
+const PATH_NYLILSA_VERIFIED_JSON = `${BASE_NYLILSA_GITHUB}/verified/${GAME}.json`;
+const PATH_NYLILSA_UNVERIFIED_JSON = `${BASE_NYLILSA_GITHUB}/unverified/${GAME}.json`;
+const PATH_NYLILSA_PLAYERS_JSON = `${BASE_NYLILSA_GITHUB}/players.json`;
 const PATH_NEW_REPLAYS = `${BASE_WR_REPLAYS}/new-replays/${GAME}`;
 const PATH_WR_REPLAYS = `${BASE_WR_REPLAYS}/${GAME}`;
 const PATH_GAME_REPLAYS = `${BASE_WR_REPLAYS}/replays/MAIN/${GAME}`;
@@ -331,8 +331,8 @@ function copyToNylilsa() {
     makeFile(PATH_NYLILSA_PLAYERS_JSON, fetchJson(PATH_PLAYERS_JSON));
     for (let i = 0; i < ALL_GAMES.length; i++) {
         const game = ALL_GAMES[i];
-        makeFile(`${BASE_NYLILSA_GITHUB}/json/wr/verified/${game}.json`, fetchJson(`${BASE_WR_REPLAYS}/json/verified/${game}.json`));
-        makeFile(`${BASE_NYLILSA_GITHUB}/json/wr/unverified/${game}.json`, fetchJson(`${BASE_WR_REPLAYS}/json/unverified/${game}.json`));
+        makeFile(`${BASE_NYLILSA_GITHUB}/verified/${game}.json`, fetchJson(`${BASE_WR_REPLAYS}/json/verified/${game}.json`));
+        makeFile(`${BASE_NYLILSA_GITHUB}/unverified/${game}.json`, fetchJson(`${BASE_WR_REPLAYS}/json/unverified/${game}.json`));
     }
 }
 
@@ -507,8 +507,8 @@ function convertJson(enableAllGames) {
     const prompt = `You are about to overwrite the verified/unverified entries of ${gamesList}. Proceed ?`;
     if (getConfirmation(prompt)) {
         gamesList.forEach(game => {
-            const pathVerified = `${BASE_NYLILSA_GITHUB}/json/wr/verified/${game}.json`
-            const pathUnverified = `${BASE_NYLILSA_GITHUB}/json/wr/unverified/${game}.json`
+            const pathVerified = `${BASE_NYLILSA_GITHUB}verified/${game}.json`
+            const pathUnverified = `${BASE_NYLILSA_GITHUB}/unverified/${game}.json`
             writeNewJson(pathVerified);
             writeNewJson(pathUnverified);
         })
