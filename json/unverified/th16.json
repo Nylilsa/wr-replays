@@ -21,7 +21,7 @@
         ],
         "AyaWinter": [],
         "MarisaSpring": [ {"id": 10, "score": 1092625220, "date": "2021-04-22"} ],
-        "MarisaSummer": [],
+        "MarisaSummer": [ {"id": 10, "score": 1918283510, "date": "2025-01-08"} ],
         "MarisaAutumn": [ {"id": 10, "score": 1732295710, "date": "2022-05-01"}, {"id": 10, "score": 1914956230, "date": "2023-02-25"} ],
         "MarisaWinter": [ {"id": 215, "score": 177304990, "date": "2017-08-11"} ]
     },

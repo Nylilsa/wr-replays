@@ -28,8 +28,16 @@
         "Yuuka": [ { "id": 669, "score": 132711150, "date": "2020-09-12", "sources": ["https://youtu.be/gqI0fpQQ5lE"] } ]
     },
     "Lunatic": {
-        "Reimu": [ { "id": 83, "score": 153914430, "date": "2013-01-23", "sources": ["https://youtu.be/brQ9XWGC4ME"] } ],
-        "Marisa": [ { "id": 669, "score": 158298020, "date": "2024-07-29", "sources": ["https://youtu.be/gvB1dTqwJjA"] } ],
+        "Reimu": [
+            { "id":  83, "score": 153914430, "date": "2013-01-23", "sources": ["https://youtu.be/brQ9XWGC4ME"] },
+            { "id": 119, "score": 167687070, "date": "2025-01-29", "sources": ["https://youtu.be/tVppZBRHjcc"] }
+        ],
+        "Marisa": [
+            { "id": 669, "score": 158298020, "date": "2024-07-29", "sources": ["https://youtu.be/gvB1dTqwJjA"] },
+            { "id": 490, "score": 160173840, "date": "2025-02-14", "sources": ["https://youtu.be/X_fcEm2Hp_M"] },
+            { "id": 490, "score": 168346930, "date": "2025-02-18", "sources": ["https://youtu.be/9zlpGJVbCM8"] },
+            { "id": 119, "score": 187119480, "date": "2025-02-24", "sources": ["https://youtu.be/Ors69p0FxEw"] }
+        ],
         "Mima": [
             { "id": 279, "score": 167946790, "date": "2016-11-17", "sources": ["https://youtu.be/ZBEDzrPlpkI"] },
             { "id": 295, "score": 183631740, "date": "2018-07-09", "sources": ["https://youtu.be/gb8H9BF7pEk"] },
@@ -40,7 +48,8 @@
         ],
         "Yuuka": [
             { "id": 669, "score": 125838870, "date": "2021-03-28", "sources": ["https://youtu.be/iWyX3NhdX4c"] },
-            { "id": 301, "score": 131792980, "date": "2021-11-21", "sources": ["https://youtu.be/TX2WJD2-tG4"] }
+            { "id": 301, "score": 131792980, "date": "2021-11-21", "sources": ["https://youtu.be/TX2WJD2-tG4"] },
+            { "id": 358, "score": 169745360, "date": "2023-09-03", "sources": ["https://youtu.be/zzum5SPatCw"] }
         ]
     },
     "Extra": {
@@ -48,7 +57,7 @@
         "Marisa": [
             { "id": 279, "score": 170836740, "date": "2016-06-08", "sources": ["https://youtu.be/aL_OemRLLPM"                     , "https://x.com/Zigzagwolf/status/739964684334424064"] },
             { "id": 279, "score": 185041780, "date": "2016-11-17", "sources": ["https://www.restartsyndrome.com/user.php?user=212"                                                      ] },
-            { "id": 279, "score": 189402740, "date": "2017-07-06", "sources": ["https://youtu.be/H31kYxyA8WM"                                                                           ] }
+            { "id": 279, "score": 189402740, "date": "2017-07-02", "sources": ["https://youtu.be/H31kYxyA8WM"                                                                           ] }
         ],
         "Mima": [
             { "id": 284, "score": 209703760, "date": "2020-03-03", "sources": ["https://youtu.be/1poiBtH6_O4"] },

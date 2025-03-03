@@ -12,7 +12,7 @@ const Replay = require("D:/GitHub/replay-reader/src/Replay.js");
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th06";
+const GAME = "th16";
 const ALL_GAMES = ["th01", "th02", "th03", "th04", "th05",
     "th06", "th07", "th08", "th10", "th11",
     "th12", "th128", "th13", "th14", "th15",
@@ -21,7 +21,7 @@ const ALL_REPLAY_GAMES = ["th06", "th07", "th08", "th10", "th11", "th12", "th128
 const BASE_WR_REPLAYS = process.cwd();
 const BASE_NYLILSA_GITHUB = `${BASE_WR_REPLAYS}/json/nylilsa-site`;
 const PATH_PLAYERS_JSON = `${BASE_WR_REPLAYS}/json/players.json`;
-const PATH_WRPROGRESSION_JSON = `${BASE_WR_REPLAYS}/json/old-wrprogression.json`;
+const PATH_WRPROGRESSION_JSON = `${BASE_NYLILSA_GITHUB}/wrprogression.json`;
 const PATH_DATA_JSON = `${BASE_WR_REPLAYS}/json/gameinfo.json`;
 const PATH_VERIFIED_JSON = `${BASE_WR_REPLAYS}/json/verified/${GAME}.json`;
 const PATH_UNVERIFIED_JSON = `${BASE_WR_REPLAYS}/json/unverified/${GAME}.json`;
