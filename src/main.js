@@ -12,7 +12,7 @@ const Replay = require("D:/GitHub/replay-reader/src/Replay.js");
 // console.log(replay.getStageData(7))
 // console.log(replay)
 
-const GAME = "th16";
+const GAME = "th18";
 const ALL_GAMES = ["th01", "th02", "th03", "th04", "th05",
     "th06", "th07", "th08", "th10", "th11",
     "th12", "th128", "th13", "th14", "th15",
@@ -829,14 +829,14 @@ function addEntries() {
         if (GAME == "th07") {
             continue;
         }
+        const newEntryObject = {
+            "id": UNSET_ID,
+            "score": score,
+            "date": date.toISOString()
+        }
         if (!isUnverifiedEntry) {
             const category = verifiedData[difficulty][character];
             const tempCopy = structuredClone(category);
-            const newEntryObject = {
-                "id": UNSET_ID,
-                "score": score,
-                "date": date.toISOString()
-            }
             category.push(newEntryObject);
             sortArrayDate(category);
             reduceByScore(category);

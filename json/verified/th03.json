@@ -1,6 +1,9 @@
 {
     "Easy": {
-        "Reimu": [],
+        "Reimu": [
+            { "id": 1, "score": 46457240, "date": "2025-03-21", "sources": ["https://youtu.be/-miO0VtjbrE"] },
+            { "id": 1, "score": 48463280, "date": "2025-03-22", "sources": ["https://youtu.be/Tu2OSa6TMLE"] }
+        ],
         "Mima": [],
         "Marisa": [],
         "Ellen": [],
