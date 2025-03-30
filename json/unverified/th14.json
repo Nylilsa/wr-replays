@@ -24,7 +24,7 @@
     "Normal": {
         "ReimuA": [ {"id": 235, "score": 738197830, "date": "2013-08-15"} ],
         "ReimuB": [],
-        "MarisaA": [],
+        "MarisaA": [ {"id": 278, "score": 1024059800, "date": "2025-03-27"} ],
         "MarisaB": [ {"id": 3, "score": 998357890, "date": "2017-11-28"} ],
         "SakuyaA": [],
         "SakuyaB": [
