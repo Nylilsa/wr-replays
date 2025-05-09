@@ -53,7 +53,11 @@
         ]
     },
     "Lunatic": {
-        "ReimuA": [ {"id": 486, "score": 71755090, "date": "2011-01-02", "sources": []} ],
+        "ReimuA": [
+            {"id": 486, "score": 71755090, "date": "2011-01-02", "sources": []},
+            {"id": 119, "score": 138995160, "date": "2025-03-23", "sources": []},
+            {"id": 119, "score": 140879490, "date": "2025-03-27", "sources": []}
+        ],
         "ReimuB": [ {"id": 114, "score": 107064900, "date": "2012-11-14", "sources": []} ],
         "MarisaA": [
             {"id": 126, "score":  64041270, "date": "2011-11-22", "sources": []},

@@ -52,11 +52,13 @@
         "ReimuA": [
             { "id": 197, "score": 101701550, "date": "2019-03-01", "sources": ["https://youtu.be/_kdDhzQYw0E"] },
             { "id": 248, "score": 109645250, "date": "2022-08-25", "sources": ["https://youtu.be/_Zq6ms9PBwA"] },
-            { "id": 124, "score": 129031150, "date": "2023-10-15", "sources": ["https://youtu.be/Xb8h_92DJQM"] }
+            { "id": 124, "score": 129031150, "date": "2023-10-15", "sources": ["https://youtu.be/Xb8h_92DJQM"] },
+            { "id": 119, "score": 150317280, "date": "2025-04-07", "sources": ["https://youtu.be/NpdPz6EvQCI"] }
         ],
         "ReimuB": [
             { "id": 248, "score": 120589880, "date": "2022-08-28", "sources": ["https://youtu.be/sRgGT-TbbPk"                                           ] },
-            { "id": 248, "score": 135661070, "date": "2022-09-25", "sources": ["https://youtu.be/e2nHVuZ1Res", "https://www.twitch.tv/videos/1601524340"] }
+            { "id": 248, "score": 135661070, "date": "2022-09-25", "sources": ["https://youtu.be/e2nHVuZ1Res", "https://www.twitch.tv/videos/1601524340"] },
+            { "id": 119, "score": 156573770, "date": "2025-04-10", "sources": ["https://youtu.be/WZc3YxpjD5I"                                           ] }
         ],
         "MarisaA": [
             { "id": 119, "score": 133262990, "date": "2021-04-02", "sources": ["https://youtu.be/gNtAHOo3rLg"] },
@@ -69,7 +71,8 @@
         ],
         "MarisaB": [
             { "id": 197, "score":  95206480, "date": "2019-01-22", "sources": ["https://youtu.be/O3b4cgx_cbI"] },
-            { "id": 124, "score": 124317900, "date": "2022-05-24", "sources": ["https://youtu.be/i_kfWScf6tk"] }
+            { "id": 124, "score": 124317900, "date": "2022-05-24", "sources": ["https://youtu.be/i_kfWScf6tk"] },
+            { "id": 119, "score": 153229990, "date": "2025-04-06", "sources": ["https://youtu.be/R9UbePZQlks"] }
         ]
     },
     "Extra": {

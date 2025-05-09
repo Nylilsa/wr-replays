@@ -6,7 +6,10 @@
             { "id": 1, "score": 48463280, "date": "2025-03-22", "sources": ["https://youtu.be/Tu2OSa6TMLE"] },
             { "id": 1, "score": 60175760, "date": "2025-03-28", "sources": ["https://youtu.be/1odYoo1bzCU"] }
         ],
-        "Mima": [],
+        "Mima": [
+            { "id": 1, "score": 58786730, "date": "2025-04-23", "sources": ["https://youtu.be/6gr7gkcpZ6I"] },
+            { "id": 1, "score": 62864020, "date": "2025-04-30", "sources": ["https://youtu.be/VdaOQGLxVqc"] }
+        ],
         "Marisa": [],
         "Ellen": [],
         "Kotohime": [],

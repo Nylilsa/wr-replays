@@ -10,7 +10,10 @@
         "Makai": [],
         "Jigoku": [ { "id": 89, "score": 11213090, "date": "2015-02-12", "sources": ["https://web.archive.org/web/20210721153311/https://www.youtube.com/watch?v=s8DTvxTNjww"] } ]
     },
-    "Hard": { "Makai": [ { "id": 97, "score": 11167860, "date": "2018-01-22", "sources": ["https://www.twitch.tv/videos/221092690", "https://youtu.be/vYVtJ8ekUvo"] } ], "Jigoku": [] },
+    "Hard": {
+        "Makai": [ { "id": 97, "score": 11167860, "date": "2018-01-22", "sources": ["https://www.twitch.tv/videos/221092690", "https://youtu.be/vYVtJ8ekUvo"] } ],
+        "Jigoku": [ { "id": 65, "score": 11208870, "date": "2025-04-25", "sources": ["https://youtu.be/hFdYCMWsZ2Q"] } ]
+    },
     "Lunatic": {
         "Makai": [
             { "id": 104, "score": 13668480, "date": "2011-07-05", "sources": ["https://youtu.be/v8HWTnPEDW4"                                           ] },
