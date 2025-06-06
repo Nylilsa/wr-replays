@@ -26,9 +26,9 @@
         "unverified": {
             "th02": { "Easy": ["ReimuB", "ReimuC"], "Normal": ["ReimuA", "ReimuB", "ReimuC"], "Hard": ["ReimuB"], "Lunatic": ["ReimuC"], "Extra": ["ReimuA", "ReimuC"] },
             "th03": {
-                "Easy"  : ["Reimu", "Mima"  , "Marisa", "Ellen" , "Kotohime", "Kana", "Rikako", "Chiyuri", "Yumemi"],
-                "Normal": ["Reimu", "Mima"  , "Marisa", "Ellen" , "Kotohime", "Kana", "Rikako", "Chiyuri", "Yumemi"],
-                "Hard"  : ["Reimu", "Marisa", "Kana"  , "Rikako", "Yumemi"                                         ]
+                "Easy"  : ["Reimu", "Mima",   "Marisa", "Ellen",  "Kotohime", "Kana", "Rikako", "Chiyuri", "Yumemi"],
+                "Normal": ["Reimu", "Mima",   "Marisa", "Ellen",  "Kotohime", "Kana", "Rikako", "Chiyuri", "Yumemi"],
+                "Hard"  : ["Reimu", "Marisa", "Kana",   "Rikako", "Yumemi"                                         ]
             },
             "th04": { "Lunatic": ["MarisaA"] },
             "th05": { "Normal": ["Reimu"] }
@@ -43,9 +43,9 @@
             "th14": { "Easy": ["MarisaB"], "Normal": ["ReimuA", "MarisaB"], "Hard": ["ReimuA", "MarisaB"], "Lunatic": ["MarisaB"] },
             "th16": {
                 "Normal" : ["CirnoSpring", "CirnoAutumn", "CirnoWinter", "AyaWinter"   ],
-                "Hard"   : ["ReimuAutumn", "CirnoAutumn", "AyaAutumn"  , "MarisaAutumn"],
+                "Hard"   : ["ReimuAutumn", "CirnoAutumn", "AyaAutumn",   "MarisaAutumn"],
                 "Lunatic": ["ReimuAutumn", "CirnoSummer", "CirnoAutumn"                ],
-                "Extra"  : ["Reimu"      , "Cirno"      , "Aya"        , "Marisa"      ]
+                "Extra"  : ["Reimu",       "Cirno",       "Aya",         "Marisa"      ]
             },
             "th17": {
                 "Easy"   : ["ReimuWolf", "ReimuOtter", "ReimuEagle", "MarisaWolf", "MarisaOtter", "MarisaEagle", "YoumuWolf", "YoumuOtter", "YoumuEagle"],
@@ -67,7 +67,7 @@
         "verified": {
             "th16": {
                 "Easy": [
-                    "ReimuSpring" , "ReimuSummer" , "ReimuAutumn" , "ReimuWinter" , "CirnoSpring" , "CirnoSummer" , "CirnoAutumn" , "CirnoWinter" , "AyaSpring"   , "AyaAutumn"   , "MarisaSpring",
+                    "ReimuSpring",  "ReimuSummer",  "ReimuAutumn",  "ReimuWinter",  "CirnoSpring",  "CirnoSummer",  "CirnoAutumn",  "CirnoWinter",  "AyaSpring",    "AyaAutumn",    "MarisaSpring",
                     "MarisaAutumn", "MarisaWinter"
                 ],
                 "Normal": ["ReimuWinter", "CirnoWinter", "MarisaSummer", "MarisaWinter"],
@@ -91,13 +91,13 @@
         "unverified": {
             "th08": { "Lunatic": ["Scarlet Team"] },
             "th16": {
-                "Easy"  : ["ReimuSummer", "ReimuAutumn" , "AyaSummer", "AyaAutumn", "MarisaSpring", "MarisaAutumn", "MarisaSummer", "CirnoSummer", "CirnoSpring"],
+                "Easy"  : ["ReimuSummer", "ReimuAutumn",  "AyaSummer", "AyaAutumn", "MarisaSpring", "MarisaAutumn", "MarisaSummer", "CirnoSummer", "CirnoSpring"],
                 "Normal": ["ReimuWinter", "MarisaWinter"                                                                                                        ]
             }
         },
         "verified": {
             "th16": {
-                "Easy"  : ["ReimuSpring", "ReimuSummer", "ReimuAutumn", "CirnoSummer" , "CirnoAutumn", "AyaSummer", "AyaAutumn", "MarisaSpring", "MarisaSummer", "MarisaAutumn"],
+                "Easy"  : ["ReimuSpring", "ReimuSummer", "ReimuAutumn", "CirnoSummer",  "CirnoAutumn", "AyaSummer", "AyaAutumn", "MarisaSpring", "MarisaSummer", "MarisaAutumn"],
                 "Normal": ["ReimuSpring", "ReimuSummer", "CirnoAutumn", "MarisaSpring"                                                                                         ],
                 "Hard"  : ["AyaAutumn"                                                                                                                                         ]
             },
@@ -112,30 +112,30 @@
             "th10": { "Hard": ["ReimuB", "MarisaB", "ReimuA"] },
             "th11": { "Hard": ["ReimuC", "MarisaC"] },
             "th12": {
-                "Easy"   : ["ReimuA", "ReimuB" , "MarisaA", "MarisaB", "SanaeA" , "SanaeB" ],
-                "Normal" : ["ReimuA", "MarisaA", "SanaeA" , "ReimuB" , "SanaeB" , "MarisaB"],
-                "Hard"   : ["ReimuA", "MarisaA", "SanaeA" , "SanaeB" , "MarisaB"           ],
-                "Lunatic": ["ReimuA", "ReimuB" , "MarisaA", "MarisaB", "SanaeA" , "SanaeB" ]
+                "Easy"   : ["ReimuA", "ReimuB",  "MarisaA", "MarisaB", "SanaeA",  "SanaeB" ],
+                "Normal" : ["ReimuA", "MarisaA", "SanaeA",  "ReimuB",  "SanaeB",  "MarisaB"],
+                "Hard"   : ["ReimuA", "MarisaA", "SanaeA",  "SanaeB",  "MarisaB"           ],
+                "Lunatic": ["ReimuA", "ReimuB",  "MarisaA", "MarisaB", "SanaeA",  "SanaeB" ]
             },
             "th13": { "Lunatic": ["Sanae"], "Extra": ["Reimu", "Marisa", "Sanae", "Youmu"] },
             "th14": {
-                "Easy"   : ["ReimuA", "ReimuB" , "MarisaA", "MarisaB", "SakuyaA", "SakuyaB"],
-                "Normal" : ["ReimuA", "ReimuB" , "MarisaA", "MarisaB", "SakuyaA", "SakuyaB"],
-                "Hard"   : ["ReimuA", "ReimuB" , "MarisaA", "MarisaB", "SakuyaA", "SakuyaB"],
+                "Easy"   : ["ReimuA", "ReimuB",  "MarisaA", "MarisaB", "SakuyaA", "SakuyaB"],
+                "Normal" : ["ReimuA", "ReimuB",  "MarisaA", "MarisaB", "SakuyaA", "SakuyaB"],
+                "Hard"   : ["ReimuA", "ReimuB",  "MarisaA", "MarisaB", "SakuyaA", "SakuyaB"],
                 "Lunatic": ["ReimuB", "MarisaA", "MarisaB", "SakuyaA", "SakuyaB"           ],
-                "Extra"  : ["ReimuA", "ReimuB" , "MarisaA", "MarisaB", "SakuyaA", "SakuyaB"]
+                "Extra"  : ["ReimuA", "ReimuB",  "MarisaA", "MarisaB", "SakuyaA", "SakuyaB"]
             },
             "th15": {
-                "Easy"   : ["Reimu", "Marisa", "Sanae" , "Reisen"],
-                "Normal" : ["Reimu", "Marisa", "Sanae" , "Reisen"],
-                "Hard"   : ["Reimu", "Marisa", "Sanae" , "Reisen"],
+                "Easy"   : ["Reimu", "Marisa", "Sanae",  "Reisen"],
+                "Normal" : ["Reimu", "Marisa", "Sanae",  "Reisen"],
+                "Hard"   : ["Reimu", "Marisa", "Sanae",  "Reisen"],
                 "Lunatic": ["Reimu", "Marisa", "Reisen"          ]
             },
             "th16": {
-                "Easy"   : ["ReimuAutumn", "CirnoAutumn", "AyaSummer"  , "MarisaAutumn"                                                                                ],
+                "Easy"   : ["ReimuAutumn", "CirnoAutumn", "AyaSummer",   "MarisaAutumn"                                                                                ],
                 "Normal" : ["ReimuSummer", "ReimuWinter", "CirnoAutumn"                                                                                                ],
-                "Hard"   : ["ReimuSummer", "ReimuAutumn", "ReimuWinter", "CirnoSummer" , "CirnoAutumn" , "AyaSummer"   , "AyaAutumn"   , "MarisaSummer", "MarisaAutumn"],
-                "Lunatic": ["ReimuAutumn", "CirnoAutumn", "AyaSpring"  , "AyaSummer"   , "MarisaSpring", "MarisaSummer", "MarisaAutumn"                                ]
+                "Hard"   : ["ReimuSummer", "ReimuAutumn", "ReimuWinter", "CirnoSummer",  "CirnoAutumn",  "AyaSummer",    "AyaAutumn",    "MarisaSummer", "MarisaAutumn"],
+                "Lunatic": ["ReimuAutumn", "CirnoAutumn", "AyaSpring",   "AyaSummer",    "MarisaSpring", "MarisaSummer", "MarisaAutumn"                                ]
             },
             "th17": {
                 "Easy"   : ["ReimuWolf", "ReimuOtter", "ReimuEagle", "MarisaWolf", "MarisaOtter", "MarisaEagle", "YoumuWolf", "YoumuOtter", "YoumuEagle"],
@@ -146,10 +146,10 @@
             },
             "th18": {
                 "Easy"   : ["Marisa", "Sakuya"                   ],
-                "Normal" : ["Reimu" , "Marisa", "Sakuya", "Sanae"],
-                "Hard"   : ["Reimu" , "Marisa", "Sakuya", "Sanae"],
-                "Lunatic": ["Reimu" , "Marisa", "Sanae"          ],
-                "Extra"  : ["Reimu" , "Marisa"                   ]
+                "Normal" : ["Reimu",  "Marisa", "Sakuya", "Sanae"],
+                "Hard"   : ["Reimu",  "Marisa", "Sakuya", "Sanae"],
+                "Lunatic": ["Reimu",  "Marisa", "Sanae"          ],
+                "Extra"  : ["Reimu",  "Marisa"                   ]
             }
         },
         "unverified": { "th18": { "Normal": ["Sakuya"], "Hard": ["Reimu", "Sakuya"] } }
@@ -159,14 +159,14 @@
     "15": { "name_en": "INJ", "verified": { "th18": { "Easy": ["Sanae"] } } },
     "16": { "name_en": "satis", "verified": { "th128": { "Lunatic": ["C-1"] } } },
     "17": { "name_en": "smilelkj", "verified": { "th18": { "Normal": ["Reimu", "Marisa"], "Hard": ["Reimu"] } } },
-    "18": { "name_en": "キャル", "verified": { "th10": { "Normal": ["MarisaC"], "Easy": ["MarisaC"] } } },
+    "18": { "name_en": "キャル", "verified": { "th10": { "Normal": ["MarisaC"], "Easy": ["MarisaC"], "Hard": ["MarisaC"] } } },
     "19": { "name_en": "Feli", "verified": { "th11": { "Normal": ["ReimuA", "ReimuB"], "Extra": ["ReimuB"] } }, "unverified": { "th11": { "Extra": ["ReimuB"] } } },
     "20": {
         "name_en": "coco",
         "verified": {
-            "th07": { "Hard": ["ReimuB", "MarisaA", "SakuyaB"] }                                                                                  ,
+            "th07": { "Hard": ["ReimuB", "MarisaA", "SakuyaB"] },
             "th08": { "Easy": ["Border Team", "Magic Team", "Scarlet Team", "Ghost Team", "Marisa", "Youmu"], "Normal": ["Border Team", "Youmu"] },
-            "th18": { "Hard": ["Sakuya"], "Normal": ["Sakuya"] }                                                                                  ,
+            "th18": { "Hard": ["Sakuya"], "Normal": ["Sakuya"] },
             "th06": { "Hard": ["ReimuA", "ReimuB", "MarisaA", "MarisaB"], "Extra": ["ReimuB"] }
         },
         "unverified": { "th08": { "Easy": ["Scarlet Team"] } }
@@ -196,8 +196,8 @@
         "verified": {
             "th16": { "Lunatic": ["CirnoSpring"] },
             "th17": {
-                "Hard"   : ["ReimuWolf", "ReimuEagle", "MarisaWolf", "MarisaEagle", "YoumuWolf"  , "YoumuEagle"              ],
-                "Lunatic": ["ReimuWolf", "ReimuEagle", "MarisaWolf", "MarisaOtter", "MarisaEagle", "YoumuWolf" , "YoumuEagle"]
+                "Hard"   : ["ReimuWolf", "ReimuEagle", "MarisaWolf", "MarisaEagle", "YoumuWolf",   "YoumuEagle"              ],
+                "Lunatic": ["ReimuWolf", "ReimuEagle", "MarisaWolf", "MarisaOtter", "MarisaEagle", "YoumuWolf",  "YoumuEagle"]
             },
             "th18": { "Hard": ["Sanae"], "Lunatic": ["Reimu", "Marisa", "Sanae"], "Extra": ["Reimu", "Marisa", "Sanae"] }
         },
@@ -207,14 +207,14 @@
     "29": {
         "name_en": "idtn",
         "verified": {
-            "th11": { "Extra": ["MarisaA"  , "MarisaB"                       ]                                                                  },
+            "th11": { "Extra": ["MarisaA",   "MarisaB"                       ]                                                                  },
             "th12": {                                                           "Hard": ["MarisaA"          ]                                   },
-            "th13": { "Extra": ["Reimu"    , "Marisa"    , "Sanae"           ]                                                                  },
+            "th13": { "Extra": ["Reimu",     "Marisa",     "Sanae"           ]                                                                  },
             "th14": {                                                                                          "Lunatic": ["SakuyaB"          ] },
             "th15": { "Extra": ["Reimu"                                      ]                                                                  },
-            "th16": { "Extra": ["Reimu"    , "Cirno"     , "Aya"   , "Marisa"]                                                                  },
+            "th16": { "Extra": ["Reimu",     "Cirno",      "Aya",    "Marisa"]                                                                  },
             "th17": { "Extra": ["ReimuWolf", "ReimuEagle"                    ]                                                                  },
-            "th18": { "Extra": ["Reimu"    , "Marisa"    , "Sakuya", "Sanae" ], "Hard": ["Reimu"  , "Marisa"], "Lunatic": ["Reimu"  , "Marisa"] }
+            "th18": { "Extra": ["Reimu",     "Marisa",     "Sakuya", "Sanae" ], "Hard": ["Reimu",   "Marisa"], "Lunatic": ["Reimu",   "Marisa"] }
         }
     },
     "30": { "name_en": "Oscar", "verified": { "th15": { "Lunatic": ["Reimu", "Reisen", "Marisa", "Sanae"] }, "th16": { "Lunatic": ["ReimuSpring"] } } },
@@ -224,7 +224,7 @@
         "verified": {
             "th12": { "Lunatic": ["MarisaA"                             ]                                                                                         },
             "th14": { "Lunatic": ["ReimuA"                              ], "Extra": ["ReimuA"]                                                                    },
-            "th15": { "Lunatic": ["Reimu"  , "Marisa", "Sanae", "Reisen"],                      "Easy": ["Reisen"], "Normal": ["Reisen"     ], "Hard": ["Reisen"] },
+            "th15": { "Lunatic": ["Reimu",   "Marisa", "Sanae", "Reisen"],                      "Easy": ["Reisen"], "Normal": ["Reisen"     ], "Hard": ["Reisen"] },
             "th17": {                                                                                               "Normal": ["MarisaOtter"]                     },
             "th18": { "Lunatic": ["Sakuya"                              ], "Extra": ["Marisa"]                                                                    }
         }
@@ -251,7 +251,7 @@
         "verified": {
             "th14": { "Lunatic": ["ReimuB"    ]                                                                                                                                          },
             "th17": { "Lunatic": ["YoumuOtter"], "Extra": ["ReimuWolf", "ReimuOtter", "ReimuEagle", "MarisaWolf", "MarisaOtter", "MarisaEagle", "YoumuWolf", "YoumuOtter", "YoumuEagle"] },
-            "th18": {                            "Extra": ["Reimu"    , "Marisa"    , "Sakuya"    , "Sanae"                                                                            ] }
+            "th18": {                            "Extra": ["Reimu",     "Marisa",     "Sakuya",     "Sanae"                                                                            ] }
         },
         "unverified": { "th17": { "Extra": ["YoumuOtter"] }, "th18": { "Extra": ["Sakuya"] } }
     },
@@ -262,7 +262,7 @@
             "th17": {
                 "Hard"   : ["ReimuOtter", "MarisaOtter", "YoumuOtter"                                                                      ],
                 "Lunatic": ["ReimuOtter", "MarisaOtter", "YoumuEagle"                                                                      ],
-                "Extra"  : ["ReimuWolf" , "ReimuOtter" , "ReimuEagle", "MarisaWolf", "MarisaEagle", "YoumuWolf", "YoumuOtter", "YoumuEagle"]
+                "Extra"  : ["ReimuWolf",  "ReimuOtter",  "ReimuEagle", "MarisaWolf", "MarisaEagle", "YoumuWolf", "YoumuOtter", "YoumuEagle"]
             },
             "th18": { "Extra": ["Reimu", "Marisa", "Sakuya", "Sanae"] }
         },
@@ -273,8 +273,8 @@
     "45": {
         "name_en": "Pearl",
         "verified": {
-            "th01": { "Easy": ["Makai", "Jigoku"], "Normal": ["Jigoku"], "Hard": ["Makai"            ], "Lunatic": ["Makai"  , "Jigoku"]                      },
-            "th02": {                                                    "Hard": ["ReimuA" , "ReimuC"], "Lunatic": ["ReimuA"           ]                      },
+            "th01": { "Easy": ["Makai", "Jigoku"], "Normal": ["Jigoku"], "Hard": ["Makai"            ], "Lunatic": ["Makai",   "Jigoku"]                      },
+            "th02": {                                                    "Hard": ["ReimuA",  "ReimuC"], "Lunatic": ["ReimuA"           ]                      },
             "th04": {                                                    "Hard": ["MarisaA"          ], "Lunatic": ["MarisaA"          ]                      },
             "th16": {                                                                                                                     "Extra": ["Marisa"] },
             "th18": {                                                                                                                     "Extra": ["Sanae" ] }
@@ -303,11 +303,11 @@
             },
             "th07": {
                 "Easy"    : ["MarisaA"                                            ],
-                "Normal"  : ["ReimuB" , "MarisaA"                                 ],
+                "Normal"  : ["ReimuB",  "MarisaA"                                 ],
                 "Hard"    : ["MarisaA", "SakuyaB"                                 ],
                 "Lunatic" : ["MarisaB"                                            ],
-                "Extra"   : ["ReimuA" , "ReimuB" , "MarisaA", "SakuyaA", "SakuyaB"],
-                "Phantasm": ["ReimuA" , "ReimuB" , "MarisaA", "SakuyaA", "SakuyaB"]
+                "Extra"   : ["ReimuA",  "ReimuB",  "MarisaA", "SakuyaA", "SakuyaB"],
+                "Phantasm": ["ReimuA",  "ReimuB",  "MarisaA", "SakuyaA", "SakuyaB"]
             },
             "th08": { "Easy": ["Reimu", "Youmu"], "Normal": ["Ghost Team"], "Hard": ["Border Team", "Magic Team", "Scarlet Team", "Ghost Team", "Reimu"] },
             "th11": { "Easy": ["MarisaA"], "Normal": ["ReimuA", "MarisaB"], "Hard": ["MarisaB"], "Lunatic": ["ReimuB"] },
@@ -323,27 +323,27 @@
             },
             "th07": {
                 "Easy"    : ["ReimuB"                                                        ],
-                "Normal"  : ["ReimuA" , "ReimuB" , "MarisaA", "MarisaB", "SakuyaA", "SakuyaB"],
+                "Normal"  : ["ReimuA",  "ReimuB",  "MarisaA", "MarisaB", "SakuyaA", "SakuyaB"],
                 "Hard"    : ["MarisaA", "SakuyaB"                                            ],
                 "Lunatic" : ["MarisaA", "MarisaB", "SakuyaA"                                 ],
-                "Extra"   : ["ReimuA" , "ReimuB" , "MarisaA", "MarisaB", "SakuyaA", "SakuyaB"],
-                "Phantasm": ["ReimuA" , "ReimuB" , "MarisaA", "MarisaB", "SakuyaA", "SakuyaB"]
+                "Extra"   : ["ReimuA",  "ReimuB",  "MarisaA", "MarisaB", "SakuyaA", "SakuyaB"],
+                "Phantasm": ["ReimuA",  "ReimuB",  "MarisaA", "MarisaB", "SakuyaA", "SakuyaB"]
             },
             "th08": { "Hard": ["Scarlet Team"] },
             "th10": { "Easy": ["ReimuA"], "Normal": ["ReimuA"], "Hard": ["ReimuA"] },
             "th11": {
                 "Easy"   : ["MarisaA", "MarisaB"                                            ],
-                "Normal" : ["ReimuA" , "ReimuB" , "ReimuC" , "MarisaA", "MarisaB", "MarisaC"],
+                "Normal" : ["ReimuA",  "ReimuB",  "ReimuC",  "MarisaA", "MarisaB", "MarisaC"],
                 "Hard"   : ["MarisaB"                                                       ],
-                "Lunatic": ["ReimuB" , "MarisaA", "MarisaB", "MarisaC"                      ]
+                "Lunatic": ["ReimuB",  "MarisaA", "MarisaB", "MarisaC"                      ]
             },
             "th12": { "Normal": ["ReimuA", "SanaeA", "SanaeB"] },
             "th128": { "Normal": ["A-1", "A-2", "B-1", "B-2", "C-1"] },
             "th17": {
-                "Easy"   : ["ReimuWolf", "ReimuOtter", "ReimuEagle", "MarisaWolf" , "MarisaOtter", "MarisaEagle", "YoumuWolf" , "YoumuOtter", "YoumuEagle"],
-                "Normal" : ["ReimuWolf", "ReimuOtter", "ReimuEagle", "MarisaWolf" , "MarisaOtter", "MarisaEagle", "YoumuWolf" , "YoumuOtter", "YoumuEagle"],
-                "Hard"   : ["ReimuWolf", "ReimuOtter", "ReimuEagle", "MarisaWolf" , "MarisaOtter", "MarisaEagle", "YoumuWolf" , "YoumuOtter"              ],
-                "Lunatic": ["ReimuWolf", "ReimuEagle", "MarisaWolf", "MarisaOtter", "MarisaEagle", "YoumuWolf"  , "YoumuOtter", "YoumuEagle"              ],
+                "Easy"   : ["ReimuWolf", "ReimuOtter", "ReimuEagle", "MarisaWolf",  "MarisaOtter", "MarisaEagle", "YoumuWolf",  "YoumuOtter", "YoumuEagle"],
+                "Normal" : ["ReimuWolf", "ReimuOtter", "ReimuEagle", "MarisaWolf",  "MarisaOtter", "MarisaEagle", "YoumuWolf",  "YoumuOtter", "YoumuEagle"],
+                "Hard"   : ["ReimuWolf", "ReimuOtter", "ReimuEagle", "MarisaWolf",  "MarisaOtter", "MarisaEagle", "YoumuWolf",  "YoumuOtter"              ],
+                "Lunatic": ["ReimuWolf", "ReimuEagle", "MarisaWolf", "MarisaOtter", "MarisaEagle", "YoumuWolf",   "YoumuOtter", "YoumuEagle"              ],
                 "Extra"  : ["ReimuWolf"                                                                                                                   ]
             }
         }
@@ -365,7 +365,7 @@
             "th17": {
                 "Normal": ["YoumuWolf"                                                                                                    ],
                 "Hard"  : ["ReimuWolf", "MarisaWolf", "MarisaEagle", "YoumuWolf"                                                          ],
-                "Extra" : ["ReimuWolf", "ReimuEagle", "MarisaWolf" , "MarisaOtter", "MarisaEagle", "YoumuWolf", "YoumuOtter", "YoumuEagle"]
+                "Extra" : ["ReimuWolf", "ReimuEagle", "MarisaWolf",  "MarisaOtter", "MarisaEagle", "YoumuWolf", "YoumuOtter", "YoumuEagle"]
             }
         }
     },
@@ -380,7 +380,7 @@
         "verified": {
             "th17": {
                 "Lunatic": ["ReimuEagle", "MarisaWolf", "MarisaOtter", "MarisaEagle", "YoumuEagle"              ],
-                "Extra"  : ["ReimuOtter", "ReimuEagle", "MarisaEagle", "YoumuWolf"  , "YoumuOtter", "YoumuEagle"]
+                "Extra"  : ["ReimuOtter", "ReimuEagle", "MarisaEagle", "YoumuWolf",   "YoumuOtter", "YoumuEagle"]
             }
         }
     },
@@ -402,7 +402,7 @@
         "name_en": "kkkn",
         "unverified": { "th14": { "Lunatic": ["SakuyaB"] } },
         "verified": {
-            "th14": { "Lunatic": ["ReimuA"     , "MarisaB"    , "SakuyaB"                  ]                           },
+            "th14": { "Lunatic": ["ReimuA",      "MarisaB",     "SakuyaB"                  ]                           },
             "th16": { "Lunatic": ["ReimuWinter", "CirnoWinter", "AyaWinter", "MarisaWinter"]                           },
             "th17": {                                                                         "Extra": ["MarisaOtter"] }
         }
@@ -457,9 +457,9 @@
         "verified": {
             "th15": { "Easy": ["Sanae"] },
             "th16": {
-                "Easy"   : ["ReimuSpring", "CirnoSpring", "AyaSpring"  , "MarisaSpring"                                ],
-                "Normal" : ["ReimuSpring", "ReimuWinter", "CirnoSpring", "AyaSpring"   , "AyaWinter"   , "MarisaSpring"],
-                "Hard"   : ["ReimuSpring", "ReimuWinter", "CirnoSpring", "AyaSpring"   , "MarisaSpring", "MarisaWinter"],
+                "Easy"   : ["ReimuSpring", "CirnoSpring", "AyaSpring",   "MarisaSpring"                                ],
+                "Normal" : ["ReimuSpring", "ReimuWinter", "CirnoSpring", "AyaSpring",    "AyaWinter",    "MarisaSpring"],
+                "Hard"   : ["ReimuSpring", "ReimuWinter", "CirnoSpring", "AyaSpring",    "MarisaSpring", "MarisaWinter"],
                 "Lunatic": ["AyaSpring"                                                                                ]
             }
         },
@@ -479,7 +479,7 @@
                 "Easy"   : ["ReimuWinter", "CirnoWinter", "MarisaWinter"],
                 "Normal" : ["CirnoWinter", "AyaWinter"                  ],
                 "Hard"   : ["ReimuWinter", "CirnoWinter", "AyaWinter"   ],
-                "Lunatic": ["AyaWinter"  , "CirnoSpring", "MarisaSpring"]
+                "Lunatic": ["AyaWinter",   "CirnoSpring", "MarisaSpring"]
             }
         }
     },
@@ -530,9 +530,9 @@
     "119": {
         "name_en": "Miler",
         "verified": {
-            "th02": { "Lunatic": ["ReimuA" , "ReimuB", "ReimuC"           ]                                            },
+            "th02": { "Lunatic": ["ReimuA",  "ReimuB", "ReimuC"           ]                                            },
             "th04": { "Lunatic": ["MarisaA", "ReimuA", "ReimuB", "MarisaB"], "Extra": ["ReimuA", "MarisaA", "MarisaB"] },
-            "th05": { "Lunatic": ["Mima"   , "Reimu" , "Marisa"           ]                                            }
+            "th05": { "Lunatic": ["Mima",    "Reimu",  "Marisa"           ]                                            }
         },
         "unverified": { "th04": { "Lunatic": ["MarisaA", "ReimuA"] } }
     },
@@ -544,9 +544,9 @@
         "verified": {
             "th11": { "Extra": ["ReimuA"] },
             "th16": {
-                "Normal" : ["ReimuSummer", "CirnoSummer", "CirnoWinter", "AyaSummer"   , "MarisaSummer"                ],
-                "Hard"   : ["ReimuSummer", "CirnoSummer", "AyaSummer"  , "MarisaSummer"                                ],
-                "Lunatic": ["ReimuSummer", "ReimuWinter", "CirnoSummer", "CirnoWinter" , "AyaSummer"   , "MarisaSummer"]
+                "Normal" : ["ReimuSummer", "CirnoSummer", "CirnoWinter", "AyaSummer",    "MarisaSummer"                ],
+                "Hard"   : ["ReimuSummer", "CirnoSummer", "AyaSummer",   "MarisaSummer"                                ],
+                "Lunatic": ["ReimuSummer", "ReimuWinter", "CirnoSummer", "CirnoWinter",  "AyaSummer",    "MarisaSummer"]
             }
         },
         "unverified": { "th16": { "Lunatic": ["CirnoSummer", "AyaSummer", "MarisaSummer"] } }
@@ -573,9 +573,9 @@
         "verified": {
             "th12": { "Extra": ["ReimuA", "ReimuB"] },
             "th16": {
-                "Normal" : ["ReimuAutumn", "CirnoAutumn" , "AyaAutumn"   , "MarisaSummer", "MarisaAutumn"],
-                "Hard"   : ["ReimuSpring", "ReimuAutumn" , "MarisaSpring", "MarisaAutumn"                ],
-                "Lunatic": ["AyaAutumn"  , "MarisaSpring", "MarisaAutumn"                                ]
+                "Normal" : ["ReimuAutumn", "CirnoAutumn",  "AyaAutumn",    "MarisaSummer", "MarisaAutumn"],
+                "Hard"   : ["ReimuSpring", "ReimuAutumn",  "MarisaSpring", "MarisaAutumn"                ],
+                "Lunatic": ["AyaAutumn",   "MarisaSpring", "MarisaAutumn"                                ]
             }
         },
         "unverified": { "th16": { "Normal": ["ReimuAutumn", "MarisaAutumn"], "Lunatic": ["AyaAutumn"] } }
@@ -596,8 +596,8 @@
     "137": {
         "name_en": "wreath",
         "verified": {
-            "th10" : { "Extra": ["ReimuA", "ReimuB", "ReimuC", "MarisaA", "MarisaB", "MarisaC"] }          ,
-            "th128": { "Lunatic": ["A-1"] }                                                                ,
+            "th10" : { "Extra": ["ReimuA", "ReimuB", "ReimuC", "MarisaA", "MarisaB", "MarisaC"] },
+            "th128": { "Lunatic": ["A-1"] },
             "th16" : { "Normal": ["ReimuWinter", "CirnoWinter", "AyaSpring", "AyaWinter", "MarisaWinter"] }
         }
     },
@@ -713,8 +713,8 @@
         "name_jp": "えなめる",
         "verified": {
             "th11": { "Hard": ["MarisaB"           ]                                                                                                                                          },
-            "th14": { "Hard": ["ReimuB" , "SakuyaB"], "Lunatic": ["ReimuA"      , "MarisaA", "SakuyaA"          ], "Extra": ["ReimuB", "MarisaA", "SakuyaA", "SakuyaB"]                       },
-            "th15": { "Hard": ["Reisen"            ], "Lunatic": ["Reimu"       , "Sanae"  , "Reisen" , "Marisa"], "Extra": ["Reimu" , "Marisa" , "Reisen"            ], "Normal": ["Reisen"] },
+            "th14": { "Hard": ["ReimuB",  "SakuyaB"], "Lunatic": ["ReimuA",       "MarisaA", "SakuyaA"          ], "Extra": ["ReimuB", "MarisaA", "SakuyaA", "SakuyaB"]                       },
+            "th15": { "Hard": ["Reisen"            ], "Lunatic": ["Reimu",        "Sanae",   "Reisen",  "Marisa"], "Extra": ["Reimu",  "Marisa",  "Reisen"            ], "Normal": ["Reisen"] },
             "th16": {                                 "Lunatic": ["MarisaAutumn"                                ]                                                                             }
         }
     },
@@ -836,8 +836,8 @@
         "verified": {
             "th07": { "Easy": ["SakuyaA", "SakuyaB"] },
             "th08": {
-                "Easy" : ["Magic Team", "Scarlet Team", "Ghost Team", "Yukari", "Marisa", "Alice" , "Sakuya" , "Yuyuko"          ],
-                "Extra": ["Ghost Team", "Reimu"       , "Yukari"    , "Marisa", "Alice" , "Sakuya", "Remilia", "Youmu" , "Yuyuko"]
+                "Easy" : ["Magic Team", "Scarlet Team", "Ghost Team", "Yukari", "Marisa", "Alice",  "Sakuya",  "Yuyuko"          ],
+                "Extra": ["Ghost Team", "Reimu",        "Yukari",     "Marisa", "Alice",  "Sakuya", "Remilia", "Youmu",  "Yuyuko"]
             },
             "th10": { "Extra": ["ReimuA", "MarisaC"] },
             "th11": { "Lunatic": ["ReimuA"], "Extra": ["ReimuA"] },
@@ -863,7 +863,7 @@
     "260": {
         "name_en": "",
         "verified": {
-            "th06" : { "Easy": ["ReimuA"], "Hard": ["ReimuB"    , "MarisaA"], "Extra": ["ReimuA"    , "MarisaA", "MarisaB"]                           },
+            "th06" : { "Easy": ["ReimuA"], "Hard": ["ReimuB",     "MarisaA"], "Extra": ["ReimuA",     "MarisaA", "MarisaB"]                           },
             "th08" : {                     "Hard": ["Magic Team"           ], "Extra": ["Ghost Team"                      ], "Normal": ["Ghost Team"] },
             "th11" : { "Easy": ["ReimuB"]                                                                                                             },
             "th128": {                                                                                                       "Normal": ["A-1"       ] },
@@ -893,16 +893,16 @@
         "name_en": "LYX",
         "verified": {
             "th08": { "Lunatic": ["Scarlet Team"]                                                                                                                                    },
-            "th10": { "Lunatic": ["MarisaC"     ], "Easy": ["MarisaB", "MarisaC"], "Normal": ["ReimuA" , "MarisaB", "MarisaC"], "Hard": ["MarisaA", "MarisaC"], "Extra": ["MarisaC"] },
+            "th10": { "Lunatic": ["MarisaC"     ], "Easy": ["MarisaB", "MarisaC"], "Normal": ["ReimuA",  "MarisaB", "MarisaC"], "Hard": ["MarisaA", "MarisaC"], "Extra": ["MarisaC"] },
             "th11": { "Lunatic": ["MarisaB"     ], "Easy": ["MarisaB"           ], "Normal": ["MarisaB"                      ], "Hard": ["MarisaB"           ]                       },
             "th12": {                              "Easy": ["MarisaA"           ], "Normal": ["MarisaA"                      ]                                                       },
             "th14": {                              "Easy": ["SakuyaA", "SakuyaB"], "Normal": ["SakuyaB"                      ]                                                       }
         },
         "unverified": {
             "th10": {
-                "Easy"   : ["ReimuA" , "ReimuB" , "ReimuC" , "MarisaA", "MarisaC"],
-                "Normal" : ["ReimuB" , "ReimuC" , "MarisaB", "MarisaC"           ],
-                "Hard"   : ["ReimuB" , "ReimuC" , "MarisaB", "MarisaC"           ],
+                "Easy"   : ["ReimuA",  "ReimuB",  "ReimuC",  "MarisaA", "MarisaC"],
+                "Normal" : ["ReimuB",  "ReimuC",  "MarisaB", "MarisaC"           ],
+                "Hard"   : ["ReimuB",  "ReimuC",  "MarisaB", "MarisaC", "ReimuA" ],
                 "Lunatic": ["MarisaB", "MarisaC"                                 ]
             },
             "th11": { "Easy": ["MarisaB"] },
@@ -963,7 +963,6 @@
     "287": { "name_en": "TnM", "verified": { "th14": { "Normal": ["MarisaB"] } } },
     "290": { "name_en": "霧流院", "verified": { "th14": { "Normal": ["SakuyaA"] } } },
     "292": { "name_en": "IORI.Y", "verified": { "th14": { "Normal": ["SakuyaA"] } } },
-    "293": { "name_en": "M.Usui", "verified": { "th14": { "Normal": ["SakuyaA"] } } },
     "295": { "name_en": "Starshine", "verified": { "th05": { "Lunatic": ["Mima"] } }, "unverified": { "th05": { "Lunatic": ["Mima"] } } },
     "296": { "name_en": "NSF", "verified": { "th14": { "Normal": ["SakuyaB"] } } },
     "297": { "name_en": "Noobzor", "unverified": { "th14": { "Normal": ["SakuyaB"] } }, "verified": { "th14": { "Normal": ["SakuyaB"] } } },
@@ -988,7 +987,7 @@
     "302": { "name_en": "NGMY", "name_jp": "ナギマイ", "verified": { "th14": { "Normal": ["SakuyaB"] } } },
     "303": { "name_en": "ARAX", "verified": { "th05": { "Easy": ["Reimu"], "Normal": ["Reimu"] } }, "unverified": { "th05": { "Easy": ["Reimu"], "Normal": ["Reimu"] } } },
     "304": {
-        "name_en": "Rouge",
+        "name_en": "Rogue",
         "name_jp": "時のローグ",
         "unverified": { "th14": { "Hard": ["MarisaA"] } },
         "verified": { "th14": { "Hard": ["ReimuA", "MarisaA", "SakuyaA"], "Extra": ["MarisaA"], "Lunatic": ["MarisaA"] } }
@@ -1011,7 +1010,7 @@
     "312": { "name_en": "MLU", "verified": { "th14": { "Hard": ["MarisaB"] } } },
     "313": { "name_en": "悠", "verified": { "th14": { "Hard": ["SakuyaA"], "Lunatic": ["ReimuB", "MarisaA", "SakuyaA", "SakuyaB"], "Extra": ["ReimuB", "MarisaA", "SakuyaA", "SakuyaB"] } } },
     "314": { "name_en": "YOMA", "verified": { "th14": { "Hard": ["SakuyaA"] } } },
-    "315": { "name_en": "うすいさん", "verified": { "th14": { "Hard": ["SakuyaA"], "Lunatic": ["SakuyaA"] } } },
+    "315": { "name_en": "うすいさん", "verified": { "th14": { "Hard": ["SakuyaA"], "Lunatic": ["SakuyaA"], "Normal": ["SakuyaA"] } } },
     "317": { "name_en": "EOH", "verified": { "th12": { "Normal": ["MarisaA"], "Hard": ["MarisaA", "SanaeA"] }, "th14": { "Hard": ["SakuyaB"] } }, "unverified": { "th128": { "Extra": ["Cirno"] } } },
     "318": { "name_en": "Shigeki", "verified": { "th14": { "Lunatic": ["ReimuA"] } } },
     "319": { "name_en": "TOZIKO", "verified": { "th14": { "Lunatic": ["ReimuA"] } } },
@@ -1060,16 +1059,16 @@
         "unverified": { "th06": { "Extra": ["ReimuA"] }, "th08": { "Extra": ["Border Team", "Scarlet Team", "Yuyuko"] } },
         "verified": {
             "th06": { "Extra": ["ReimuA"                                                                                                                                  ]                         },
-            "th08": { "Extra": ["Border Team", "Magic Team", "Scarlet Team", "Ghost Team", "Reimu"  , "Yukari" , "Marisa", "Alice", "Sakuya", "Remilia", "Youmu", "Yuyuko"]                         },
-            "th11": { "Extra": ["ReimuA"     , "ReimuB"    , "ReimuC"      , "MarisaA"   , "MarisaB", "MarisaC"                                                           ]                         },
+            "th08": { "Extra": ["Border Team", "Magic Team", "Scarlet Team", "Ghost Team", "Reimu",   "Yukari",  "Marisa", "Alice", "Sakuya", "Remilia", "Youmu", "Yuyuko"]                         },
+            "th11": { "Extra": ["ReimuA",      "ReimuB",     "ReimuC",       "MarisaA",    "MarisaB", "MarisaC"                                                           ]                         },
             "th14": { "Extra": ["SakuyaA"                                                                                                                                 ], "Lunatic": ["SakuyaA"] }
         }
     },
     "337": {
         "name_en": "UKT",
         "verified": {
-            "th11" : { "Lunatic": ["ReimuA" , "ReimuB", "ReimuC", "MarisaA", "MarisaB", "MarisaC"]                     },
-            "th128": { "Lunatic": ["A-2"    , "B-1"                                              ]                     },
+            "th11" : { "Lunatic": ["ReimuA",  "ReimuB", "ReimuC", "MarisaA", "MarisaB", "MarisaC"]                     },
+            "th128": { "Lunatic": ["A-2",     "B-1"                                              ]                     },
             "th13" : {                                                                              "Hard": ["Marisa"] },
             "th14" : { "Lunatic": ["SakuyaB"                                                     ]                     }
         }
@@ -1086,7 +1085,7 @@
         "name_en": "morth",
         "verified": {
             "th11": { "Easy": ["ReimuA", "ReimuB", "ReimuC", "MarisaB", "MarisaC"], "Normal": ["ReimuA"], "Hard": ["ReimuA"]                                                       },
-            "th13": {                                                                                                         "Extra": ["Reimu" , "Marisa" , "Sanae"  , "Youmu"  ] },
+            "th13": {                                                                                                         "Extra": ["Reimu",  "Marisa",  "Sanae",   "Youmu"  ] },
             "th14": {                                                                                                         "Extra": ["ReimuB", "MarisaA", "SakuyaA", "SakuyaB"] }
         },
         "unverified": { "th13": { "Extra": ["Marisa"] } }
@@ -1115,14 +1114,14 @@
     "367": {
         "name_en": "Heartbeam",
         "verified": {
-            "th04" : { "Normal": ["ReimuB", "MarisaB"], "Hard": ["ReimuB"], "Extra": ["ReimuB"] }                                          ,
-            "th05" : { "Easy": ["Marisa", "Mima"], "Hard": ["Mima"], "Lunatic": ["Mima"] }                                                 ,
+            "th04" : { "Normal": ["ReimuB", "MarisaB"], "Hard": ["ReimuB"], "Extra": ["ReimuB"] },
+            "th05" : { "Easy": ["Marisa", "Mima"], "Hard": ["Mima"], "Lunatic": ["Mima"] },
             "th12" : { "Easy": ["ReimuA", "ReimuB", "MarisaA", "MarisaB", "SanaeA", "SanaeB"], "Normal": ["SanaeB"], "Extra": ["MarisaA"] },
             "th128": { "Easy": ["A-1", "A-2", "B-1", "B-2", "C-1", "C-2"], "Normal": ["A-2", "C-2"], "Hard": ["B-1", "B-2", "C-1", "C-2"] },
             "th13" : { "Easy": ["Reimu", "Marisa", "Sanae", "Youmu"], "Normal": ["Marisa"], "Hard": ["Marisa"] }
         },
         "unverified": {
-            "th128": { "Easy": ["A-1"   , "A-2" , "B-1", "C-2"], "Normal": ["A-2"   , "B-1"    , "B-2"], "Extra": ["Cirno" ]                                          },
+            "th128": { "Easy": ["A-1",    "A-2",  "B-1", "C-2"], "Normal": ["A-2",    "B-1",     "B-2"], "Extra": ["Cirno" ]                                          },
             "th13" : {                                           "Normal": ["Marisa"                  ]                                                               },
             "th04" : {                                           "Normal": ["ReimuB", "MarisaB"       ], "Extra": ["ReimuB"], "Hard": ["ReimuB"]                      },
             "th05" : { "Easy": ["Marisa", "Mima"              ],                                                              "Hard": ["Mima"  ], "Lunatic": ["Mima"] }
@@ -1136,7 +1135,7 @@
         "unverified": { "th13": { "Normal": ["Sanae"] } },
         "verified": { "th13": { "Easy": ["Marisa", "Sanae"], "Normal": ["Marisa", "Sanae", "Youmu"], "Hard": ["Marisa", "Sanae", "Youmu"], "Lunatic": ["Sanae", "Youmu"] } }
     },
-    "376": { "name_en": "EME", "verified": { "th13": { "Easy": ["Youmu"] } } },
+    "376": { "name_en": "EME", "name_jp": "エメ", "verified": { "th13": { "Easy": ["Youmu"], "Hard": ["Youmu"] } } },
     "377": { "name_en": "NSHN", "unverified": { "th13": { "Easy": ["Youmu"] } }, "verified": { "th13": { "Easy": ["Youmu"], "Normal": ["Youmu"], "Hard": ["Youmu"], "Lunatic": ["Youmu"] } } },
     "378": { "name_en": "MY", "verified": { "th13": { "Easy": ["Youmu"], "Hard": ["Youmu"] } } },
     "379": { "name_en": "NIBO", "verified": { "th13": { "Easy": ["Youmu"] } } },
@@ -1152,7 +1151,6 @@
     "395": { "name_en": "KINOKO", "verified": { "th13": { "Hard": ["Reimu"] } } },
     "396": { "name_en": "k8n", "verified": { "th13": { "Hard": ["Reimu"] } } },
     "397": { "name_en": "NMST", "verified": { "th13": { "Hard": ["Reimu"] } } },
-    "399": { "name_en": "R.L", "verified": { "th13": { "Hard": ["Reimu"] } } },
     "400": { "name_en": "ns", "name_jp": "未知", "verified": { "th13": { "Hard": ["Reimu"], "Lunatic": ["Reimu", "Sanae"] } } },
     "401": {
         "name_en": "Miduki",
@@ -1164,8 +1162,8 @@
         },
         "verified": {
             "th10": { "Easy": ["MarisaA", "MarisaB"], "Normal": ["ReimuC", "MarisaA", "MarisaB", "MarisaC"], "Hard": ["MarisaC"], "Lunatic": ["ReimuB"] },
-            "th11": { "Extra": ["ReimuB", "MarisaA", "MarisaB"] }                                                                                        ,
-            "th12": { "Normal": ["SanaeA", "SanaeB"], "Lunatic": ["SanaeA"], "Extra": ["ReimuA", "ReimuB", "MarisaA", "MarisaB"] }                       ,
+            "th11": { "Extra": ["ReimuB", "MarisaA", "MarisaB"] },
+            "th12": { "Normal": ["SanaeA", "SanaeB"], "Lunatic": ["SanaeA"], "Extra": ["ReimuA", "ReimuB", "MarisaA", "MarisaB"] },
             "th13": { "Hard": ["Reimu"], "Lunatic": ["Reimu"] }
         }
     },
@@ -1186,7 +1184,6 @@
     "413": { "name_en": "zxl", "verified": { "th10": { "Easy": ["ReimuA"] }, "th13": { "Hard": ["Sanae"] } } },
     "414": { "name_en": "SEA", "verified": { "th13": { "Hard": ["Youmu"], "Extra": ["Youmu"] } } },
     "415": { "name_en": "S.S.H.", "verified": { "th13": { "Hard": ["Youmu"] } } },
-    "416": { "name_en": "エメ", "verified": { "th13": { "Hard": ["Youmu"] } } },
     "417": { "name_en": "ひすい", "verified": { "th13": { "Hard": ["Youmu"] } } },
     "418": { "name_en": "おとど", "unverified": { "th13": { "Lunatic": ["Youmu"] } }, "verified": { "th13": { "Hard": ["Youmu"], "Lunatic": ["Youmu"] } } },
     "419": { "name_en": "Nkg", "verified": { "th13": { "Lunatic": ["Reimu"] } } },
@@ -1206,8 +1203,8 @@
             "th06": { "Extra": ["ReimuA"                                                     ] },
             "th08": { "Extra": ["Youmu"                                                      ] },
             "th10": { "Extra": ["ReimuA", "ReimuB", "MarisaB", "MarisaC"                     ] },
-            "th11": { "Extra": ["ReimuA", "ReimuB", "ReimuC" , "MarisaA", "MarisaC"          ] },
-            "th12": { "Extra": ["ReimuA", "ReimuB", "MarisaA", "MarisaB", "SanaeA" , "SanaeB"] },
+            "th11": { "Extra": ["ReimuA", "ReimuB", "ReimuC",  "MarisaA", "MarisaC"          ] },
+            "th12": { "Extra": ["ReimuA", "ReimuB", "MarisaA", "MarisaB", "SanaeA",  "SanaeB"] },
             "th13": { "Extra": ["Youmu"                                                      ] }
         },
         "unverified": { "th10": { "Extra": ["ReimuB"] }, "th12": { "Extra": ["SanaeB"] } }
@@ -1279,7 +1276,7 @@
     "486": {
         "name_en": "BaitySM",
         "verified": {
-            "th01" : { "Easy": ["Makai", "Jigoku"], "Normal": ["Makai"], "Hard": ["Makai"  , "Jigoku"]                                   },
+            "th01" : { "Easy": ["Makai", "Jigoku"], "Normal": ["Makai"], "Hard": ["Makai",   "Jigoku"]                                   },
             "th04" : {                                                                                  "Lunatic": ["ReimuA"           ] },
             "th05" : {                                                   "Hard": ["Reimu"            ], "Lunatic": ["Reimu"            ] },
             "th12" : {                                                   "Hard": ["MarisaA"          ], "Lunatic": ["MarisaB", "SanaeB"] },
@@ -1322,7 +1319,7 @@
         "verified": { "th01": { "Lunatic": ["Makai", "Jigoku"] }, "th02": { "Lunatic": ["ReimuA"], "Extra": ["ReimuC"] }, "th03": { "Lunatic": ["Kana"] }, "th128": { "Hard": ["A-1"] } },
         "unverified": {
             "th128": { "Lunatic": ["A-1"             ], "Extra": ["Cirno" ] },
-            "th01" : { "Lunatic": ["Makai" , "Jigoku"]                      },
+            "th01" : { "Lunatic": ["Makai",  "Jigoku"]                      },
             "th02" : { "Lunatic": ["ReimuA"          ], "Extra": ["ReimuC"] },
             "th03" : { "Lunatic": ["Kana"            ]                      }
         }
@@ -1353,8 +1350,8 @@
         "unverified": { "th11": { "Easy": ["ReimuB", "ReimuC", "MarisaA", "MarisaC"], "Normal": ["ReimuB"] }, "th18": { "Easy": ["Sakuya"] } },
         "verified": {
             "th11": {
-                "Easy"  : ["ReimuA", "ReimuB", "ReimuC" , "MarisaA", "MarisaB", "MarisaC"],
-                "Normal": ["ReimuA", "ReimuB", "ReimuC" , "MarisaA", "MarisaB", "MarisaC"],
+                "Easy"  : ["ReimuA", "ReimuB", "ReimuC",  "MarisaA", "MarisaB", "MarisaC"],
+                "Normal": ["ReimuA", "ReimuB", "ReimuC",  "MarisaA", "MarisaB", "MarisaC"],
                 "Hard"  : ["ReimuA", "ReimuB", "MarisaA", "MarisaB"                      ],
                 "Extra" : ["ReimuC"                                                      ]
             },
@@ -1363,7 +1360,6 @@
         }
     },
     "524": { "name_en": "No Name", "verified": { "th12": { "Easy": ["SanaeA"] } } },
-    "526": { "name_en": "ニトクリスの鏡", "verified": { "th12": { "Easy": ["SanaeA"], "Hard": ["ReimuA", "MarisaA", "SanaeA"] } } },
     "529": { "name_en": "栗悟飯とカメハメ波", "verified": { "th12": { "Easy": ["SanaeB"] } } },
     "530": { "name_en": "PORIE", "verified": { "th12": { "Normal": ["ReimuA"], "Extra": ["ReimuA"] } } },
     "531": { "name_en": "T3", "unverified": { "th12": { "Normal": ["MarisaA", "SanaeA"], "Hard": ["SanaeB"] } }, "verified": { "th12": { "Normal": ["ReimuA", "ReimuB", "MarisaA", "MarisaB"] } } },
@@ -1388,8 +1384,8 @@
     "543": { "name_en": "takuan", "verified": { "th12": { "Hard": ["ReimuA", "SanaeB"] } } },
     "544": { "name_en": "SGMT", "verified": { "th12": { "Hard": ["ReimuB"], "Lunatic": ["MarisaA"] } } },
     "545": { "name_en": "masa", "verified": { "th12": { "Hard": ["ReimuB"] } } },
-    "547": { "name_en": "Albel.N", "verified": { "th12": { "Hard": ["MarisaA", "MarisaB", "SanaeA"] } } },
-    "548": { "name_en": "Nitocris", "verified": { "th12": { "Hard": ["MarisaA"] } } },
+    "547": { "name_en": "Albel.N", "name_jp": "あるべる", "verified": { "th12": { "Hard": ["MarisaA", "MarisaB", "SanaeA"] } }, "unverified": { "th12": { "Hard": ["MarisaB", "SanaeA"] } } },
+    "548": { "name_en": "Nitocris", "name_jp": "ニトクリスの鏡", "verified": { "th12": { "Hard": ["MarisaA", "ReimuA", "SanaeA"], "Easy": ["SanaeA"] } } },
     "549": { "name_en": "hiatus", "verified": { "th10": { "Hard": ["ReimuC"] }, "th11": { "Hard": ["ReimuB", "MarisaC"] }, "th12": { "Hard": ["SanaeA"] } } },
     "550": { "name_en": "PARU", "verified": { "th12": { "Hard": ["SanaeA"] } } },
     "551": { "name_en": "hotaru", "verified": { "th12": { "Hard": ["SanaeB"] } } },
@@ -1401,8 +1397,8 @@
             "th10": {
                 "Easy"   : ["MarisaC"                                            ],
                 "Normal" : ["MarisaA", "MarisaB"                                 ],
-                "Hard"   : ["ReimuA" , "ReimuB" , "ReimuC" , "MarisaA", "MarisaB"],
-                "Lunatic": ["ReimuA" , "ReimuB" , "MarisaA"                      ],
+                "Hard"   : ["ReimuA",  "ReimuB",  "ReimuC",  "MarisaA", "MarisaB"],
+                "Lunatic": ["ReimuA",  "ReimuB",  "MarisaA"                      ],
                 "Extra"  : ["ReimuA"                                             ]
             },
             "th11": { "Easy": ["ReimuA", "ReimuB", "MarisaA", "MarisaC", "ReimuC"], "Hard": ["ReimuB", "MarisaA", "MarisaC"], "Lunatic": ["ReimuB", "MarisaA", "MarisaC"] },
@@ -1419,7 +1415,11 @@
         },
         "unverified": { "th15": { "Easy": ["Reisen"] }, "th06": { "Extra": ["MarisaB"] } }
     },
-    "553": { "name_en": "F.K", "verified": { "th11": { "Hard": ["MarisaA"] }, "th12": { "Lunatic": ["ReimuA", "ReimuB", "MarisaA", "SanaeA"] } } },
+    "553": {
+        "name_en": "F.K",
+        "verified": { "th11": { "Hard": ["MarisaA"] }, "th12": { "Lunatic": ["ReimuA", "ReimuB", "MarisaA", "SanaeA"] } },
+        "unverified": { "th12": { "Lunatic": ["MarisaB", "SanaeB"] } }
+    },
     "556": { "name_en": "KOZO!", "verified": { "th11": { "Extra": ["ReimuB", "ReimuC"] }, "th12": { "Lunatic": ["ReimuB"] } } },
     "557": { "name_en": "ast", "verified": { "th06": { "Extra": ["ReimuB"] }, "th12": { "Lunatic": ["ReimuB"] } } },
     "558": { "name_en": "yoz", "verified": { "th12": { "Lunatic": ["ReimuB"] } } },
@@ -1481,7 +1481,7 @@
     "614": {
         "name_en": "Alex",
         "unverified": {
-            "th10": { "Easy": ["ReimuC"], "Hard": ["ReimuA", "ReimuB"], "Lunatic": ["ReimuA"], "Extra": ["ReimuA"] }                                           ,
+            "th10": { "Easy": ["ReimuC"], "Hard": ["ReimuA", "ReimuB"], "Lunatic": ["ReimuA"], "Extra": ["ReimuA"] },
             "th11": { "Normal": ["ReimuA", "ReimuC", "MarisaA", "MarisaC"], "Hard": ["ReimuB", "ReimuC", "MarisaC"], "Extra": ["ReimuA", "ReimuB", "MarisaC"] }
         },
         "verified": { "th12": { "Hard": ["ReimuA", "SanaeB"] } }
@@ -1489,7 +1489,6 @@
     "615": { "name_en": "Sasupoika", "unverified": { "th12": { "Normal": ["SanaeA"] } } },
     "617": { "name_en": "Hisashi", "unverified": { "th12": { "Hard": ["ReimuA", "MarisaB", "SanaeA", "SanaeB"] } } },
     "618": { "name_en": "exe3e", "verified": { "th12": { "Hard": ["ReimuB"] } } },
-    "619": { "name_en": "あるべる", "unverified": { "th12": { "Hard": ["MarisaB", "SanaeA"] } } },
     "620": { "name_en": "ct9a", "unverified": { "th12": { "Hard": ["SanaeA"] } } },
     "621": {
         "name_en": "NAOKI",
@@ -1509,7 +1508,6 @@
         "unverified": { "th11": { "Lunatic": ["MarisaA"] }, "th12": { "Lunatic": ["MarisaA"], "Extra": ["ReimuA"] } },
         "verified": { "th11": { "Lunatic": ["MarisaA"], "Extra": ["MarisaA"] } }
     },
-    "623": { "name_en": "YK", "unverified": { "th12": { "Lunatic": ["MarisaB", "SanaeB"] } } },
     "625": { "name_en": "CLY", "unverified": { "th12": { "Extra": ["SanaeB"] } } },
     "626": {
         "name_en": "ナヤ",
@@ -1538,9 +1536,9 @@
         "name_en": "SET",
         "unverified": { "th08": { "Lunatic": ["Youmu"] }, "th11": { "Hard": ["ReimuC", "MarisaA", "MarisaB"], "Lunatic": ["ReimuB", "ReimuC"] } },
         "verified": {
-            "th08": { "Lunatic": ["Ghost Team", "Yukari", "Sakuya" , "Youmu"  , "Yuyuko"]                                                                                               },
+            "th08": { "Lunatic": ["Ghost Team", "Yukari", "Sakuya",  "Youmu",   "Yuyuko"]                                                                                               },
             "th10": {                                                                      "Hard": ["ReimuB"                                ]                                           },
-            "th11": { "Lunatic": ["ReimuB"    , "ReimuC", "MarisaA", "MarisaB"          ], "Hard": ["ReimuB", "ReimuC", "MarisaA", "MarisaB"], "Easy": ["ReimuC"], "Normal": ["ReimuC"] }
+            "th11": { "Lunatic": ["ReimuB",     "ReimuC", "MarisaA", "MarisaB"          ], "Hard": ["ReimuB", "ReimuC", "MarisaA", "MarisaB"], "Easy": ["ReimuC"], "Normal": ["ReimuC"] }
         }
     },
     "643": { "name_en": "ZJM", "verified": { "th11": { "Easy": ["MarisaA"], "Normal": ["MarisaA"], "Hard": ["MarisaA"], "Lunatic": ["MarisaC"] } } },
@@ -1565,9 +1563,7 @@
     "654": { "name_en": "POKI", "verified": { "th11": { "Normal": ["ReimuB", "ReimuC", "MarisaA", "MarisaB"] } } },
     "655": { "name_en": "Kuro", "verified": { "th11": { "Normal": ["ReimuB"] } } },
     "656": { "name_en": "SAC", "unverified": { "th11": { "Extra": ["MarisaC"] } }, "verified": { "th11": { "Normal": ["ReimuC", "MarisaC"] } } },
-    "657": { "name_en": "はやて", "verified": { "th11": { "Normal": ["ReimuC"] } } },
     "658": { "name_en": "REKO", "unverified": { "th11": { "Normal": ["ReimuC"] } }, "verified": { "th11": { "Normal": ["ReimuC"], "Hard": ["ReimuC"] } } },
-    "660": { "name_en": "ウルフルン", "verified": { "th11": { "Normal": ["ReimuC"] } } },
     "661": { "name_en": "y", "unverified": { "th11": { "Normal": ["MarisaA"] } }, "verified": { "th11": { "Normal": ["MarisaA"] } } },
     "662": { "name_en": "アラヤ", "verified": { "th11": { "Normal": ["MarisaA"], "Hard": ["ReimuA", "ReimuB", "MarisaA", "MarisaC"] } } },
     "663": { "name_en": "風雨之神", "verified": { "th11": { "Normal": ["MarisaB"] } } },
@@ -1592,7 +1588,6 @@
     "677": { "name_en": "STI", "verified": { "th11": { "Hard": ["MarisaB"], "Extra": ["MarisaB"], "Normal": ["MarisaB"], "Lunatic": ["MarisaB"] } } },
     "678": { "name_en": "Payne", "unverified": { "th11": { "Hard": ["MarisaC"] } }, "verified": { "th11": { "Hard": ["MarisaC"] } } },
     "679": { "name_en": "metal", "verified": { "th11": { "Lunatic": ["ReimuA"] } } },
-    "680": { "name_en": "#unknown", "verified": { "th11": { "Lunatic": ["ReimuA"] } } },
     "681": { "name_en": "tongrentang", "verified": { "th11": { "Lunatic": ["ReimuA"] } } },
     "682": { "name_en": "ポンデスイカ", "verified": { "th11": { "Lunatic": ["ReimuA"] } } },
     "683": {
@@ -1610,7 +1605,7 @@
     "686": { "name_en": "OYM", "verified": { "th11": { "Lunatic": ["ReimuB", "MarisaC"] } } },
     "687": { "name_en": "BOx", "unverified": { "th10": { "Lunatic": ["MarisaA"] } }, "verified": { "th11": { "Lunatic": ["ReimuC"] } } },
     "688": { "name_en": "ste", "unverified": { "th11": { "Lunatic": ["MarisaA", "MarisaC"] } }, "verified": { "th11": { "Lunatic": ["MarisaA", "MarisaC"] } } },
-    "689": { "name_en": "d.f", "unverified": { "th11": { "Lunatic": ["MarisaB"] } }, "verified": { "th11": { "Lunatic": ["MarisaB"] } } },
+    "689": { "name_en": "d.f", "unverified": { "th11": { "Lunatic": ["MarisaB"] } }, "verified": { "th11": { "Lunatic": ["MarisaB"] }, "th10": { "Hard": ["ReimuB"] } } },
     "690": { "name_en": "TANBO", "verified": { "th11": { "Extra": ["ReimuA"] } } },
     "691": { "name_en": "KlN", "verified": { "th11": { "Extra": ["ReimuA"] } } },
     "692": { "name_en": "tsuki", "verified": { "th11": { "Extra": ["ReimuA"] } } },
@@ -1679,8 +1674,6 @@
     },
     "759": { "name_en": "NAYA", "verified": { "th10": { "Normal": ["MarisaB"] } } },
     "760": { "name_en": "YANA", "verified": { "th10": { "Normal": ["MarisaB"] } } },
-    "761": { "name_en": "CAL", "verified": { "th10": { "Normal": ["MarisaC"], "Hard": ["MarisaC"] } } },
-    "762": { "name_en": "ＴＳＪ会員No.4", "verified": { "th10": { "Hard": ["ReimuB"] } } },
     "764": { "name_en": "angelkkj", "verified": { "th10": { "Hard": ["ReimuB"] } } },
     "766": { "name_en": "ikuo", "verified": { "th10": { "Hard": ["ReimuC"] } } },
     "767": { "name_en": "RDMR", "verified": { "th10": { "Hard": ["ReimuC"] } } },
@@ -1690,11 +1683,11 @@
         "unverified": { "th08": { "Easy": ["Border Team", "Scarlet Team"] } },
         "verified": {
             "th08": {
-                "Easy"   : ["Magic Team" , "Scarlet Team", "Ghost Team", "Yukari" , "Alice" , "Remilia", "Yuyuko"],
-                "Normal" : ["Reimu"      , "Yukari"      , "Alice"     , "Yuyuko"                                ],
-                "Hard"   : ["Reimu"      , "Yukari"      , "Alice"     , "Remilia", "Yuyuko"                     ],
+                "Easy"   : ["Magic Team",  "Scarlet Team", "Ghost Team", "Yukari",  "Alice",  "Remilia", "Yuyuko"],
+                "Normal" : ["Reimu",       "Yukari",       "Alice",      "Yuyuko"                                ],
+                "Hard"   : ["Reimu",       "Yukari",       "Alice",      "Remilia", "Yuyuko"                     ],
                 "Lunatic": ["Sakuya"                                                                             ],
-                "Extra"  : ["Border Team", "Yukari"      , "Alice"     , "Remilia", "Yuyuko"                     ]
+                "Extra"  : ["Border Team", "Yukari",       "Alice",      "Remilia", "Yuyuko"                     ]
             },
             "th10": { "Hard": ["MarisaB"] }
         }
@@ -1714,16 +1707,16 @@
         "name_en": "YASU",
         "unverified": {
             "th08": {
-                "Hard"   : ["Reimu"      , "Yukari"    , "Marisa"      , "Alice"     , "Sakuya", "Remilia", "Yuyuko"                                                 ],
-                "Lunatic": ["Border Team", "Magic Team", "Scarlet Team", "Ghost Team", "Reimu" , "Yukari" , "Marisa", "Alice", "Sakuya", "Remilia", "Youmu", "Yuyuko"],
+                "Hard"   : ["Reimu",       "Yukari",     "Marisa",       "Alice",      "Sakuya", "Remilia", "Yuyuko"                                                 ],
+                "Lunatic": ["Border Team", "Magic Team", "Scarlet Team", "Ghost Team", "Reimu",  "Yukari",  "Marisa", "Alice", "Sakuya", "Remilia", "Youmu", "Yuyuko"],
                 "Extra"  : ["Border Team", "Magic Team"                                                                                                              ]
             }
         },
         "verified": {
             "th08": {
-                "Hard"   : ["Border Team" , "Magic Team", "Ghost Team"  , "Reimu"     , "Yukari", "Marisa", "Alice" , "Sakuya", "Youmu" , "Yuyuko" , "Scarlet Team"          ],
-                "Lunatic": ["Border Team" , "Magic Team", "Scarlet Team", "Ghost Team", "Reimu" , "Yukari", "Marisa", "Alice" , "Sakuya", "Remilia", "Youmu"       , "Yuyuko"],
-                "Extra"  : ["Scarlet Team", "Reimu"     , "Marisa"      , "Sakuya"                                                                                           ]
+                "Hard"   : ["Border Team",  "Magic Team", "Ghost Team",   "Reimu",      "Yukari", "Marisa", "Alice",  "Sakuya", "Youmu",  "Yuyuko",  "Scarlet Team"          ],
+                "Lunatic": ["Border Team",  "Magic Team", "Scarlet Team", "Ghost Team", "Reimu",  "Yukari", "Marisa", "Alice",  "Sakuya", "Remilia", "Youmu",        "Yuyuko"],
+                "Extra"  : ["Scarlet Team", "Reimu",      "Marisa",       "Sakuya"                                                                                           ]
             },
             "th10": { "Lunatic": ["ReimuA"] }
         }
@@ -1736,9 +1729,9 @@
         "name_en": "ASAPIN",
         "unverified": { "th07": { "Lunatic": ["ReimuB", "SakuyaB"] }, "th08": { "Lunatic": ["Border Team", "Magic Team", "Ghost Team"], "Extra": ["Magic Team"] }, "th10": { "Lunatic": ["ReimuB"] } },
         "verified": {
-            "th07": { "Hard": ["ReimuB"], "Lunatic": ["SakuyaB"    , "ReimuB"                                                               ]                                         },
+            "th07": { "Hard": ["ReimuB"], "Lunatic": ["SakuyaB",     "ReimuB"                                                               ]                                         },
             "th08": {                     "Lunatic": ["Border Team", "Magic Team", "Scarlet Team", "Ghost Team", "Yukari", "Marisa", "Alice"], "Extra": ["Reimu", "Marisa", "Sakuya"] },
-            "th10": {                     "Lunatic": ["ReimuB"     , "ReimuC"    , "MarisaB"                                                ]                                         }
+            "th10": {                     "Lunatic": ["ReimuB",      "ReimuC",     "MarisaB"                                                ]                                         }
         }
     },
     "779": { "name_en": "Nanashi", "verified": { "th10": { "Lunatic": ["ReimuB", "MarisaC"] } } },
@@ -1746,7 +1739,7 @@
     "781": { "name_en": "Spira", "verified": { "th10": { "Lunatic": ["ReimuC"] } } },
     "783": {
         "name_en": "Dual",
-        "verified": { "th06": { "Lunatic": ["MarisaA"] }, "th08": { "Lunatic": ["Ghost Team", "Yukari", "Marisa", "Remilia", "Youmu", "Yuyuko"] }, "th10": { "Lunatic": ["MarisaA"] } },
+        "verified": { "th06": { "Lunatic": ["MarisaA"] }, "th08": { "Lunatic": ["Ghost Team", "Yukari", "Marisa", "Remilia", "Youmu", "Yuyuko", "Sakuya"] }, "th10": { "Lunatic": ["MarisaA"] } },
         "unverified": { "th08": { "Lunatic": ["Youmu"] }, "th06": { "Lunatic": ["MarisaA"] } }
     },
     "784": { "name_en": "PIC", "verified": { "th10": { "Lunatic": ["MarisaA"] } } },
@@ -1783,14 +1776,14 @@
             "th08": {
                 "Easy"  : ["Ghost Team"                                                                 ],
                 "Normal": ["Border Team", "Magic Team", "Scarlet Team", "Ghost Team", "Reimu", "Remilia"],
-                "Hard"  : ["Border Team", "Magic Team", "Ghost Team"  , "Youmu"                         ],
+                "Hard"  : ["Border Team", "Magic Team", "Ghost Team",   "Youmu"                         ],
                 "Extra" : ["Border Team", "Magic Team"                                                  ]
             },
             "th10": { "Normal": ["ReimuB"] }
         },
         "verified": {
             "th08": {
-                "Easy"  : ["Ghost Team" , "Youmu"                                                                ],
+                "Easy"  : ["Ghost Team",  "Youmu"                                                                ],
                 "Normal": ["Border Team", "Magic Team", "Scarlet Team", "Ghost Team", "Reimu", "Remilia", "Youmu"],
                 "Hard"  : ["Border Team", "Magic Team", "Scarlet Team", "Ghost Team", "Youmu"                    ],
                 "Extra" : ["Border Team", "Magic Team", "Scarlet Team", "Ghost Team", "Reimu", "Marisa"          ]
@@ -1811,7 +1804,7 @@
         "name_en": "TAK.",
         "unverified": { "th07": { "Easy": ["MarisaB", "SakuyaB"] }, "th08": { "Easy": ["Reimu", "Marisa", "Youmu"], "Hard": ["Reimu", "Youmu"], "Extra": ["Sakuya"] } },
         "verified": {
-            "th07": { "Easy": ["ReimuA"    , "ReimuB"                                            ]                                                                                  },
+            "th07": { "Easy": ["ReimuA",     "ReimuB"                                            ]                                                                                  },
             "th08": { "Easy": ["Magic Team", "Scarlet Team", "Reimu", "Marisa", "Alice", "Sakuya"], "Hard": ["Yukari", "Marisa", "Sakuya"], "Extra": ["Yukari", "Marisa", "Sakuya"] }
         }
     },
@@ -1833,16 +1826,16 @@
         "name_en": "NALIS",
         "unverified": {
             "th08": {
-                "Easy"  : ["Magic Team" , "Scarlet Team", "Ghost Team"  , "Reimu"     , "Yukari", "Marisa", "Alice" , "Sakuya", "Remilia", "Yuyuko"                     ],
-                "Normal": ["Magic Team" , "Scarlet Team", "Ghost Team"  , "Reimu"     , "Yukari", "Marisa", "Alice" , "Sakuya", "Remilia", "Youmu"  , "Yuyuko"          ],
-                "Hard"  : ["Border Team", "Magic Team"  , "Scarlet Team", "Ghost Team", "Reimu" , "Yukari", "Marisa", "Alice" , "Sakuya" , "Remilia", "Youmu" , "Yuyuko"]
+                "Easy"  : ["Magic Team",  "Scarlet Team", "Ghost Team",   "Reimu",      "Yukari", "Marisa", "Alice",  "Sakuya", "Remilia", "Yuyuko"                     ],
+                "Normal": ["Magic Team",  "Scarlet Team", "Ghost Team",   "Reimu",      "Yukari", "Marisa", "Alice",  "Sakuya", "Remilia", "Youmu",   "Yuyuko"          ],
+                "Hard"  : ["Border Team", "Magic Team",   "Scarlet Team", "Ghost Team", "Reimu",  "Yukari", "Marisa", "Alice",  "Sakuya",  "Remilia", "Youmu",  "Yuyuko"]
             }
         },
         "verified": {
             "th08": {
-                "Easy"  : ["Yukari"     , "Alice"       , "Remilia"   , "Yuyuko"                                                   ],
-                "Normal": ["Yukari"     , "Alice"       , "Remilia"   , "Yuyuko"                                                   ],
-                "Hard"  : ["Border Team", "Scarlet Team", "Ghost Team", "Reimu" , "Yukari", "Marisa", "Sakuya", "Remilia", "Yuyuko"]
+                "Easy"  : ["Yukari",      "Alice",        "Remilia",    "Yuyuko"                                                   ],
+                "Normal": ["Yukari",      "Alice",        "Remilia",    "Yuyuko"                                                   ],
+                "Hard"  : ["Border Team", "Scarlet Team", "Ghost Team", "Reimu",  "Yukari", "Marisa", "Sakuya", "Remilia", "Yuyuko"]
             }
         }
     },
@@ -1877,11 +1870,11 @@
             "th06": { "Normal": ["MarisaB"] },
             "th07": {
                 "Easy"    : ["ReimuB", "MarisaA", "MarisaB"                                 ],
-                "Normal"  : ["ReimuA", "ReimuB" , "MarisaA", "SakuyaA", "SakuyaB"           ],
-                "Hard"    : ["ReimuA", "ReimuB" , "MarisaA", "MarisaB", "SakuyaA", "SakuyaB"],
+                "Normal"  : ["ReimuA", "ReimuB",  "MarisaA", "SakuyaA", "SakuyaB"           ],
+                "Hard"    : ["ReimuA", "ReimuB",  "MarisaA", "MarisaB", "SakuyaA", "SakuyaB"],
                 "Lunatic" : ["ReimuA", "SakuyaA", "SakuyaB"                                 ],
-                "Extra"   : ["ReimuA", "ReimuB" , "MarisaA", "MarisaB", "SakuyaA", "SakuyaB"],
-                "Phantasm": ["ReimuA", "ReimuB" , "MarisaB", "SakuyaA", "SakuyaB"           ]
+                "Extra"   : ["ReimuA", "ReimuB",  "MarisaA", "MarisaB", "SakuyaA", "SakuyaB"],
+                "Phantasm": ["ReimuA", "ReimuB",  "MarisaB", "SakuyaA", "SakuyaB"           ]
             },
             "th08": { "Normal": ["Youmu"], "Extra": ["Ghost Team"] }
         },
@@ -1923,7 +1916,6 @@
     "873": { "name_en": "rori-", "name_jp": "ロリー", "verified": { "th07": { "Lunatic": ["MarisaA", "MarisaB", "SakuyaA"] }, "th08": { "Lunatic": ["Scarlet Team"] } } },
     "875": { "name_en": "Clio", "unverified": { "th08": { "Lunatic": ["Ghost Team"] } }, "verified": { "th08": { "Lunatic": ["Ghost Team"] } } },
     "876": { "name_en": "Levea", "verified": { "th08": { "Lunatic": ["Ghost Team"], "Extra": ["Ghost Team"] } } },
-    "877": { "name_en": "282L22b", "verified": { "th08": { "Lunatic": ["Sakuya"] } } },
     "879": { "name_en": "sogebu", "verified": { "th08": { "Lunatic": ["Sakuya"] } } },
     "880": { "name_en": "MEGMILK", "verified": { "th08": { "Lunatic": ["Youmu"] } } },
     "881": { "name_en": "kamiJI", "name_jp": "かみじー", "unverified": { "th08": { "Lunatic": ["Youmu"] } }, "verified": { "th08": { "Lunatic": ["Youmu"] } } },
@@ -1948,7 +1940,12 @@
     "901": { "name_en": "Sakurei", "verified": { "th08": { "Extra": ["Youmu"] } } },
     "902": { "name_en": "夜神", "verified": { "th08": { "Extra": ["Yuyuko"] } } },
     "903": { "name_en": "(o^^)-o*(x_x)*", "unverified": { "th08": { "Easy": ["Border Team"] } } },
-    "904": { "name_en": "Hayate", "unverified": { "th08": { "Easy": ["Border Team"], "Normal": ["Magic Team"] } }, "verified": { "th11": { "Hard": ["ReimuC"] } } },
+    "904": {
+        "name_en": "Hayate",
+        "name_jp": "はやて",
+        "unverified": { "th08": { "Easy": ["Border Team"], "Normal": ["Magic Team"] } },
+        "verified": { "th11": { "Hard": ["ReimuC"], "Normal": ["ReimuC"] } }
+    },
     "905": { "name_en": "CARLOS", "unverified": { "th08": { "Easy": ["Youmu"] } } },
     "906": { "name_en": "Leviathean", "unverified": { "th08": { "Normal": ["Scarlet Team"] } } },
     "907": { "name_en": "Y", "unverified": { "th08": { "Normal": ["Scarlet Team"], "Hard": ["Scarlet Team"], "Lunatic": ["Scarlet Team"] } } },
@@ -1973,7 +1970,7 @@
     "921": {
         "name_en": "KOTARO",
         "unverified": {
-            "th06": { "Lunatic": ["ReimuB"], "Extra": ["ReimuA"     , "ReimuB"]                                               },
+            "th06": { "Lunatic": ["ReimuB"], "Extra": ["ReimuA",      "ReimuB"]                                               },
             "th07": {                        "Extra": ["ReimuB"               ], "Normal": ["ReimuB"], "Phantasm": ["ReimuB"] },
             "th08": {                        "Extra": ["Border Team"          ]                                               }
         }
@@ -2031,12 +2028,12 @@
         "unverified": {
             "th06": { "Hard": ["ReimuA", "ReimuB", "MarisaA", "MarisaB"], "Lunatic": ["ReimuB", "MarisaA", "MarisaB"] },
             "th07": {
-                "Easy"    : ["ReimuA" , "ReimuB" , "MarisaA", "SakuyaA", "SakuyaB"],
-                "Normal"  : ["ReimuA" , "ReimuB" , "SakuyaA"                      ],
-                "Hard"    : ["ReimuB" , "SakuyaB"                                 ],
-                "Lunatic" : ["ReimuA" , "ReimuB" , "MarisaA", "SakuyaA", "SakuyaB"],
+                "Easy"    : ["ReimuA",  "ReimuB",  "MarisaA", "SakuyaA", "SakuyaB"],
+                "Normal"  : ["ReimuA",  "ReimuB",  "SakuyaA"                      ],
+                "Hard"    : ["ReimuB",  "SakuyaB"                                 ],
+                "Lunatic" : ["ReimuA",  "ReimuB",  "MarisaA", "SakuyaA", "SakuyaB"],
                 "Extra"   : ["MarisaB", "SakuyaA"                                 ],
-                "Phantasm": ["ReimuA" , "ReimuB" , "MarisaA", "MarisaB", "SakuyaA"]
+                "Phantasm": ["ReimuA",  "ReimuB",  "MarisaA", "MarisaB", "SakuyaA"]
             }
         }
     },
@@ -2146,10 +2143,10 @@
             "th02": { "Normal": ["ReimuA", "ReimuB", "ReimuC"], "Extra": ["ReimuB"] },
             "th04": { "Normal": ["ReimuA"], "Extra": ["ReimuA", "MarisaA"] },
             "th05": {
-                "Normal" : ["Reimu", "Marisa", "Mima" , "Yuuka"],
-                "Hard"   : ["Reimu", "Marisa", "Mima" , "Yuuka"],
+                "Normal" : ["Reimu", "Marisa", "Mima",  "Yuuka"],
+                "Hard"   : ["Reimu", "Marisa", "Mima",  "Yuuka"],
                 "Lunatic": ["Reimu", "Marisa", "Yuuka"         ],
-                "Extra"  : ["Reimu", "Marisa", "Mima" , "Yuuka"]
+                "Extra"  : ["Reimu", "Marisa", "Mima",  "Yuuka"]
             }
         },
         "unverified": {
@@ -2157,10 +2154,10 @@
             "th02": { "Normal": ["ReimuA", "ReimuB", "ReimuC"], "Extra": ["ReimuB"] },
             "th04": { "Normal": ["ReimuA"], "Extra": ["ReimuA", "MarisaA"] },
             "th05": {
-                "Normal" : ["Reimu", "Marisa", "Mima" , "Yuuka"],
-                "Hard"   : ["Reimu", "Marisa", "Mima" , "Yuuka"],
+                "Normal" : ["Reimu", "Marisa", "Mima",  "Yuuka"],
+                "Hard"   : ["Reimu", "Marisa", "Mima",  "Yuuka"],
                 "Lunatic": ["Reimu", "Marisa", "Yuuka"         ],
-                "Extra"  : ["Reimu", "Marisa", "Mima" , "Yuuka"]
+                "Extra"  : ["Reimu", "Marisa", "Mima",  "Yuuka"]
             }
         }
     },
