@@ -18,8 +18,8 @@
         "Makai": [
             { "id": 104, "score": 13668480, "date": "2011-07-05", "sources": ["https://youtu.be/v8HWTnPEDW4"                                           ] },
             { "id": 224, "score": 13823030, "date": "2012-08-05", "sources": ["https://youtu.be/YXcTUB5gwvM"                                           ] },
-            { "id":  97, "score": 14083170, "date": "2016-10-14", "sources": ["https://www.twitch.tv/videos/94975594"  , "https://youtu.be/JQINDUKdCkE"] },
-            { "id":  80, "score": 14863800, "date": "2024-11-14", "sources": ["https://www.twitch.tv/videos/2301909247"                                ] }
+            { "id":  97, "score": 14083170, "date": "2016-10-14", "sources": ["https://www.twitch.tv/videos/94975594",   "https://youtu.be/JQINDUKdCkE"] },
+            { "id":  80, "score": 14863800, "date": "2024-11-14", "sources": ["https://www.twitch.tv/videos/2301909247", "https://youtu.be/6yF0dc_wdvM"] }
         ],
         "Jigoku": [
             { "id": 110, "score": 13331660, "date": "2012-07-08", "sources": ["https://youtu.be/ISACnHB7md0"                                           ] },
@@ -28,7 +28,7 @@
             { "id": 224, "score": 13529850, "date": "2012-07-16", "sources": ["https://youtu.be/_XdKSBN2B_8"                                           ] },
             { "id": 110, "score": 13735710, "date": "2012-07-18", "sources": ["https://youtu.be/YAOu9vj7nqk"                                           ] },
             { "id": 224, "score": 14045805, "date": "2012-07-29", "sources": ["https://youtu.be/6RjK5QBEPOU"                                           ] },
-            { "id":  83, "score": 14292970, "date": "2015-11-11", "sources": ["https://www.twitch.tv/videos/25132057"  , "https://youtu.be/oGwk4Q0Y2hU"] },
+            { "id":  83, "score": 14292970, "date": "2015-11-11", "sources": ["https://www.twitch.tv/videos/25132057",   "https://youtu.be/oGwk4Q0Y2hU"] },
             { "id":  45, "score": 14380250, "date": "2018-01-31", "sources": ["https://youtu.be/Roew09aJbvo"                                           ] },
             { "id":  80, "score": 14503740, "date": "2022-12-25", "sources": ["https://www.twitch.tv/videos/1688717040"                                ] },
             { "id":  80, "score": 14513020, "date": "2023-05-01", "sources": ["https://www.twitch.tv/videos/1808922224"                                ] },
@@ -47,7 +47,7 @@
             { "id":  80, "score": 16289000, "date": "2024-06-01", "sources": ["https://www.twitch.tv/videos/2161007586"                                ] },
             { "id":  80, "score": 16379740, "date": "2024-06-05", "sources": ["https://www.twitch.tv/videos/2164348539"                                ] },
             { "id":  80, "score": 16557470, "date": "2024-06-12", "sources": ["https://www.twitch.tv/videos/2170459575"                                ] },
-            { "id":  80, "score": 17020200, "date": "2024-07-21", "sources": ["https://www.twitch.tv/videos/2203680176"                                ] }
+            { "id":  80, "score": 17020200, "date": "2024-07-21", "sources": ["https://www.twitch.tv/videos/2203680176", "https://youtu.be/2cyhR0OA5qs"] }
         ]
     }
 }
