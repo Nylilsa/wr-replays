@@ -14,12 +14,14 @@
     },
     "Normal": {
         "Reimu": [ { "id": 1, "score": 128874650, "date": "2020-02-22", "sources": ["https://youtu.be/IscPh3615cM"] } ],
-        "Marisa": [],
+        "Marisa": [ { "id": 157, "score": 109295940, "date": "2022-12-28", "sources": ["https://youtu.be/JLzc1jurr9w"] } ],
         "Mima": [
-            { "id":   1, "score": 139776270, "date": "2020-02-17", "sources": ["https://youtu.be/mR0gb4j3ttA"] },
-            { "id": 279, "score": 125172350, "date": "2016-06-21", "sources": ["https://youtu.be/mnklmdO6tyI"] }
+            { "id": 222, "score": 114452990, "date": "2012-12-18", "sources": ["https://youtu.be/ll1vg_Kdj_U"] },
+            { "id": 222, "score": 118156540, "date": "2013-03-31", "sources": ["https://youtu.be/AempTYqxk7Q"] },
+            { "id": 279, "score": 125172350, "date": "2016-06-21", "sources": ["https://youtu.be/mnklmdO6tyI"] },
+            { "id":   1, "score": 139776270, "date": "2020-02-17", "sources": ["https://youtu.be/mR0gb4j3ttA"] }
         ],
-        "Yuuka": []
+        "Yuuka": [ { "id": 124, "score": 103275100, "date": "2022-09-17", "sources": ["https://youtu.be/gFPzTBlSmR8"] } ]
     },
     "Hard": {
         "Reimu": [],
@@ -55,7 +57,7 @@
     "Extra": {
         "Reimu": [ { "id": 279, "score": 202105820, "date": "2017-06-18", "sources": ["https://youtu.be/NS_6fWzfKQA"] } ],
         "Marisa": [
-            { "id": 279, "score": 170836740, "date": "2016-06-08", "sources": ["https://youtu.be/aL_OemRLLPM"                     , "https://x.com/Zigzagwolf/status/739964684334424064"] },
+            { "id": 279, "score": 170836740, "date": "2016-06-08", "sources": ["https://youtu.be/aL_OemRLLPM",                      "https://x.com/Zigzagwolf/status/739964684334424064"] },
             { "id": 279, "score": 185041780, "date": "2016-11-17", "sources": ["https://www.restartsyndrome.com/user.php?user=212"                                                      ] },
             { "id": 279, "score": 189402740, "date": "2017-07-02", "sources": ["https://youtu.be/H31kYxyA8WM"                                                                           ] }
         ],

@@ -243,11 +243,13 @@ function askGame() {
 
 function askScore() {
     while (true) {
-        const score = readline.questionInt("Enter the score\n> ");
-        if (score >= 1) {
+        const input = readline.question("Enter the score\n> ");
+        const sanitizedInput = input.replace(/,/g, '');
+        const score = parseInt(sanitizedInput, 10);
+        if (!isNaN(score) && score >= 1) {
             return score;
         } else {
-            console.log("Invalid choice. Please select a valid option.");
+            console.log("Invalid choice. Please enter a valid number.");
         }
     }
 }
