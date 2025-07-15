@@ -109,7 +109,8 @@
         "Kana": [ { "id": 1, "score": 115627040, "date": "2019-08-02", "sources": ["https://youtu.be/lW_mekUKxAA"] } ],
         "Rikako": [
             { "id":   1, "score":  98761280, "date": "2018-10-06", "sources": ["https://youtu.be/vBuobm_8QYI"] },
-            { "id": 165, "score": 106352790, "date": "2021-05-06", "sources": ["https://youtu.be/YqDNNto9gYA"] }
+            { "id": 165, "score": 106352790, "date": "2021-05-06", "sources": ["https://youtu.be/YqDNNto9gYA"] },
+            { "id": 175, "score": 110917020, "date": "2025-07-09", "sources": ["https://youtu.be/jzT1goX1eIo"] }
         ],
         "Chiyuri": [
             { "id":  83, "score": 132887850, "date": "2016-01-24", "sources": ["https://youtu.be/NCNG5BRgq8Y"       ] },

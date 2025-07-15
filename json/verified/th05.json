@@ -21,13 +21,19 @@
             { "id": 279, "score": 125172350, "date": "2016-06-21", "sources": ["https://youtu.be/mnklmdO6tyI"] },
             { "id":   1, "score": 139776270, "date": "2020-02-17", "sources": ["https://youtu.be/mR0gb4j3ttA"] }
         ],
-        "Yuuka": [ { "id": 124, "score": 103275100, "date": "2022-09-17", "sources": ["https://youtu.be/gFPzTBlSmR8"] } ]
+        "Yuuka": [
+            { "id": 124, "score": 103275100, "date": "2022-09-17", "sources": ["https://youtu.be/gFPzTBlSmR8"] },
+            { "id": 358, "score": 131234390, "date": "2025-06-16", "sources": ["https://youtu.be/eOxX0dhZNqQ"] }
+        ]
     },
     "Hard": {
         "Reimu": [],
         "Marisa": [],
         "Mima": [ { "id": 83, "score": 163109770, "date": "2016-02-16", "sources": ["https://youtu.be/jzxNdSdidHo"] } ],
-        "Yuuka": [ { "id": 669, "score": 132711150, "date": "2020-09-12", "sources": ["https://youtu.be/gqI0fpQQ5lE"] } ]
+        "Yuuka": [
+            { "id": 669, "score": 132711150, "date": "2020-09-12", "sources": ["https://youtu.be/gqI0fpQQ5lE"] },
+            { "id": 358, "score": 168331210, "date": "2025-05-29", "sources": ["https://youtu.be/EbU2U3yrCpo"] }
+        ]
     },
     "Lunatic": {
         "Reimu": [

@@ -46,9 +46,16 @@
         ]
     },
     "Hard": {
-        "ReimuA": [ {"id":  83, "score": 18305260, "date": "2012-11-10", "sources": []}, {"id":  45, "score": 18772850, "date": "2016-05-15", "sources": []} ],
-        "ReimuB": [ {"id": 153, "score": 14202930, "date": "2013-06-06", "sources": []}, {"id":   1, "score": 30898850, "date": "2016-09-30", "sources": []} ],
-        "ReimuC": [ {"id":  45, "score": 16292610, "date": "2018-01-30", "sources": []}, {"id": 134, "score": 17235360, "date": "2020-02-25", "sources": []} ]
+        "ReimuA": [
+            {"id": 83, "score": 18305260, "date": "2012-11-10", "sources": []},
+            {"id": 45, "score": 18772850, "date": "2016-05-15", "sources": []},
+            {"id": 45, "score": 25818810, "date": "2025-06-30", "sources": []},
+            {"id": 45, "score": 27588760, "date": "2025-06-30", "sources": []},
+            {"id": 45, "score": 28231320, "date": "2025-07-01", "sources": []},
+            {"id": 45, "score": 29632460, "date": "2025-07-02", "sources": []}
+        ],
+        "ReimuB": [ {"id": 153, "score": 14202930, "date": "2013-06-06", "sources": []}, {"id": 1, "score": 30898850, "date": "2016-09-30", "sources": []} ],
+        "ReimuC": [ {"id": 45, "score": 16292610, "date": "2018-01-30", "sources": []}, {"id": 134, "score": 17235360, "date": "2020-02-25", "sources": []} ]
     },
     "Lunatic": {
         "ReimuA": [
@@ -77,7 +84,8 @@
         "ReimuC": [
             {"id": 126, "score": 14610620, "date": "2012-02-28", "sources": []},
             {"id":   1, "score": 21688150, "date": "2014-10-29", "sources": []},
-            {"id":   1, "score": 23864100, "date": "2014-11-16", "sources": []}
+            {"id":   1, "score": 23864100, "date": "2014-11-16", "sources": []},
+            {"id":  45, "score": 36416050, "date": "2025-06-27", "sources": []}
         ]
     }
 }

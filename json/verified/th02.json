@@ -25,7 +25,8 @@
         "ReimuA": [
             { "id": 157, "score": 24406200, "date": "2020-12-04", "sources": ["https://youtu.be/tNX7jvTyWx4"] },
             { "id": 124, "score": 24418280, "date": "2022-04-05", "sources": ["https://youtu.be/XIuUeh2WhY0"] },
-            { "id": 124, "score": 25782300, "date": "2022-04-19", "sources": ["https://youtu.be/opIR6VJjB2k"] }
+            { "id": 124, "score": 25782300, "date": "2022-04-19", "sources": ["https://youtu.be/opIR6VJjB2k"] },
+            { "id":  45, "score": 28460160, "date": "2025-07-02", "sources": ["https://youtu.be/2hq8UfOAr2M"] }
         ],
         "ReimuB": [
             { "id": 222, "score": 29790260, "date": "2014-11-23", "sources": ["https://youtu.be/h8TzY7pxPRg"] },
@@ -47,7 +48,8 @@
             { "id": 119, "score": 45365780, "date": "2021-01-24", "sources": ["https://youtu.be/lbqTJjK-vao"                                ] },
             { "id": 119, "score": 48541620, "date": "2022-07-22", "sources": ["https://youtu.be/Jwdn8K07pIg"                                ] },
             { "id": 119, "score": 49766640, "date": "2024-04-30", "sources": ["https://youtu.be/BCE6rzFrh_M"                                ] },
-            { "id": 119, "score": 50300410, "date": "2024-05-02", "sources": ["https://youtu.be/-cvSUxyKOiA"                                ] }
+            { "id": 119, "score": 50300410, "date": "2024-05-02", "sources": ["https://youtu.be/-cvSUxyKOiA"                                ] },
+            { "id": 119, "score": 50594930, "date": "2025-07-08", "sources": ["https://youtu.be/0PaBMwhhCcA"                                ] }
         ],
         "ReimuB": [
             { "id": 222, "score": 21334210, "date": "2012-12-15", "sources": ["https://youtu.be/N8wNutll0Qs"] },
@@ -77,7 +79,9 @@
             { "id":   1, "score": 29194290, "date": "2014-12-05", "sources": ["https://youtu.be/UwZ4wHmYmFY"] },
             { "id":   1, "score": 33862900, "date": "2016-08-09", "sources": ["https://youtu.be/ytucqIxrtDY"] },
             { "id":   1, "score": 35311930, "date": "2023-01-19", "sources": ["https://youtu.be/ZsIqHW7qnBE"] },
-            { "id":  45, "score": 35591210, "date": "2025-05-31", "sources": ["https://youtu.be/RaJmhMzHk8E"] }
+            { "id":  45, "score": 35591210, "date": "2025-05-31", "sources": ["https://youtu.be/RaJmhMzHk8E"] },
+            { "id":  45, "score": 35882760, "date": "2025-06-16", "sources": ["https://youtu.be/nv9b9peaj9I"] },
+            { "id":  45, "score": 36645260, "date": "2025-06-29", "sources": ["https://youtu.be/dJbTacdTeTc"] }
         ]
     }
 }
