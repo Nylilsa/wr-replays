@@ -678,7 +678,11 @@
     "172": { "name_en": "KIA@gra3", "verified": { "th16": { "Lunatic": ["ReimuSpring"] } } },
     "173": { "name_en": "AKM", "verified": { "th16": { "Lunatic": ["ReimuSpring"] } } },
     "174": { "name_en": "Ayame", "name_jp": "あやめ", "verified": { "th16": { "Lunatic": ["ReimuSpring", "CirnoSpring"] } } },
-    "175": { "name_en": "Lorenzo", "verified": { "th03": { "Hard": ["Reimu", "Rikako"], "Lunatic": ["Rikako"] }, "th12": { "Extra": ["ReimuB"] } }, "unverified": { "th03": { "Hard": ["Reimu"] } } },
+    "175": {
+        "name_en": "Lorenzo",
+        "verified": { "th03": { "Hard": ["Reimu", "Rikako"], "Lunatic": ["Rikako", "Ellen"] }, "th12": { "Extra": ["ReimuB"] } },
+        "unverified": { "th03": { "Hard": ["Reimu"] } }
+    },
     "176": {
         "name_en": "Lutino",
         "unverified": { "th16": { "Lunatic": ["ReimuSpring", "AyaSpring"] } },

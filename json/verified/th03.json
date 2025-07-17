@@ -99,7 +99,8 @@
         "Marisa": [ { "id": 1, "score": 113653150, "date": "2019-11-30", "sources": ["https://youtu.be/SxU-bpTSGc0"] } ],
         "Ellen": [
             { "id":   1, "score": 122656180, "date": "2017-06-10", "sources": ["https://youtu.be/qfMHiah8vVg"] },
-            { "id": 165, "score": 126747060, "date": "2021-04-30", "sources": ["https://youtu.be/6WbJa1TOvTA"] }
+            { "id": 165, "score": 126747060, "date": "2021-04-30", "sources": ["https://youtu.be/6WbJa1TOvTA"] },
+            { "id": 175, "score": 129497320, "date": "2025-07-16", "sources": ["https://youtu.be/tUzHcJX11fI"] }
         ],
         "Kotohime": [
             { "id":   1, "score": 123393850, "date": "2017-06-03", "sources": ["https://youtu.be/gnTMvIs0Jng"] },
