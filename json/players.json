@@ -365,7 +365,7 @@
     "56": { "name_en": "yuyukosamaaaa", "name_jp": "幽々公", "verified": { "th14": { "Normal": ["SakuyaB"] } }, "unverified": { "th14": { "Normal": ["SakuyaB"] } } },
     "57": { "name_en": "hchuang", "verified": { "th12": { "Normal": ["SanaeB"] } } },
     "58": { "name_en": "RYU-G", "name_jp": "リュウG", "verified": { "th16": { "Hard": ["ReimuWinter", "CirnoWinter", "AyaWinter"] }, "th17": { "Normal": ["ReimuWolf"] } } },
-    "59": { "name_en": "R24", "verified": { "th08": { "Lunatic": ["Alice"] } } },
+    "59": { "name_en": "R24", "verified": { "th08": { "Lunatic": ["Alice"] } }, "unverified": { "th08": { "Lunatic": ["Alice"] } } },
     "60": { "name_en": "Kudy", "verified": { "th12": { "Normal": ["SanaeA"] } } },
     "61": { "name_en": "TurboMaya9000", "verified": { "th08": { "Extra": ["Reimu"] } } },
     "62": { "name_en": "NyuChu77", "verified": { "th12": { "Extra": ["ReimuB"] } } },
@@ -483,7 +483,7 @@
     "96": {
         "name_en": "kudo",
         "name_jp": "くどう",
-        "unverified": { "th16": { "Normal": ["CirnoWinter"], "Hard": ["AyaWinter"] } },
+        "unverified": { "th16": { "Normal": ["CirnoWinter"], "Hard": ["AyaWinter"], "Lunatic": ["CirnoSpring"] } },
         "verified": {
             "th16": {
                 "Easy"   : ["ReimuWinter", "CirnoWinter", "MarisaWinter"],
@@ -564,7 +564,7 @@
     "123": {
         "name_en": "YDH",
         "name_jp": "湯豆腐",
-        "verified": { "th16": { "Easy": ["AyaSummer", "CirnoSpring", "CirnoAutumn"], "Normal": ["ReimuSummer", "CirnoSummer"], "Hard": ["ReimuSummer", "ReimuAutumn"] } },
+        "verified": { "th16": { "Easy": ["AyaSummer", "CirnoSpring", "CirnoAutumn", "AyaSpring"], "Normal": ["ReimuSummer", "CirnoSummer"], "Hard": ["ReimuSummer", "ReimuAutumn"] } },
         "unverified": { "th16": { "Easy": ["CirnoAutumn"] } }
     },
     "124": {
@@ -1058,7 +1058,7 @@
     "323": {
         "name_en": "Kero",
         "verified": { "th14": { "Lunatic": ["ReimuA", "SakuyaA", "MarisaB", "MarisaA"], "Hard": ["MarisaB", "MarisaA"], "Easy": ["MarisaB", "MarisaA"], "Normal": ["MarisaB"] } },
-        "unverified": { "th14": { "Lunatic": ["MarisaB", "MarisaA"], "Normal": ["MarisaB"], "Hard": ["MarisaA"], "Easy": ["MarisaA"] } }
+        "unverified": { "th14": { "Lunatic": ["MarisaB", "MarisaA"], "Normal": ["MarisaB", "MarisaA"], "Hard": ["MarisaA"], "Easy": ["MarisaA"] } }
     },
     "325": { "name_en": "Hakuka", "name_jp": "白花", "verified": { "th07": { "Lunatic": ["MarisaB"] }, "th14": { "Lunatic": ["MarisaA"] } } },
     "326": {
@@ -1482,7 +1482,11 @@
     "586": { "name_en": "KURO", "verified": { "th12": { "Extra": ["MarisaB"] } } },
     "587": { "name_en": "KASS", "verified": { "th12": { "Extra": ["SanaeA"] } } },
     "588": { "name_en": "wal", "verified": { "th12": { "Extra": ["SanaeB"] } } },
-    "589": { "name_en": "SOC", "verified": { "th06": { "Lunatic": ["ReimuB"] }, "th10": { "Lunatic": ["ReimuB", "ReimuA"] }, "th12": { "Extra": ["SanaeB"] } } },
+    "589": {
+        "name_en": "SOC",
+        "verified": { "th06": { "Lunatic": ["ReimuB"] }, "th10": { "Lunatic": ["ReimuB", "ReimuA"] }, "th12": { "Extra": ["SanaeB"] } },
+        "unverified": { "th10": { "Lunatic": ["ReimuC"] } }
+    },
     "590": { "name_en": "Talaysen", "unverified": { "th11": { "Easy": ["MarisaB"], "Normal": ["ReimuC"] } }, "verified": { "th12": { "Easy": ["ReimuB", "MarisaA", "SanaeA"] } } },
     "594": { "name_en": "Fia", "unverified": { "th11": { "Easy": ["ReimuC"] } } },
     "595": {

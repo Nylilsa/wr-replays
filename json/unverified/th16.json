@@ -77,7 +77,7 @@
         "ReimuSummer": [],
         "ReimuAutumn": [],
         "ReimuWinter": [],
-        "CirnoSpring": [],
+        "CirnoSpring": [ {"id": 96, "score": 5428781850, "date": "2025-07-06"} ],
         "CirnoSummer": [ {"id": 122, "score": 4175319390, "date": "2022-04-25"}, {"id": 122, "score": 4384400710, "date": "2022-06-05"} ],
         "CirnoAutumn": [],
         "CirnoWinter": [],
