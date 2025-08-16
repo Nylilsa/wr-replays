@@ -586,14 +586,14 @@ function convertedData(data, players, allPlayersIds) {
 function writeAllScoresUnverified() {
     const scores = [];
     ALL_GAMES.forEach(game => {
-        const json = fetchJson(`${BASE_NYLILSA_GITHUB}/json/wr/unverified/${game}.json`);
+        const json = fetchJson(`${BASE_NYLILSA_GITHUB}/unverified/${game}.json`);
         for (let i = 0; i < Object.entries(json).length; i++) {
             const difficulty = Object.entries(json)[i];
             for (let j = 0; j < Object.entries(difficulty[1]).length; j++) {
                 const shot = Object.entries(difficulty[1])[j];
                 for (let k = 0; k < shot[1].length; k++) {
                     const entry = shot[1][k];
-                    const score = entry[0];
+                    const score = entry.score;
                     scores.push(score)
                 }
             }
