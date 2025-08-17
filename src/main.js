@@ -657,40 +657,32 @@ function convertVerifiedJsonAccurateDate() {
 
 function generateMappings() {
     // For every game
+    resetMappings();
     const coveredIds = [];
     const allPlayers = fetchJson(PATH_PLAYERS_JSON);
     const tempClone = structuredClone(allPlayers);
     const allCategories = getVerifiedAndUnverifiedGames(ALL_GAMES);
     for (const [gameId, gameObj] of Object.entries(allCategories)) {
         const vArrays = ["unverified", "verified"];
-        // console.log(gameId);
         // For every status
         for (let i = 0; i < vArrays.length; i++) {
             const vValue = vArrays[i];
             const difficulties = gameObj[vValue];
             // For every difficulty
             for (const [difficulty, shottypes] of Object.entries(difficulties)) {
-                // console.log(difficulty)
                 // For every shottype
                 for (const [shottype, entries] of Object.entries(shottypes)) {
-                    // console.log(shottype)
                     // For every entry
                     loopEntries: for (const [entry, data] of Object.entries(entries)) {
-                        // For every player
-                        for (let [playerId, playerObj] of Object.entries(allPlayers)) {
-                            // If id of entry matches player id
-                            if (data.id == playerId) {
-                                const categories = playerObj[`${vValue}`] ||= {};
-                                const game = categories[gameId] ||= {};
-                                const diff = game[difficulty] ||= [];
-                                if (diff.includes(shottype)) {
-                                    // If already exists, then look at next entries
-                                    continue loopEntries;
-                                } else {
-                                    // Otherwise push category to player id
-                                    diff.push(shottype);
-                                }
-                            }
+                        const categories = allPlayers[data.id][`${vValue}`] ||= {};
+                        const game = categories[gameId] ||= {};
+                        const diff = game[difficulty] ||= [];
+                        if (diff.includes(shottype)) {
+                            // If already exists, then look at next entries
+                            continue loopEntries;
+                        } else {
+                            // Otherwise push category to player id
+                            diff.push(shottype);
                         }
                     }
                 }
@@ -700,6 +692,16 @@ function generateMappings() {
     if (JSON.stringify(tempClone) !== JSON.stringify(allPlayers)) {
         writeJson(PATH_PLAYERS_JSON, allPlayers);
     }
+}
+
+function resetMappings() {
+    const allPlayers = fetchJson(PATH_PLAYERS_JSON);
+    for (let i = 0; i < Object.entries(allPlayers).length; i++) {
+        const playerId = Object.entries(allPlayers)[i][0];
+        delete allPlayers[playerId]["verified"];
+        delete allPlayers[playerId]["unverified"];
+    }
+    writeJson(PATH_PLAYERS_JSON, allPlayers);
 }
 
 // function checks if all replays in the WR folder are valid. Prints statements if it is not
