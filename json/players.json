@@ -812,13 +812,7 @@
     },
     "260": {
         "name_en": "",
-        "verified": {
-            "th06" : { "Easy": ["ReimuA"], "Extra": ["MarisaB"]                                            },
-            "th08" : {                                           "Hard": ["Magic Team"]                    },
-            "th11" : { "Easy": ["ReimuB"]                                                                  },
-            "th128": {                                                                   "Normal": ["A-1"] },
-            "th14" : { "Easy": ["ReimuA"]                                                                  }
-        }
+        "verified": { "th06": { "Extra": ["MarisaB"] }, "th08": { "Hard": ["Magic Team"] }, "th11": { "Easy": ["ReimuB"] }, "th128": { "Normal": ["A-1"] }, "th14": { "Easy": ["ReimuA"] } }
     },
     "261": {
         "name_en": "BIT",
@@ -909,6 +903,7 @@
     "288": { "name_en": "Yopparai", "name_jp": "酔っ払い", "verified": { "th06": { "Hard": ["ReimuB", "MarisaA"] } } },
     "289": { "name_en": "michiru", "name_jp": "みちる", "verified": { "th06": { "Extra": ["MarisaA"] } } },
     "290": { "name_en": "霧流院", "verified": { "th14": { "Normal": ["SakuyaA"] } } },
+    "291": { "name_en": "(ﾟωﾟ)", "verified": { "th06": { "Easy": ["ReimuA"] } } },
     "292": { "name_en": "IORI.Y", "verified": { "th14": { "Normal": ["SakuyaA"] } } },
     "295": { "name_en": "Starshine", "unverified": { "th05": { "Lunatic": ["Mima"] } }, "verified": { "th05": { "Lunatic": ["Mima"] } } },
     "296": { "name_en": "NSF", "verified": { "th14": { "Normal": ["SakuyaB"] } } },
