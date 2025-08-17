@@ -2,7 +2,7 @@
     "Easy": {
         "ReimuSpring": [],
         "ReimuSummer": [ {"id": 10, "score": 1766782590, "date": "2021-01-30"} ],
-        "ReimuAutumn": [ {"id": 213, "score": 184567830, "date": "2017-08-15"}, {"id": 10, "score": 1456078070, "date": "2021-07-02"} ],
+        "ReimuAutumn": [ {"id": 213, "score": 184567830, "date": "2017-08-15"}, {"id": 10, "score": 1456078070, "date": "2021-07-02"}, {"id": 10, "score": 1680341240, "date": "2025-07-17"} ],
         "ReimuWinter": [],
         "CirnoSpring": [ {"id": 10, "score": 1431184410, "date": "2025-03-16"} ],
         "CirnoSummer": [ {"id": 99, "score": 515892910, "date": "2017-08-12"}, {"id": 99, "score": 666700730, "date": "2017-08-12"}, {"id": 10, "score": 1992143580, "date": "2025-01-26"} ],

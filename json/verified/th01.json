@@ -8,11 +8,18 @@
     },
     "Normal": {
         "Makai": [],
-        "Jigoku": [ { "id": 89, "score": 11213090, "date": "2015-02-12", "sources": ["https://web.archive.org/web/20210721153311/https://www.youtube.com/watch?v=s8DTvxTNjww"] } ]
+        "Jigoku": [
+            { "id": 89, "score": 11213090, "date": "2015-02-12", "sources": ["https://web.archive.org/web/20210721153311/https://www.youtube.com/watch?v=s8DTvxTNjww"] },
+            { "id": 65, "score": 11231330, "date": "2025-08-03", "sources": ["https://youtu.be/01LHvM7uMaQ"                                                          ] }
+        ]
     },
     "Hard": {
         "Makai": [ { "id": 97, "score": 11167860, "date": "2018-01-22", "sources": ["https://www.twitch.tv/videos/221092690", "https://youtu.be/vYVtJ8ekUvo"] } ],
-        "Jigoku": [ { "id": 65, "score": 11208870, "date": "2025-04-25", "sources": ["https://youtu.be/hFdYCMWsZ2Q"] } ]
+        "Jigoku": [
+            { "id": 65, "score": 11208870, "date": "2025-04-25", "sources": ["https://youtu.be/hFdYCMWsZ2Q"] },
+            { "id": 65, "score": 11236540, "date": "2025-08-02", "sources": ["https://youtu.be/Iu16J_BFY6I"] },
+            { "id": 65, "score": 11302230, "date": "2025-08-05", "sources": ["https://youtu.be/jiWGW3DVQRY"] }
+        ]
     },
     "Lunatic": {
         "Makai": [
