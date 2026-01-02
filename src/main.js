@@ -5,12 +5,113 @@ const readline = require('readline-sync');
 
 const Replay = require("D:/GitHub/replay-reader/src/Replay.js");
 
-// const testpath = "${BASE_WR_REPLAYS}/replays/MAIN/th18/Easy/Reimu/th18_easy_reimu_954243810.rpy"
-// const replayData2 = fs.readFileSync(testpath);
-// const replay = new Replay18(replayData2);
-// console.log(replay)
-// console.log(replay.getStageData(7))
-// console.log(replay)
+/*
+
+FOLDER WORKFLOW
+
+src/
+    scripts here
+replays/ -- NOT PUBLICLY AVAILABLE DUE TO SIZE, add in .gitignore - upload occasionally to gdrive or something idk
+    games (th06 th07 ... th19)/ all-replay-files.rpy
+wr-replays/
+    th[xx]/th[xx]_difficulty_shottype_score_hash[4].rpy
+json/
+    min/
+        players.json
+        th01.json
+        th02.json
+        ...
+    not-min/
+        players.json
+        th01.json
+        th02.json
+        ...
+
+SCRIPT WORKFLOW:
+
+> node main.js
+
+0. Run generic function (you will use this most of the time)
+    Runs ``Add new replay files``
+        Runs ``Recite verified status (PC-98)``
+            Runs ``Generate WR history JSONs``
+A. Add new replay files
+    Scan folder for new rpys, compute SHA‑256, check for duplicates, and insert or update replays rows.
+        Duplicate hash
+            Deny replay.
+        else: Failed to load replay
+            Warn in console.
+        else: Load replay
+            Replay is invalid for ${reason}
+                Add replay to ``replays``, mark ``is_valid = 0; notes = AUTO: ${reason}`` 
+            Duplicate score in category (two same replays but author saved multiple):
+                Add replay to ``replays``
+                    Youngest replay: mark ``is_valid = 0; notes += AUTO: Duplicate of ${replay_id}`` 
+            Replay is valid:
+                Add replay to ``replays``
+B. Generate WR history JSONs (verified and unverified)
+    Create players.json and thxx.json, both minified and beautified.
+C. Link replay to player_id
+    Which replay? (provide score (if multiple duplicate scores, return list prompting selection))
+        Which player_id?
+            Confirm prompt (regurgitate inputs, [Y/N])
+D. Update players
+    Add player
+        Player name?
+            Confirm prompt (regurgitate inputs, [Y/N])
+    Edit player
+        Which player_id?
+             Which attribute? (CHOOSE ATTRIBUTE IN ``players`` (name_en, name_jp))
+                Confirm prompt (regurgitate inputs, [Y/N])
+    Remove invalid players (clean-up)
+        Removes every player who does not have any replay attached to id. Removes matching aliases too.
+
+E. Edit a replay
+    Which replay? (provide score (if multiple duplicate scores, return list prompting selection))
+        Which attribute? (CHOOSE ATTRIBUTE IN ``replays`` (all except replay_hash?, created_at))
+            Confirm prompt (regurgitate inputs, [Y/N])
+F. Merge player IDs
+    Which players have to be merged? (provide exactly 2 player_ids) System will prioritize lowest id
+        Which english name is retained?
+            (Which japanese name is retained? (ask if there are two))
+                Confirm prompt (regurgitate inputs, [Y/N])
+G. Update player aliases
+    Which player_id?
+        Add player alias
+            Provide alias and language
+                Confirm prompt (regurgitate inputs, [Y/N])
+        Edit player alias
+            Which attribute? (CHOOSE ATTRIBUTE IN ``player_aliases`` (alias, lang))
+                Confirm prompt (regurgitate inputs, [Y/N])
+        Remove player alias
+            Confirm prompt (regurgitate inputs, [Y/N])
+
+H. Update replay source URLs
+    Add source
+        Which replay? (provide score (if multiple duplicate scores, return list prompting selection))
+            Provide source (url text)
+                Which type? (type text, make it so certain url matches auto map it (e.g. youtu.be/... -> yt-vid))
+                    Confirm prompt (regurgitate inputs, [Y/N])
+    Edit source
+        Which id? (provide replay_sources id)
+            Which attribute? (CHOOSE ATTRIBUTE IN ``replay_sources`` (url, type, is_primary))
+                Confirm prompt (regurgitate inputs, [Y/N])
+    Remove source
+        Which id? (provide replay_sources id)
+            Confirm prompt (regurgitate inputs, [Y/N])
+I. Change replay validity/notes
+    Which replay? (provide score (if multiple duplicate scores, return list prompting selection))
+        Change validity status
+            Confirm prompt (regurgitate inputs, [Y/N])
+        Change note
+            Confirm prompt (regurgitate inputs, [Y/N])
+J. Generate list of all unverified records
+    Outputs a json with all unverified records in one. Purpose is to make it easily shareable for others to search for them.
+K. Recite verified status (PC-98)
+    Running this goes through every PC-98 unverified replay and sees if source is attached to it. 1=Verified, 0=Unverified
+
+*/
+
 
 const GAME = "th08";
 const ALL_GAMES = ["th01", "th02", "th03", "th04", "th05",
