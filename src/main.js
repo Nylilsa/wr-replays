@@ -42,13 +42,18 @@ A. Add new replay files
         else: Failed to load replay
             Warn in console.
         else: Load replay
-            Replay is invalid for ${reason}
+            Replay is invalid for ${reason}?
                 Add replay to ``replays``, mark ``is_valid = 0; notes = AUTO: ${reason}`` 
-            Duplicate score in category (two same replays but author saved multiple):
+            Else: Replay is counterstop? (9,999,999,990):
+                Prompt for true score. This score will be saved in the DB, overwriting the 9,999,999,990 score.
+                    Continue to next line.
+            Else: Duplicate score in category (two same replays but author saved multiple)?:
                 Add replay to ``replays``
                     Youngest replay: mark ``is_valid = 0; notes += AUTO: Duplicate of ${replay_id}`` 
-            Replay is valid:
-                Add replay to ``replays``
+            Else: Replay is valid:
+                Replay matches Unverified entry (game + difficulty + shottype + score)?
+                    Auto-update corresponding ``replay_id`` in ``replays``.
+                Else: Add replay to ``replays``
 B. Generate WR history JSONs (verified and unverified)
     Create players.json and thxx.json, both minified and beautified.
 C. Link replay to player_id
@@ -66,10 +71,14 @@ D. Update players
     Remove invalid players (clean-up)
         Removes every player who does not have any replay attached to id. Removes matching aliases too.
 
-E. Edit a replay
-    Which replay? (provide score (if multiple duplicate scores, return list prompting selection))
-        Which attribute? (CHOOSE ATTRIBUTE IN ``replays`` (all except replay_hash?, created_at))
+E. Update replay
+    Add replay
+        Provide attributes (game, shottype, diff, player_name, is_verified? (likely false if replay is made this way))
             Confirm prompt (regurgitate inputs, [Y/N])
+    Edit replay
+        Which replay? (provide score (if multiple duplicate scores, return list prompting selection))
+            Which attribute? (CHOOSE ATTRIBUTE IN ``replays`` (all except replay_hash?, created_at))
+                Confirm prompt (regurgitate inputs, [Y/N])
 F. Merge player IDs
     Which players have to be merged? (provide exactly 2 player_ids) System will prioritize lowest id
         Which english name is retained?
@@ -81,10 +90,12 @@ G. Update player aliases
             Provide alias and language
                 Confirm prompt (regurgitate inputs, [Y/N])
         Edit player alias
-            Which attribute? (CHOOSE ATTRIBUTE IN ``player_aliases`` (alias, lang))
-                Confirm prompt (regurgitate inputs, [Y/N])
+            Which alias? Provide id
+                Which attribute? (CHOOSE ATTRIBUTE IN ``player_aliases`` (alias, lang))
+                    Confirm prompt (regurgitate inputs, [Y/N])
         Remove player alias
-            Confirm prompt (regurgitate inputs, [Y/N])
+            Which alias? Provide id
+                Confirm prompt (regurgitate inputs, [Y/N])
 
 H. Update replay source URLs
     Add source

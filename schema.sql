@@ -7,7 +7,7 @@ CREATE TABLE players (
 );
 
 CREATE TABLE player_aliases (
-  id INTEGER PRIMARY KEY,
+  alias_id INTEGER PRIMARY KEY,
   player_id INTEGER REFERENCES players(player_id) ON DELETE CASCADE,
   alias TEXT NOT NULL,
   lang TEXT NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE player_aliases (
 );
 
 CREATE TABLE replays (
-  id INTEGER PRIMARY KEY,
+  replay_id INTEGER PRIMARY KEY,
   player_id INTEGER REFERENCES players(player_id) ON DELETE SET NULL,
   game TEXT NOT NULL,
   difficulty TEXT NOT NULL,
@@ -35,8 +35,8 @@ CREATE TABLE replays (
 );
 
 CREATE TABLE replay_sources (
-  id INTEGER PRIMARY KEY,
-  replay_id INTEGER NOT NULL REFERENCES replays(id) ON DELETE CASCADE,
+  sources_id INTEGER PRIMARY KEY,
+  replay_id INTEGER NOT NULL REFERENCES replays(replay_id) ON DELETE CASCADE,
   url TEXT NOT NULL,
   type TEXT CHECK(type IN ('yt-vid', 'image', 'forum', 'misc')),
   created_at TEXT DEFAULT (datetime('now')),
